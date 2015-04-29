@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Categories
+		</title>
+		<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	</head>
+	<body>
+	<div class="container">
+		<div class"row">
+			<div class="col-md-6">
+				<h1>Listing Categories</h1>
+				<% @categories.each do |category| %>
+				 <p><%= link_to "#{category.name}", category_path(category) %></p> 
+				<% end %> 
+			</div>
+			<div class="col-md-3"></div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
