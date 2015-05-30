@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-3"> </div>
+    <div class="col-md-6">
+      <%= form_for [@category, @exercise] do |f| %>
+    <% if @exercise.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
+
+        <ul>
+        <% @exercise.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :instructions %><br>
+      <%= f.text_area :instructions %>
+    </div>
+    <div class="field">
+      <%= f.label :workout %>
+      <%= f.select(:workout_id, @workout_options) %>
+      <br>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+    </div>
+  <div class="col-md-3"></div>
+</div>
+
+
+

@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing <%= @category.name %> Exercises</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> Name &nbsp;</th> 
+      <th> Category &nbsp;</th>
+      <th> Workout &nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @category.exercises.each do |exercise| %>
+      <tr>
+        <td><%= link_to "#{exercise.name}", category_exercise_path(@category, exercise) %>&nbsp;</td>
+
+        <td><%= @category.name %>&nbsp;</td>
+        <% if @workout %> 
+        <td><%= exercise.workout.name %></td>
+        <% else %> 
+        <td>not specified&nbsp;</td> 
+        <% end %> 
+        <td><%= link_to 'Edit', edit_category_exercise_path(@category, exercise) %>&nbsp;</td>
+        <td><%= link_to 'Destroy', category_exercise_path(@category, exercise), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <!-- <tr>
+        <hr>
+      </tr> -->
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exercise', new_category_exercise_path %> |
+<%= link_to 'Back to Categories', categories_path %>
