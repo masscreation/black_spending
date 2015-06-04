@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
-  resources :workouts do 
-    resources :exercises
-  end
-  resources :categories do 
-    resources :exercises 
-  end
+
+  # resources :training_sessions do 
+  #   resources :exercise_sets
+  # end
+
+  # resources :workouts do 
+  #   resources :exercises
+  # end
+  # resources :categories do 
+  #   resources :exercises 
+  # end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'workouts#index'
+   root 'application#angular'
 
-   get '/categories' => 'categories#index'
+   # get '/categories' => 'categories#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

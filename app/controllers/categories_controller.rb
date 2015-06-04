@@ -1,28 +1,22 @@
 class CategoriesController < ApplicationController
 
 	def index 
-		@categories = Category.all
+		respond_with = Category.all
 	end
 
 	def show
-		@category = Category.find(params[:id])
-	end
-
-	def new
-		@category = Category.new
+		respond_with Category.find(params[:id])
 	end
 
 	def create
-		@category = Category.new(category_params)
+		@category = Category.create(category_params)
 		if @category.save
-			redirect_to @category
+			respond_to do |format|
+				format.json { render @category.json}
+			end
 		else
-			render 'new'
+			respond_with @category.errors
 		end
-	end
-
-	def edit
-		@category = Category.find(params[:id])
 	end
 
 	def update

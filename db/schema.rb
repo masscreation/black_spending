@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504045345) do
+ActiveRecord::Schema.define(version: 20150601220243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20150504045345) do
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
 
+  create_table "exercise_sets", force: :cascade do |t|
+    t.boolean  "completed"
+    t.integer  "athlete_id"
+    t.integer  "training_session_id"
+    t.integer  "exercise_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
     t.text     "description",  null: false
@@ -34,6 +43,36 @@ ActiveRecord::Schema.define(version: 20150504045345) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.text     "instructions"
+  end
+
+  create_table "period_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "periods", force: :cascade do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "duration_weeks"
+    t.integer  "period_type_id"
+    t.integer  "user_id"
+    t.integer  "training_program_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "training_sessions", force: :cascade do |t|
+    t.datetime "scheduled_on"
+    t.boolean  "complete"
+    t.integer  "volume"
+    t.integer  "category_id"
+    t.integer  "athlete_id"
+    t.integer  "period_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "workouts", force: :cascade do |t|
