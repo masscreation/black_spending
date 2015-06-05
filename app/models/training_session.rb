@@ -4,4 +4,5 @@ class TrainingSession < ActiveRecord::Base
 	belongs_to :category
 	has_many :execise_sets
 
+	
 end

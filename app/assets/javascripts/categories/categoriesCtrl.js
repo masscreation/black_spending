@@ -1,6 +1,21 @@
-angular.module('trainingProgram').controller('categoriesCtrl', ['$scope', '$http', function ($scope, $http) {
-	$scope.createExercise = function() {
-		$http.post('categories', $scope.categories)
+angular.module('trainingProgram')
+.controller('categoriesCtrl', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams) {
+	console.log("categories controller")
+	$scope.categories = []; 
+	$http.get('categories.json')
+		.success(function (data) {
+			console.log(data); 
+			$scope.categories = data;
+			link: $scope.link;  
+		})
+		.error(function (data) {
+			console.log("error:" + data); 
+		}); 
+
+		$scope.category = $stateParams.category;
+
+	$scope.createCategory = function() {
+		$http.post('/categories.json', $scope.categories)
 		.success(function(data) {
 			$scope.categories = data; 
 			$scope.categories.push(data); 
@@ -10,4 +25,4 @@ angular.module('trainingProgram').controller('categoriesCtrl', ['$scope', '$http
 			alert("No categories created"); 
 		})
 	}
-}])
+}]); 

@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
 
-  # resources :training_sessions do 
-  #   resources :exercise_sets
-  # end
+  devise_for :users
+  resources :training_sessions, only: [:create, :index, :show] do 
+    resources :exercise_sets, only: [:create, :index]
+  end
 
-  # resources :workouts do 
-  #   resources :exercises
-  # end
-  # resources :categories do 
-  #   resources :exercises 
-  # end
+   resources :workouts do 
+     resources :exercises
+   end
+
+  resources :categories, only: [:create, :index, :show] do 
+    resources :exercises, only: [:create, :index, :show]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'application#angular'
+  root 'application#angular'
 
    # get '/categories' => 'categories#index'
 

@@ -3,22 +3,34 @@ angular.module('trainingProgram', ['ui.router', 'templates'])
 		function ($stateProvider, $urlRouterProvider) {
 
         $stateProvider
-            .state('/', {
-            	url: '/index',
-                templateUrl: '/templates/index.html',
-                controller: ''
+            .state('home', {
+            	url: '/',
+                templateUrl: 'assets/home.html',
+                controller: 'homeCtlr'
             })
             .state('train', {
-            	url: '/training-session', 
-            	templateUrl: '/training_sessions/training-sessions.html',
+            	url: '/train', 
+            	templateUrl: 'assets/training-sessions.html',
             	controller: 'trainingSessionCtlr'
+            })
+            .state('exercises', {
+                url: '/exercises',
+                templateUrl: 'assets/exercises.html',
+                controller: 'exercisesCtrl'
             })
             .state('categories', {
             	url: '/categories',
-            	templateUrl: '/categories/categories.html',
-            	controller: 'categoriesCtrl'
-            })
-            
-        $urlRouterProvider.otherwise('train');
+            	templateUrl: 'assets/categories.html',
+            	controller: 'categoriesCtrl' 
 
-    }]);
+            })
+            .state('categories.id', {
+                url: '/:id',
+                templateUrl: 'assets/category.html',
+                controller: 'categoriesCtrl' 
+            }); 
+            
+        $urlRouterProvider.otherwise('/');
+
+    }]); 
+    
