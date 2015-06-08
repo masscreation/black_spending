@@ -1,10 +1,7 @@
 angular.module('trainingProgram')
 .controller('exercisesCtrl', ['$scope', '$http', function ($scope, $http) {
-	$scope.createExercise = function() {
-		
-		console.log("exercises controller")
-		$scope.exercises = []; 
-		$http.get('exercises.json')
+	 
+	$http.get('api/exercises.json')
 		.success(function (data) {
 			console.log(data); 
 			$scope.exercises = data; 
@@ -13,7 +10,8 @@ angular.module('trainingProgram')
 			console.log("error:" + data); 
 		});
 
-		$http.post('exercises.json', $scope.exercises)
+	$scope.createExercise = function() {
+		$http.post('api/exercises.json', $scope.exercises)
 		.success(function(data) {
 			$scope.exercises = data; 
 			$scope.exercises.push(data); 

@@ -2,7 +2,7 @@ angular.module('trainingProgram')
 .controller('categoriesCtrl', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams) {
 	console.log("categories controller")
 	$scope.categories = []; 
-	$http.get('categories.json')
+	$http.get('api/categories.json')
 		.success(function (data) {
 			console.log(data); 
 			$scope.categories = data;
@@ -15,9 +15,8 @@ angular.module('trainingProgram')
 		$scope.category = $stateParams.category;
 
 	$scope.createCategory = function() {
-		$http.post('/categories.json', $scope.categories)
+		$http.post('api/categories.json', $scope.categories)
 		.success(function(data) {
-			$scope.categories = data; 
 			$scope.categories.push(data); 
 
 		})

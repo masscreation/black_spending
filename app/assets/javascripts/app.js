@@ -1,4 +1,4 @@
-angular.module('trainingProgram', ['ui.router', 'templates'])
+angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar'])
 	.config(['$stateProvider', '$urlRouterProvider', 
 		function ($stateProvider, $urlRouterProvider) {
 
@@ -7,6 +7,11 @@ angular.module('trainingProgram', ['ui.router', 'templates'])
             	url: '/',
                 templateUrl: 'assets/home.html',
                 controller: 'homeCtlr'
+            })
+            .state('profile', {
+                url: '/profile', 
+                templateUrl: 'assets/profile.html',
+                controller: 'authCtrl'
             })
             .state('train', {
             	url: '/train', 
@@ -28,7 +33,27 @@ angular.module('trainingProgram', ['ui.router', 'templates'])
                 url: '/:id',
                 templateUrl: 'assets/category.html',
                 controller: 'categoriesCtrl' 
-            }); 
+            })
+            .state('login', {
+              url: '/login',
+              templateUrl: 'assets/_login.html',
+              controller: 'authCtrl',
+              onEnter: ['$state', 'Auth', function($state, Auth) {
+                    Auth.currentUser().then(function (){
+                        $state.go('train');
+                    })
+                }]
+            })
+            .state('register', {
+                url: '/register',
+                templateUrl: 'assets/_register.html',
+                controller: 'authCtrl',
+                onEnter: ['$state', 'Auth', function($state, Auth) {
+                    Auth.currentUser().then(function (){
+                        $state.go('train');
+                    })
+                }]
+            });
             
         $urlRouterProvider.otherwise('/');
 

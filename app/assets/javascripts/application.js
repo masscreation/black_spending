@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require angular
+//= require angular-devise
 //= require angular-ui-router
+//= require angular-ui-calendar
 //= require angular-rails-templates
 
 //= require bootstrap-sprockets

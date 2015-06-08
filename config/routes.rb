@@ -1,22 +1,30 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  resources :training_sessions, only: [:create, :index, :show] do 
-    resources :exercise_sets, only: [:create, :index]
-  end
+  root 'application#angular'
 
-   resources :workouts do 
-     resources :exercises
-   end
+  namespace :api, defaults: {format: 'json'} do 
 
-  resources :categories, only: [:create, :index, :show] do 
-    resources :exercises, only: [:create, :index, :show]
+    devise_for :users
+
+    resources :exercises
+
+    resources :training_sessions, only: [:create, :index, :show] do 
+      resources :exercise_sets, only: [:create, :index]
+    end
+
+     resources :workouts, only: [:create, :index, :show] do 
+       resources :exercises, only: [:create, :index, :show]
+     end
+
+    resources :categories, only: [:create, :index, :show] do 
+      resources :exercises, only: [:create, :index, :show]
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'application#angular'
+  get "*path", to: "application#angular"
 
    # get '/categories' => 'categories#index'
 

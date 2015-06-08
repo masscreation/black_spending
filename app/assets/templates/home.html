@@ -1,9 +1,8 @@
-  <div>
+<div>
     <div>
-      <h1>Welcome to the shutdown cornerback training program</h1>
+      <h1>Hi {{user.username}} Welcome to the shutdown cornerback training program</h1>
     </div>
-    <a ui-sref="categories">Categories</a> | <a ui-sref=""
-
-
-
-  </div>
+    <a ui-sref="categories">Categories</a> | 
+    <a ng-show="signedIn()" ui-sref="train">Train</a>
+    <a ui-sref=""></a>
+</div>
