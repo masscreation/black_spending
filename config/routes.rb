@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
 
+  get 'users/index'
+
+  get 'users/create'
+
+  get 'users/update'
+
+  get 'users/destroy'
+
   root 'application#angular'
 
   namespace :api, defaults: {format: 'json'} do 
 
     devise_for :users
+
+    resources :users
 
     resources :exercises
 

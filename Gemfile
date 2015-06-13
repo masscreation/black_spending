@@ -33,6 +33,7 @@ gem 'autoprefixer-rails'
 # Angular
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
+gem 'angular_rails_csrf'
 
 # Devise
 gem 'devise'

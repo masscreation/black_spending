@@ -18,11 +18,6 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             	templateUrl: 'assets/training-sessions.html',
             	controller: 'trainingSessionCtlr'
             })
-            .state('exercises', {
-                url: '/exercises',
-                templateUrl: 'assets/exercises.html',
-                controller: 'exercisesCtrl'
-            })
             .state('categories', {
             	url: '/categories',
             	templateUrl: 'assets/categories.html',
@@ -33,6 +28,11 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 url: '/:id',
                 templateUrl: 'assets/category.html',
                 controller: 'categoriesCtrl' 
+            })
+            .state('exercises', {
+                url: '/exercises',
+                templateUrl: 'assets/exercises.html',
+                controller: 'exercisesCtrl'
             })
             .state('login', {
               url: '/login',

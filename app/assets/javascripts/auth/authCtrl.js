@@ -1,5 +1,5 @@
 angular.module('trainingProgram')
-.controller('AuthCtrl', [
+.controller('authCtrl', [
 '$scope',
 '$state',
 '$http',
@@ -14,7 +14,7 @@ function($scope, $state, $http, Auth){
 
   $scope.register = function() {
     Auth.register($scope.user).then(function(){
-    	$http.post('users.json', $scope.user)
+    	$http.post('/users.json', $scope.users)
     	.success(function (data) {
     		$scope.users.push(data); 
     	}); 
