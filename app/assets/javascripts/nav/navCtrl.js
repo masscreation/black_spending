@@ -1,5 +1,5 @@
 angular.module('trainingProgram')
-.controller('NavCtrl', [
+.controller('navCtrl', [
 '$scope',
 'Auth',
 function ($scope, Auth) {

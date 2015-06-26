@@ -1,7 +1,7 @@
 angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar'])
 	.config(['$stateProvider', '$urlRouterProvider', 
 		function ($stateProvider, $urlRouterProvider) {
-
+            
         $stateProvider
             .state('home', {
             	url: '/',
@@ -11,7 +11,7 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             .state('profile', {
                 url: '/profile', 
                 templateUrl: 'assets/profile.html',
-                controller: 'authCtrl'
+                controller: 'profileCtrl'
             })
             .state('train', {
             	url: '/train', 
@@ -21,7 +21,16 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             .state('categories', {
             	url: '/categories',
             	templateUrl: 'assets/categories.html',
-            	controller: 'categoriesCtrl' 
+            	controller: 'categoriesCtrl', 
+                resolve: {
+                    category: ['$stateParams', 'categories', function($stateParams, categories) {
+                        return categories.get($stateParams.id);
+                    }],
+
+                    categories: ['categories', function(categories){
+                        return categories.getAll();
+                    }]
+                }
 
             })
             .state('categories.id', {
@@ -38,17 +47,17 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
               url: '/login',
               templateUrl: 'assets/_login.html',
               controller: 'authCtrl',
-              onEnter: ['$state', 'Auth', function($state, Auth) {
+              onEnter: ['$state', 'Auth', function ($state, Auth) {
                     Auth.currentUser().then(function (){
                         $state.go('train');
-                    })
+                    }); 
                 }]
             })
             .state('register', {
                 url: '/register',
                 templateUrl: 'assets/_register.html',
                 controller: 'authCtrl',
-                onEnter: ['$state', 'Auth', function($state, Auth) {
+                onEnter: ['$state', 'Auth', function ($state, Auth) {
                     Auth.currentUser().then(function (){
                         $state.go('train');
                     })

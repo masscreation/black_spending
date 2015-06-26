@@ -3,7 +3,7 @@ angular.module('trainingProgram')
 	console.log("categories controller")
 	
 	$scope.categories = categories.categories; 
-	$scope.category = categories.categories($stateParams.id)
+	$scope.category = $scope.categories($stateParams.id)
 	
 
 	return {

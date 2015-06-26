@@ -8,13 +8,13 @@ function($scope, $state, $http, Auth){
 
 	$scope.login = function() {
     Auth.login($scope.user).then(function(){
-      $state.go('home');
+      $state.go('train');
     });
   };
 
   $scope.register = function() {
     Auth.register($scope.user).then(function(){
-    	$http.post('/users.json', $scope.users)
+    	$http.post('api/users.json', $scope.users)
     	.success(function (data) {
     		$scope.users.push(data); 
     	}); 

@@ -10,11 +10,12 @@ Rails.application.routes.draw do
 
   root 'application#angular'
 
+  
+  
+
   namespace :api, defaults: {format: 'json'} do 
 
     devise_for :users
-
-    resources :users
 
     resources :exercises
 
