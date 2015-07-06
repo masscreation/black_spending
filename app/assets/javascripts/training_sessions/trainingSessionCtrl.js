@@ -1,7 +1,7 @@
 angular.module('trainingProgram')
-.controller('trainingSessionCtlr', ['$scope', '$httpProvider', function ($scope, $httpProvider) {
+.controller('trainingSessionCtlr', ['$scope', '$http', function ($scope, $http) {
 	
-	$httpProvider.get('training_sessions')
+	$http.get('/api/training_sessions')
 		.success(function (data) {
 			console.log(data); 
 			$scope.training_sessions = data; 
@@ -28,7 +28,7 @@ angular.module('trainingProgram')
 	    };
 
 	$scope.createTrainingSession = function() {
-		$httpProvider.post('training_sessions', $scope.training_sessions)
+		$http.post('training_sessions', $scope.training_sessions)
 		.success(function(data) {
 
 			$scope.training_sessions.push(data); 

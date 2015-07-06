@@ -14,7 +14,7 @@ function($scope, $state, $http, Auth){
 
   $scope.register = function() {
     Auth.register($scope.user).then(function(){
-    	$http.post('api/users.json', $scope.users)
+    	$http.post('/users.json', $scope.users)
     	.success(function (data) {
     		$scope.users.push(data); 
     	}); 

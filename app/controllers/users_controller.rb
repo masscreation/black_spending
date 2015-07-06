@@ -1,7 +1,6 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
   def index
-    @users = User.all
-  	respond_with @users.json
+  	respond_with :api, users
   end
 
   def create
@@ -9,11 +8,11 @@ class UsersController < ApplicationController
   end
 
   def update
-  	respond_with user.update
+  	respond_with :api, user.update
   end
 
   def destroy
-  	respond_with user.destroy
+  	respond_with :api, user.destroy
   end
 
   private

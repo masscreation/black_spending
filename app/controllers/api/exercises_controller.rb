@@ -3,7 +3,7 @@ class Api::ExercisesController < ApplicationController
 
   # GET /exercises
   # GET /exercises.json
-  def index
+  def index 
     respond_with :api, exercises
   end
 

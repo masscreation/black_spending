@@ -1,21 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
-
-  get 'users/create'
-
-  get 'users/update'
-
-  get 'users/destroy'
 
   root 'application#angular'
 
-  
-  
+  devise_for :users
 
   namespace :api, defaults: {format: 'json'} do 
 
-    devise_for :users
+    devise_scope :users do
+      post 'users/password', to: 'password#create'
+    end
+
+    resources :users, only: [:create, :update, :show]
 
     resources :exercises
 

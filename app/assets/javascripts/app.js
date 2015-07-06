@@ -21,18 +21,8 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             .state('categories', {
             	url: '/categories',
             	templateUrl: 'assets/categories.html',
-            	controller: 'categoriesCtrl', 
-                resolve: {
-                    category: ['$stateParams', 'categories', function($stateParams, categories) {
-                        return categories.get($stateParams.id);
-                    }],
-
-                    categories: ['categories', function(categories){
-                        return categories.getAll();
-                    }]
-                }
-
-            })
+            	controller: 'categoriesCtrl'
+             })
             .state('categories.id', {
                 url: '/:id',
                 templateUrl: 'assets/category.html',
@@ -62,7 +52,7 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                         $state.go('train');
                     })
                 }]
-            });
+            }); 
             
         $urlRouterProvider.otherwise('/');
 
