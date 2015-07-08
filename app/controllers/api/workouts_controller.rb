@@ -1,63 +1,30 @@
 class Api::WorkoutsController < ApplicationController
 
-  before_action :set_workout, only: [:show, :edit, :update, :destroy]
-
   # GET /workouts
   # GET /workouts.json
   def index
-    render json: Workout.all
+    respond_with :api, workouts
   end
 
   # GET /workouts/1
   # GET /workouts/1.json
   def show
-    render json: Workout.find(params[:id])
-  end
-
-  # GET /workouts/new
-
-  # GET /workouts/1/edit
-  def edit
+    respond_with :api, workout
   end
 
   # POST /workouts
   # POST /workouts.json
   def create
-    @workout = Workout.new(workout_params)
-
-    respond_to do |format|
-      if @workout.save
-        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
-        format.json { render :show, status: :created, location: @workout }
-      else
-        format.html { render :new }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with :api, Workout.create(workout_params)
   end
 
   # PATCH/PUT /workouts/1
   # PATCH/PUT /workouts/1.json
-  def update
-    respond_to do |format|
-      if @workout.update(workout_params)
-        format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
-        format.json { render :show, status: :ok, location: @workout }
-      else
-        format.html { render :edit }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /workouts/1
   # DELETE /workouts/1.json
   def destroy
-    @workout.destroy
-    respond_to do |format|
-      format.html { redirect_to workouts_url, notice: 'Workout was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with :api, workout.destroy
   end
 
   private

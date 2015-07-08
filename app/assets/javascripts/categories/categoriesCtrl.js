@@ -1,29 +1,29 @@
 angular.module('trainingProgram')
 .controller('categoriesCtrl', ['categoriesSrvc', '$scope', '$http', '$stateParams', function (categoriesSrvc, $scope, $http, $stateParams) {
+	
 	console.log("categories controller"); 
 	
-	categoriesSrvc.getCategories().then(function (categories) {
-		$scope.categories = categories.data; 
-		console.log(categories.data); 
-	});  
+	$scope.categories = categoriesSrvc.
+	getCategories().
+	success(function(data) {
+		$scope.categories = data;
+	});
 
-	return {
-	    find: function(id){
-	        return _.find($scope.categories, function(category){return category.id == id});
-	    }
-	};
+}])
+.controller('categoryCtrl', ['categoriesSrvc', '$scope', '$http', '$stateParams', function (categoriesSrvc, $scope, $http, $stateParams) {
 	
-    $scope.selectedCategory = $scope.categories.find($stateParams.id); 
-   	 
+	console.log("category controller"); 
+	
+	// $http.get('api/categories/' + $stateParams.id + '.json')
+	categoriesSrvc.getCategory($stateParams.id)
+	.success(function (data) {
+		$scope.category = data; 
+		console.log(data)
+	})
+	.error(function (err){
+		alert(err)
+	})
 
-	$scope.createCategory = function() {
-		$http.post('api/categories.json', $scope.categories)
-		.success(function(data) {
-			$scope.categories.push(data); 
-
-		})
-		.error(data, function() {
-			alert("No categories created"); 
-		})
-	}
-}]); 
+	// $scope.createCategory = categoriesSrvc.createCategory(); 
+		
+}])

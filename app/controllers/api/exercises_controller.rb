@@ -1,28 +1,21 @@
 class Api::ExercisesController < ApplicationController
-  before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  
 
-  # GET /exercises
   # GET /exercises.json
   def index 
     respond_with :api, exercises
   end
 
-  # GET /exercises/1
   # GET /exercises/1.json
   def show
     respond_with :api, exercise
   end
 
-  # POST /exercises
   # POST /exercises.json
   def create
     respond_with :api, Exercise.create(exercise_params)
   end
 
-  # PATCH/PUT /exercises/1
-  # PATCH/PUT /exercises/1.json
-
-  # DELETE /exercises/1
   # DELETE /exercises/1.json
   def destroy
    respond_with :api, exercise.destroy

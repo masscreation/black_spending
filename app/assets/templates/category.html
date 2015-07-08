@@ -1,6 +1,10 @@
-<h2>{{selectedCategory.name}}</h2>
+
+<h2>{{category.name}}</h2>
 <p>
-	{{selectedCategory.description}}
+	{{category.description}}
 </p>
+<div ng-repeat="exercise in category.exercises | orderBy:'name'">
+	{{exercise.name}}
+</div>
 
 

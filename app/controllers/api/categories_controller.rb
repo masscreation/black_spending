@@ -18,15 +18,15 @@ class Api::CategoriesController < ApplicationController
 
 	private
 
-	def categories
-    	@categories ||= Category.all
-  	end
+		def categories
+	    	@categories ||= Category.all
+	  	end
 
-	def category
-	    @category ||= categories.find(params[:id])
-	end
+		def category
+		    @category ||= categories.find(params[:id])
+		end
 
-	def category_params
-		params.require(:category).permit(:name, :description)
-	end
+		def category_params
+			params.require(:category).permit(:name, :description)
+		end
 end
