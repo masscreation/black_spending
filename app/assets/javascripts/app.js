@@ -1,4 +1,4 @@
-angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar'])
+angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular'])
 	.config(['$stateProvider', '$urlRouterProvider', 
 		function ($stateProvider, $urlRouterProvider) {
             

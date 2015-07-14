@@ -18,6 +18,8 @@
 //= require angular-ui-router
 //= require angular-ui-calendar
 //= require angular-rails-templates
+//= require lodash
+//= require restangular
 
 //= require bootstrap-sprockets
 //= require_tree ../templates

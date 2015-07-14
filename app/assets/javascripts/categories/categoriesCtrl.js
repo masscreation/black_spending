@@ -1,29 +1,40 @@
 angular.module('trainingProgram')
-.controller('categoriesCtrl', ['categoriesSrvc', '$scope', '$http', '$stateParams', function (categoriesSrvc, $scope, $http, $stateParams) {
+.controller('categoriesCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
 	
 	console.log("categories controller"); 
-	
-	$scope.categories = categoriesSrvc.
-	getCategories().
-	success(function(data) {
-		$scope.categories = data;
-	});
 
+	var baseCategories = Restangular.all('api/categories'); 
+	console.log(baseCategories)
+	
+	baseCategories.getList().then(function (categories) {
+		$scope.categories = categories; 
+	})
 }])
-.controller('categoryCtrl', ['categoriesSrvc', '$scope', '$http', '$stateParams', function (categoriesSrvc, $scope, $http, $stateParams) {
+.controller('categoryCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
 	
 	console.log("category controller"); 
 	
 	// $http.get('api/categories/' + $stateParams.id + '.json')
-	categoriesSrvc.getCategory($stateParams.id)
-	.success(function (data) {
-		$scope.category = data; 
-		console.log(data)
-	})
-	.error(function (err){
-		alert(err)
-	})
+	Restangular.one('api/categories', $stateParams.id).get()
+	.then(function (category) {
+		$scope.category = category; 
+		console.log(category);
 
-	// $scope.createCategory = categoriesSrvc.createCategory(); 
+		$scope.category.exercises = []; 
 		
-}])
+		$scope.category.getList('exercises').then(function (exercises) {
+			exercises.forEach(function (exercise) {
+				if (category.id === exercise.category_id) {
+					$scope.category.exercises.push(exercise);
+					console.log($scope.category.exercises); 
+				}
+			})
+			
+		})
+		
+	}); 
+		
+	  
+ 
+		
+}]); 
