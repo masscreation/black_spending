@@ -18,7 +18,7 @@ angular.module('trainingProgram')
 	Restangular.one('api/categories', $stateParams.id).get()
 	.then(function (category) {
 		$scope.category = category; 
-		console.log(category);
+		// console.log(category);
 
 		$scope.category.exercises = []; 
 		
@@ -33,6 +33,13 @@ angular.module('trainingProgram')
 		})
 		
 	}); 
+	  
+		
+	$scope.createExercise = function(exercise) {
+		var allExercises = Restangular.all('api/exercises');
+		console.log('createExercise');  
+	 	allExercises.post(exercise)
+	}; 
 		
 	  
  

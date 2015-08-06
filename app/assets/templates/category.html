@@ -5,7 +5,39 @@
 	{{category.description}}
 </p>
 <div ng-repeat="exercise in category.exercises | orderBy:'name'">
-	{{exercise.name}}
+	<h4>{{exercise.name}}</h4>
+</div>
+<div>
+	<div>
+		<table> 
+			<th>
+				<tr>
+					<td>{{exercise.name}}</td>
+					<td>{{exercise.description}}</td>
+					<td>{{exercise.category}}</td> 
+				</tr>
+			</th>
+		<form ng-controller="categoryCtrl">
+				<td>
+					<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
+				</td>
+				<td>
+					<input name="exercise-description" ng-model="exercise.description" type="textarea" placeholder="description">
+				</td>
+				<td>
+					<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
+				</td>
+				<td>
+					<input name="category" id="{{category.name}}" type="hidden" value="{{category.id}}" ng-model="exercise.category_id" >
+				</td>
+				<td>
+					<button ng-click="createExercise(exercise)" >"Add {{category.name}} Exercise" </button>
+				</td>
+
+		</form>
+		</table>
+	</div>
+	
 </div>
 
 

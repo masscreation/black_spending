@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<div class="col-md-4"
 			<li ui-sref-active="selected" ng-repeat="category in categories | orderBy:'ancestry'">
-				<a ui-sref="categor2ies.id({id: category.id })">{{category.name}}</a>
+				<a ui-sref="categories.id({id: category.id })">{{category.name}}</a>
 			</li>
 		</div>
 		<div ui-view></div>

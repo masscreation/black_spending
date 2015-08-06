@@ -84,3 +84,51 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+# Prefix Verb   URI Pattern                                                         Controller#Action
+#                               root GET    /                                                                   application#angular
+#                   new_user_session GET    /users/sign_in(.:format)                                            devise/sessions#new
+#                       user_session POST   /users/sign_in(.:format)                                            devise/sessions#create
+#               destroy_user_session DELETE /users/sign_out(.:format)                                           devise/sessions#destroy
+#                      user_password POST   /users/password(.:format)                                           devise/passwords#create
+#                  new_user_password GET    /users/password/new(.:format)                                       devise/passwords#new
+#                 edit_user_password GET    /users/password/edit(.:format)                                      devise/passwords#edit
+#                                    PATCH  /users/password(.:format)                                           devise/passwords#update
+#                                    PUT    /users/password(.:format)                                           devise/passwords#update
+#           cancel_user_registration GET    /users/cancel(.:format)                                             devise/registrations#cancel
+#                  user_registration POST   /users(.:format)                                                    devise/registrations#create
+#              new_user_registration GET    /users/sign_up(.:format)                                            devise/registrations#new
+#             edit_user_registration GET    /users/edit(.:format)                                               devise/registrations#edit
+#                                    PATCH  /users(.:format)                                                    devise/registrations#update
+#                                    PUT    /users(.:format)                                                    devise/registrations#update
+#                                    DELETE /users(.:format)                                                    devise/registrations#destroy
+#                 api_users_password POST   /api/users/password(.:format)                                       api/password#create {:format=>"json"}
+#                          api_users POST   /api/users(.:format)                                                api/users#create {:format=>"json"}
+#                           api_user GET    /api/users/:id(.:format)                                            api/users#show {:format=>"json"}
+#                                    PATCH  /api/users/:id(.:format)                                            api/users#update {:format=>"json"}
+#                                    PUT    /api/users/:id(.:format)                                            api/users#update {:format=>"json"}
+#                      api_exercises GET    /api/exercises(.:format)                                            api/exercises#index {:format=>"json"}
+#                                    POST   /api/exercises(.:format)                                            api/exercises#create {:format=>"json"}
+#                   new_api_exercise GET    /api/exercises/new(.:format)                                        api/exercises#new {:format=>"json"}
+#                  edit_api_exercise GET    /api/exercises/:id/edit(.:format)                                   api/exercises#edit {:format=>"json"}
+#                       api_exercise GET    /api/exercises/:id(.:format)                                        api/exercises#show {:format=>"json"}
+#                                    PATCH  /api/exercises/:id(.:format)                                        api/exercises#update {:format=>"json"}
+#                                    PUT    /api/exercises/:id(.:format)                                        api/exercises#update {:format=>"json"}
+#                                    DELETE /api/exercises/:id(.:format)                                        api/exercises#destroy {:format=>"json"}
+# api_training_session_exercise_sets GET    /api/training_sessions/:training_session_id/exercise_sets(.:format) api/exercise_sets#index {:format=>"json"}
+#                                    POST   /api/training_sessions/:training_session_id/exercise_sets(.:format) api/exercise_sets#create {:format=>"json"}
+#              api_training_sessions GET    /api/training_sessions(.:format)                                    api/training_sessions#index {:format=>"json"}
+#                                    POST   /api/training_sessions(.:format)                                    api/training_sessions#create {:format=>"json"}
+#               api_training_session GET    /api/training_sessions/:id(.:format)                                api/training_sessions#show {:format=>"json"}
+#              api_workout_exercises GET    /api/workouts/:workout_id/exercises(.:format)                       api/exercises#index {:format=>"json"}
+#                                    POST   /api/workouts/:workout_id/exercises(.:format)                       api/exercises#create {:format=>"json"}
+#               api_workout_exercise GET    /api/workouts/:workout_id/exercises/:id(.:format)                   api/exercises#show {:format=>"json"}
+#                       api_workouts GET    /api/workouts(.:format)                                             api/workouts#index {:format=>"json"}
+#                                    POST   /api/workouts(.:format)                                             api/workouts#create {:format=>"json"}
+#                        api_workout GET    /api/workouts/:id(.:format)                                         api/workouts#show {:format=>"json"}
+#             api_category_exercises GET    /api/categories/:category_id/exercises(.:format)                    api/exercises#index {:format=>"json"}
+#                                    POST   /api/categories/:category_id/exercises(.:format)                    api/exercises#create {:format=>"json"}
+#              api_category_exercise GET    /api/categories/:category_id/exercises/:id(.:format)                api/exercises#show {:format=>"json"}
+#                     api_categories GET    /api/categories(.:format)                                           api/categories#index {:format=>"json"}
+#                                    POST   /api/categories(.:format)                                           api/categories#create {:format=>"json"}
+#                       api_category GET    /api/categories/:id(.:format)                                       api/categories#show {:format=>"json"}
+#                                    GET    /*path(.:format)                                                    application#angular

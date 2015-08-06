@@ -33,6 +33,16 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 templateUrl: 'assets/exercises.html',
                 controller: 'exercisesCtrl'
             })
+            .state('workouts', {
+                url: '/workouts', 
+                templateUrl: 'assets/workouts.html', 
+                controller: 'workoutsCtrl'
+            })
+            .state('workouts.id', {
+                url: '/:id', 
+                templateUrl: 'assets/workout.html', 
+                controller: 'workoutCtrl'
+            })
             .state('login', {
               url: '/login',
               templateUrl: 'assets/_login.html',
