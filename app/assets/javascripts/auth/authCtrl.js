@@ -12,9 +12,10 @@ function($scope, $state, $http, Auth){
     });
   };
 
-  $scope.register = function() {
+  $scope.register = function(user) {
+    $scope.user = user; 
     Auth.register($scope.user).then(function(){
-    	$http.post('/users.json', $scope.users)
+    	$http.post('api/users', $scope.users)
     	.success(function (data) {
     		$scope.users.push(data); 
     	}); 
