@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605124024) do
+ActiveRecord::Schema.define(version: 20150813014428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "athletes", force: :cascade do |t|
+    t.integer  "rank_id"
+    t.integer  "level_id"
+    t.integer  "height"
+    t.integer  "weight"
+    t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150605124024) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.text     "instructions"
+    t.string   "video_url"
   end
 
   create_table "period_types", force: :cascade do |t|
@@ -89,6 +100,7 @@ ActiveRecord::Schema.define(version: 20150605124024) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

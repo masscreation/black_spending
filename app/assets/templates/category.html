@@ -5,7 +5,8 @@
 	{{category.description}}
 </p>
 <div ng-repeat="exercise in category.exercises | orderBy:'name'">
-	<h4>{{exercise.name}}</h4>
+	<h4><edit-in-place value="exercise.name"></edit-in-place></h4><br> 
+	<video-directive></video-directive> 
 </div>
 <div>
 	<div>

@@ -1,6 +1,13 @@
 angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular'])
-	.config(['$stateProvider', '$urlRouterProvider', 
-		function ($stateProvider, $urlRouterProvider) {
+	.config(['$stateProvider', '$urlRouterProvider', '$sceDelegateProvider',
+		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+
+            $sceDelegateProvider.resourceUrlWhitelist([
+                // Allow same origin resource loads.
+                'self',
+                 // Allow loading from our assets domain.  Notice the difference between * and **.
+                'https://drive*.google.com/**'
+            ]);
             
         $stateProvider
             .state('home', {
