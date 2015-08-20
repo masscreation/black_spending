@@ -1,4 +1,12 @@
-angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular'])
+angular.module('trainingProgram', 
+            ['ngSanitize',
+            'com.2fdevs.videogular',
+            'com.2fdevs.videogular.plugins.controls',
+            'com.2fdevs.videogular.plugins.overlayplay',
+            'com.2fdevs.videogular.plugins.buffering',
+            'com.2fdevs.videogular.plugins.poster',
+             "info.vietnamcode.nampnq.videogular.plugins.youtube", 
+            'ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular'])
 	.config(['$stateProvider', '$urlRouterProvider', '$sceDelegateProvider',
 		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
 

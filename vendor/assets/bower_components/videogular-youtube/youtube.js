@@ -139,6 +139,7 @@ angular.module("info.vietnamcode.nampnq.videogular.plugins.youtube", [])
                         }
 
                         function isYoutube(url) {
+                            console.log('youtube url:', url); 
                             return url.match(youtubeReg);
                         }
 

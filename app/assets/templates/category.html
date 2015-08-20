@@ -5,8 +5,10 @@
 	{{category.description}}
 </p>
 <div ng-repeat="exercise in category.exercises | orderBy:'name'">
-	<h4><edit-in-place value="exercise.name"></edit-in-place></h4><br> 
-	<video-directive></video-directive> 
+	<h4><edit-in-place value="exercise.name"></edit-in-place></h4><br>
+	
+	<div ng-include="'assets/_videogular-youtube.html'"></div>
+		
 </div>
 <div>
 	<div>
@@ -24,7 +26,7 @@
 				</tr>
 			</th>
 			
-		<form ng-controller="categoryCtrl">
+		<form>
 				<td>
 					<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
 				</td>

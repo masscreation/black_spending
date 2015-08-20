@@ -13,11 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+
 //= require angular
 //= require angular-devise
 //= require angular-ui-router
 //= require angular-ui-calendar
 //= require angular-rails-templates
+//= require angular-sanitize
+
+	//= require videogular
+	//= require videogular-overlay-play
+	//= require videogular-poster
+	//= require videogular-controls
+	//= require videogular-buffering 
+	//= require videogular-youtube
+
 //= require lodash
 //= require restangular
 

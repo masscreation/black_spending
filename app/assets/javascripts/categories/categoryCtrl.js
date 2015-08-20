@@ -1,22 +1,16 @@
 angular.module('trainingProgram') 
 .controller('categoryCtrl', ['$scope', '$http', '$stateParams', 'Restangular', '$sce', function ($scope, $http, $stateParams, Restangular, $sce) {
 	
-	$scope.categoryCtrl = this;
-
-	$scope.categoryCtrl.config = {
-		sources: 
-			{ src: $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + "{{exercise.video_url}}" + "?autoplay=0"), type:"video/mp4" }
-				
-	};
+	var _this = this
+	$scope.categoryCtrl = _this;
 
 	console.log("category controller"); 
-	console.log("State Params ID:", $stateParams.id); 
 	
 	// Grab a single category
 	Restangular.one('api/categories', $stateParams.id).get()
 	.then(function (category) {
 		$scope.category = category; 
-		console.log(category);
+		console.log('category: ', category.name);
 
 		// Create an exercises array to hold exercises that belong to category
 		$scope.category.exercises = []; 
@@ -26,7 +20,15 @@ angular.module('trainingProgram')
 				if (category.id === exercise.category_id) {
 					// Place exercises with IDs matching category in category's exercises array
 					$scope.category.exercises.push(exercise);
-					console.log($scope.category.exercises); 
+					console.log('category exercises:', $scope.category.exercises);
+					$scope.categoryCtrl.config = {
+						sources: [
+							{ src: $sce.trustAsResourceUrl("https://www.youtube.com/watch?v=" + exercise.video_url), type:"video/mp4" }
+							]
+					};
+					console.log('categoryCtrl:', $scope.categoryCtrl)
+					console.log('categoryCtrl.config.sources: ', $scope.categoryCtrl.config.sources[0]); 
+					console.log('video url: ', exercise.video_url);   
 				}
 			})
 			
