@@ -25,6 +25,5 @@
   },
   "_source": "git://github.com/NamPNQ/bower-videogular-youtube.git",
   "_target": "~2.0.3",
-  "_originalSource": "videogular-youtube",
-  "_direct": true
+  "_originalSource": "videogular-youtube"
 }

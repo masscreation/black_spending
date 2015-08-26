@@ -1,12 +1,9 @@
 angular.module('trainingProgram')
-.service('exercisesSrvc', ['$http', function ($http) {
+.service('exercisesSrvc', ['$http', 'Restangular', function ($http, Restangular) {
 
 	console.log('exercises service'); 
-	 this.getexercises = function () {
-		return $http.get('api/exercises.json')
-		.then(function (exercises) {
-			return exercises.data; 
-		}); 
-	}; 
+	 var baseExercises = Restangular.all('api/exercises'); 
+		console.log(baseExercises)
+
 }]); 
 		 

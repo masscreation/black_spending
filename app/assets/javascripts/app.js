@@ -1,4 +1,4 @@
-angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular'])
+angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular', 'youtube-embed'])
 	.config(['$stateProvider', '$urlRouterProvider', '$sceDelegateProvider',
 		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
 
@@ -35,10 +35,10 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 templateUrl: 'assets/category.html',
                 controller: 'categoryCtrl' 
             })
-            .state('exercises', {
-                url: '/exercises',
-                templateUrl: 'assets/exercises.html',
-                controller: 'exercisesCtrl'
+            .state('categories.id.exercise', {
+                url: '/:id/exercise',
+                templateUrl: 'assets/exercise.html',
+                controller: 'categoryCtrl'
             })
             .state('workouts', {
                 url: '/workouts', 
