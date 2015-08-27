@@ -31,6 +31,8 @@
 //= require lodash
 //= require restangular
 
+//= require angular-youtube-mb
+
 //= require bootstrap-sprockets
 //= require_tree ../templates
 //= require_tree .
