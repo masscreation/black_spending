@@ -9,7 +9,14 @@ angular.module('trainingProgram')
 	
 	// Place scope on categories for rendering in the view
 	baseCategories.getList().then(function (categories) {
-		$scope.categories = categories; 
+		$scope.categories = [];
+		categories.forEach(function (category) {
+			category.subcategories = []; 
+			if (category.ancestry === null) {
+				$scope.categories.push(category)
+			}
+		})
+		
 	})
 }]); 
 

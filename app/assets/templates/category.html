@@ -1,40 +1,55 @@
-<br> 
-<hr>
-<h3>{{category.parent.name}} >> {{category.name}}</h3>
-<p>
-	{{category.description}}
-</p>
-<div ng-repeat="exercise in category.exercises | orderBy:'name'">
+ <div class="col-md-8">
+	<h3> <!-- Current Category --> 
+		{{category.parent.name}} <span ng-hide="!category.ancestry">>></span> {{category.name}}
+	</h3>
+		<p>
+			{{category.description}}
+		</p>
+		<div ng-hide="category.ancestry">
+			<h4>This is a primary category. Select a sub-category to create exercises.</h4>
+		</div>
 
-	<h4><a ui-sref="categories.id.exercise({exerciseId: exercise.id })" ng-click="showme = !showme">{{exercise.name}}</a></h4> 
-
-	<div ui-view ng-hide="showme"></div>
-</div>
-<div>
-	<div>
-
-		
-		<table>
-			<tr>
-				<td>{{exercise.name}}</td>
-				<td>{{exercise.description}}</td>
-				<td>{{exercise.instructions}}</td>
-				<td>{{exercise.video_url}}</td>
+	<table><!-- Category-exercises Table -->
+		<th>
+			<tr ng-hide="!category.ancestry">
+				<td><h4>Name &nbsp;</h4></td>
+				<td><h4>Description &nbsp;</h4></td>
+				<td><h4>Instructions &nbsp;</h4></td>
 			</tr>
+		</th>
+		<tr ng-repeat="exercise in category.exercises | orderBy:'name'">
+			
+			<td>
+				<youtube-video video-id="exercise.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video><br>
+				<h4><a href="#" ng-click="showme = !showme">{{exercise.name}}</a></h4>
+			</td>
+
+			<exercise-info ng-hide="showme"></exercise-info>
+		</tr>
+		<tr>
+			<td><h4>{{exercise.name}}</h4></td>
+			<td>{{exercise.description}}</td>
+			<td>{{exercise.instructions}}</td>
+		</tr>
+	</table>
+
+	<div><!-- Exercise Form --> 
 		<form ng-show="category.ancestry">
-				<td>
-					<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
-					<input name="exercise-description" ng-model="exercise.description" type="textarea" placeholder="description">
-					<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
-					<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="video id">
-					<button type="button" class="btn btn-primary btn-md" ng-click="createExercise(exercise)" >Add {{category.name}} Exercise</button>
-				</td>
+			<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
+
+			<input name="exercise-description" ng-model="exercise.description" type="textarea" placeholder="description">
+
+			<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
+
+			<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="video id">
+
+			<button type="button" class="btn btn-primary btn-md" ng-click="createExercise(exercise)" >Add {{category.name}} Exercise</button>
 		</form>
-		</table>
-		
-		
-	</div>
+	</div>				
 	
 </div>
+
+	
+
 
 

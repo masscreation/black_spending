@@ -21,17 +21,12 @@
 //= require angular-rails-templates
 //= require angular-sanitize
 
-	//= require videogular
-	//= require videogular-overlay-play
-	//= require videogular-poster
-	//= require videogular-controls
-	//= require videogular-buffering 
-	//= require videogular-youtube
-
 //= require lodash
 //= require restangular
 
 //= require angular-youtube-mb
+
+//= require angular-xeditable
 
 //= require bootstrap-sprockets
 //= require_tree ../templates

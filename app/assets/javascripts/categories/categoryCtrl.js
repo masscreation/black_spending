@@ -1,5 +1,6 @@
 angular.module('trainingProgram') 
-.controller('categoryCtrl', ['$scope', '$http', '$stateParams', 'Restangular', '$sce', 'exercisesSrvc', function ($scope, $http, $stateParams, Restangular, $sce, exercisesSrvc) {
+.controller('categoryCtrl', ['$scope', '$http', '$stateParams', 'Restangular', '$sce', 'exercisesSrvc', 
+	function ($scope, $http, $stateParams, Restangular, $sce, exercisesSrvc) {
 
 
 	console.log("category controller"); 
@@ -8,28 +9,25 @@ angular.module('trainingProgram')
 	Restangular.one('api/categories', $stateParams.id).get()
 	.then(function (category) {
 		$scope.category = category; 
-		console.log('category: ', category.name);
+		console.log('category: ', category);
 
-		
-		// Grab the IDs of the parent categories using 'ancestry' gem
-		ancestryArray = $scope.category.ancestry.split("/");
-		if (ancestryArray === null) { 
-			console.log('This is primary category and has no parent')
-		} else {
-			console.log('ancestry is', ancestryArray); 
+		if (category.ancestry !== null ) {
+			ancestryArray = $scope.category.ancestry.split("/"); 
 			ancestryArray.forEach(function (id) {
 				$scope.parents = [];  
 				Restangular.one('api/categories', parseInt(id)).get()
 				.then(function (parent) {
 					category.parent = parent; 
 					$scope.parents.push(parent); 
-					console.log('parent is ', parent)
+					console.log('parent is ', parent); 
 					console.log('parents are ', $scope.parents)
 
 				})
 				
 			})
-		} 
+		} else {
+			console.log('This is primary category and has no parent')
+		}; 
 	
 		
 	
