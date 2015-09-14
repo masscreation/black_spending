@@ -7,31 +7,68 @@
 		</p>
 		<div ng-hide="category.ancestry">
 			<h4>This is a primary category. Select a sub-category to create exercises.</h4>
+		</div> 
+		  
+			<div ng-hide="!category.ancestry">
+				<h4>Exercises</h4>
+				<!-- <td><h4>Description &nbsp;</h4></td>
+				<td><h4>Instructions &nbsp;</h4></td> -->
+			</div>
+		
+		<div ng-repeat="exercise in category.exercises | orderBy:'name'">
+				
+				<!-- Button trigger modal -->
+			<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> {{exercise.name}} </button>
+		
+			<!-- Exercise Modal Directive --> 
+			<div class="modal fade" id="{{exercise.id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">{{exercise.name}}</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<table>
+			      		<tr>
+			      			<td><youtube-video video-id="exercise.video_url" player-width="'480px'" player-height="'270px'" player-vars="playerVars" ></youtube-video></td>
+			      		</tr>
+			      		<tr>
+			      			<td><h4>Description:</h4>
+						<a href="#" editable-text="exercise.description">{{ exercise.description || "empty" }}</a></td>
+			      		</tr>
+						<tr>
+							<td><h4>Instructions:</h4>
+						<a href="#" editable-text="exercise.instructions">{{ exercise.instructions || "empty" }}</a></td>
+						</tr>
+					</table>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 		</div>
 
-	<table><!-- Category-exercises Table -->
-		<th>
-			<tr ng-hide="!category.ancestry">
-				<td><h4>Name &nbsp;</h4></td>
-				<td><h4>Description &nbsp;</h4></td>
-				<td><h4>Instructions &nbsp;</h4></td>
+	<div>
+		<table>
+			<tr>
+				<th>New Exercise</th>
 			</tr>
-		</th>
-		<tr ng-repeat="exercise in category.exercises | orderBy:'name'">
-			
-			<td>
-				<youtube-video video-id="exercise.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video><br>
-				<h4><a href="#" ng-click="showme = !showme">{{exercise.name}}</a></h4>
-			</td>
-
-			<exercise-info ng-hide="showme"></exercise-info>
-		</tr>
-		<tr>
-			<td><h4>{{exercise.name}}</h4></td>
-			<td>{{exercise.description}}</td>
-			<td>{{exercise.instructions}}</td>
-		</tr>
-	</table>
+			<tr>
+				<td><h5>Name:</h5></td>
+				<td><h5>Description:</h5></td>
+				<td><h5>Instructions:</h5></td>
+			</tr>
+			<tr>
+				<td><h4>{{exercise.name}}</h4></td>
+				<td>{{exercise.description}}</td>
+				<td>{{exercise.instructions}}</td>
+			</tr>
+		</table>
+	</div>
 
 	<div><!-- Exercise Form --> 
 		<form ng-show="category.ancestry">
@@ -41,7 +78,7 @@
 
 			<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
 
-			<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="video id">
+			<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="youtube video id">
 
 			<button type="button" class="btn btn-primary btn-md" ng-click="createExercise(exercise)" >Add {{category.name}} Exercise</button>
 		</form>

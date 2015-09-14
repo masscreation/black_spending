@@ -10,24 +10,19 @@ angular.module('trainingProgram')
 	.then(function (category) {
 		$scope.category = category; 
 		console.log('category: ', category);
-
 		if (category.ancestry !== null ) {
-			ancestryArray = $scope.category.ancestry.split("/"); 
+			ancestryArray = category.ancestry.split("/"); 
 			ancestryArray.forEach(function (id) {
 				$scope.parents = [];  
 				Restangular.one('api/categories', parseInt(id)).get()
 				.then(function (parent) {
-					category.parent = parent; 
+					category.parent = parent;  
 					$scope.parents.push(parent); 
 					console.log('parent is ', parent); 
 					console.log('parents are ', $scope.parents)
-
 				})
-				
 			})
-		} else {
-			console.log('This is primary category and has no parent')
-		}; 
+		};  
 	
 		
 	
@@ -60,10 +55,12 @@ angular.module('trainingProgram')
 		console.log('createExercise'); 
 		// Tag created exercise with category_id using stateParams
 		$scope.exercise.category_id = $stateParams.id; 
-	 	allExercises.post(exercise).then(function () {
+	 	allExercises.post(exercise).then(function (exercise) {
+	 		console.log('Just created exercise:', exercise); 
 	 		$scope.exercise.name = ''; 
 	 		$scope.exercise.description = ''; 
-	 		$scope.exercise.instructions = ''
+	 		$scope.exercise.instructions = ''; 
+	 		$scope.exercise.video_url = ''
 	 	})
 	}; 
 		

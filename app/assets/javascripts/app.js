@@ -1,4 +1,4 @@
-angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular', 'youtube-embed'])
+angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular', 'youtube-embed', 'xeditable'])
 	.config(['$stateProvider', '$urlRouterProvider', '$sceDelegateProvider',
 		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
 

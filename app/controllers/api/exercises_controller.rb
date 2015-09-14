@@ -33,6 +33,6 @@ class Api::ExercisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_params
-      params.require(:exercise).permit(:name, :description, :instructions, :category_id, :workout_id)
+      params.require(:exercise).permit(:name, :description, :instructions, :category_id, :video_url, :workout_id)
     end
 end
