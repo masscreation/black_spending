@@ -1,2 +1,2 @@
-class Athlete < ActiveRecord::Base
+class Athlete < User
 end

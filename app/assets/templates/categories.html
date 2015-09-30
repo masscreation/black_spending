@@ -3,14 +3,15 @@
 		<h3>Exercise Categories</h3>
 		<li ui-sref-active="selected" ng-repeat="category in primecategories | orderBy:'ancestry'">
 			<a ui-sref="categories.id({id: category.id })">{{category.name}}</a>
+			{{category.child.name}}
 		</li>
 		<h4>Exercise subcategories</h4>
 		
 		<li ui-sref-active="selected" ng-repeat="category in subcategories" ><a ui-sref="categories.id({id: category.id })">{{category.name}}</a></li>
 
 	</div>
-
-	<div ui-view></div><!-- category.html loads here --> 
+	<!-- category.html loads here --> 
+	<div ui-view></div>
 </div>
 	
 

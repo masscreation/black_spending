@@ -1,92 +1,107 @@
  <div class="col-md-8">
-	<h3> <!-- Current Category --> 
-		{{category.parent.name}} <span ng-hide="!category.ancestry">>></span> {{category.name}}
-	</h3>
+	<hr>
+	<div><!-- Current Category --> 
+		<!-- Display category's parent categories --> 
+		<li ng-repeat="parent in parents" style="display: inline">{{parent.name}} > </li> 
+		<h3>{{category.name}}</h3>
 		<p>
 			{{category.description}}
 		</p>
-		<div ng-hide="category.ancestry">
-			<h4>This is a primary category. Select a sub-category to create exercises.</h4>
-		</div> 
-		  
-			<div ng-hide="!category.ancestry">
-				<h4>Exercises</h4>
-				<!-- <td><h4>Description &nbsp;</h4></td>
-				<td><h4>Instructions &nbsp;</h4></td> -->
-			</div>
-		
-		<div ng-repeat="exercise in category.exercises | orderBy:'name'">
-				
-				<!-- Button trigger modal -->
-			<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> {{exercise.name}} </button>
-		
-			<!-- Exercise Modal Directive --> 
-			<div class="modal fade" id="{{exercise.id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">{{exercise.name}}</h4>
-			      </div>
-			      <div class="modal-body">
-			      	<table>
-			      		<tr>
-			      			<td><youtube-video video-id="exercise.video_url" player-width="'480px'" player-height="'270px'" player-vars="playerVars" ></youtube-video></td>
-			      		</tr>
-			      		<tr>
-			      			<td><h4>Description:</h4>
-						<a href="#" editable-text="exercise.description">{{ exercise.description || "empty" }}</a></td>
-			      		</tr>
-						<tr>
-							<td><h4>Instructions:</h4>
-						<a href="#" editable-text="exercise.instructions">{{ exercise.instructions || "empty" }}</a></td>
-						</tr>
-					</table>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+		<li ng-repeat="child in children">{{child.name}}</li>
+	</div>
+ 
+	<!-- Show message if the category has no parent categor(ies) -->
+	<div ng-hide="category.ancestry">
+		<h4>This is a primary category. Select a sub-category to create exercises.</h4>
+	</div> 
+	  
+		<div ng-hide="!category.ancestry">
+			<!-- <td><h4>Description &nbsp;</h4></td>
+			<td><h4>Instructions &nbsp;</h4></td> -->
 		</div>
+	
+	<div ng-repeat="exercise in category.exercises | orderBy:'name'">
+			
+			<!-- Button trigger modal -->
+		<a href="#" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> <h4>{{exercise.name}}</h4> </a>
+	
+		<!-- Exercise Modal Directive --> 
+		<div class="modal fade" id="{{exercise.id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">{{exercise.name}}</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<table>
+		      		<tr>
+		      			<td><youtube-video video-id="exercise.video_url" player-width="'480px'" player-height="'270px'" player-vars="playerVars" ></youtube-video></td>
+		      		</tr>
+		      		<tr>
+		      			<td><h4>Description:</h4>
+					<a href="#" editable-text="exercise.description">{{ exercise.description || "empty" }}</a></td>
+		      		</tr>
+					<tr>
+						<td><h4>Instructions:</h4>
+					<a href="#" editable-text="exercise.instructions">{{ exercise.instructions || "empty" }}</a></td>
+					</tr>
+				</table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>	
+	<button ng-hide="!category.ancestry" class="btn btn-primary" ng-click="hideme = !hideme" title="Add an exercise"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
 
-	<div>
+	<!-- Exercise form --> 
+	<div class="hideme" ng-hide="!hideme" >
 		<table>
 			<tr>
-				<th>New Exercise</th>
-			</tr>
-			<tr>
-				<td><h5>Name:</h5></td>
-				<td><h5>Description:</h5></td>
-				<td><h5>Instructions:</h5></td>
+				<th><h5>Name</h5></th>
+				<th><h5>Description</h5></th>
+				<th><h5>Instructions</h5></th>
+				<th><h5>Video</h5></th>
 			</tr>
 			<tr>
 				<td><h4>{{exercise.name}}</h4></td>
 				<td>{{exercise.description}}</td>
 				<td>{{exercise.instructions}}</td>
+				<td><youtube-video video-id="exercise.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
 			</tr>
 		</table>
-	</div>
+		
 
-	<div><!-- Exercise Form --> 
-		<form ng-show="category.ancestry">
-			<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
+		<div><!-- Exercise Form --> 
+			<form ng-show="category.ancestry">
+				<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
 
-			<input name="exercise-description" ng-model="exercise.description" type="textarea" placeholder="description">
+				<input name="exercise-description" ng-model="exercise.description" type="textarea" placeholder="description">
 
-			<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
+				<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
 
-			<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="youtube video id">
+				<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="youtube video id">
 
-			<button type="button" class="btn btn-primary btn-md" ng-click="createExercise(exercise)" >Add {{category.name}} Exercise</button>
-		</form>
+				<button type="button" class="btn btn-primary btn-md" ng-click="createExercise(exercise)" >Add {{category.name}} Exercise</button>
+			</form>
+		</div>
 	</div>				
 	
 </div>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		video = $('div#player.full-frame'); 
+		console.log(video); 
+ 		
+ 		$('#26-Modal').on('modal.fade', function (e) {
+ 			$('div#player.full-frame').pauseVideo()
+ 		})
+		
 
-	
-
+	});
+</script>	
 
 

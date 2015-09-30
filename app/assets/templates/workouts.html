@@ -1,36 +1,34 @@
-<div class="row">
-	<div class="col-md-12">
-		<div class="col-md-4"
-			<li ui-sref-active="selected" ng-repeat="workout in workouts ">
-				<a ui-sref="workouts.id({id: workout.id })">{{workout.name}}</a>
-			</li>
-		</div>
-		<div>
-			<table>
-				<form ng-submit="createWorkout()">
-					<th>
-						<tr>
-							<td>Create a New Workout</td>
-						</tr>
-					</th>
-					<tr>
-						<td>
-							<input ng-model="workout.name" type="text" placeholder="name">
-						</td>
-						<td>
-							<input ng-model="workout.description" type="textarea" placeholder="description">
-						</td>
-						<td>
-							<select ng-model="workout.trainingProgram" ng-options="trainingProgram as trainer.trainingPrograms" >
-						</td>
-						<td>
-							<input type="submit" value="Add {{workout.name}}" />
-						</td>
-					</tr>
-				</form>
-			</table>
-		</div>
-		<ui-view></ui-view>
 
+<div class="col-md-12">
+	<div class="col-md-4">
+		<li ui-sref-active="selected" ng-repeat="workout in workouts">
+			<a ui-sref="workouts.id({id: workout.id })">{{workout.name}}</a>
+		</li>
+	</div>
+	<div class="col-md-8" >
+		<table>
+			<form ng-submit="createWorkout()">
+				<th>
+					<tr>
+						<td>Create a New Workout</td>
+					</tr>
+				</th>
+				<tr>
+					<td>
+						<input ng-model="workout.name" type="text" placeholder="name">
+					</td>
+					<td>
+						<input ng-model="workout.description" type="textarea" placeholder="description">
+					</td>
+					<td>
+						<select ng-model="workout.trainingProgram" ng-options="trainingProgram as trainer.trainingPrograms" >
+					</td>
+					<td>
+						<input type="submit" value="Add {{workout.name}}" />
+					</td>
+				</tr>
+			</form>
+		</table>
+		<ui-view></ui-view>
 	</div>
 </div>

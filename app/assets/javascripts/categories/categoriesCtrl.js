@@ -21,6 +21,12 @@ angular.module('trainingProgram')
 				subcategory = category;
 				$scope.subcategories.push(subcategory)
 			}
+
+			$scope.primecategories.forEach(function (category) {
+				$scope.children = category.children
+				console.log('children:', category.children)
+			})
+
 		})
 	})
 	

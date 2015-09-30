@@ -10,19 +10,23 @@ angular.module('trainingProgram')
 	.then(function (category) {
 		$scope.category = category; 
 		console.log('category: ', category);
+		// If category has ancestry, create an array of ancestors for breadcrumb
+		// display
+
 		if (category.ancestry !== null ) {
 			ancestryArray = category.ancestry.split("/"); 
 			ancestryArray.forEach(function (id) {
-				$scope.parents = [];  
+				$scope.parents = [];
 				Restangular.one('api/categories', parseInt(id)).get()
 				.then(function (parent) {
 					category.parent = parent;  
 					$scope.parents.push(parent); 
-					console.log('parent is ', parent); 
-					console.log('parents are ', $scope.parents)
+					console.log('parent is ', parent.name); 
+					console.log('parents are ', $scope.parents); 
+
 				})
 			})
-		};  
+		}; 
 	
 		
 	
@@ -34,8 +38,7 @@ angular.module('trainingProgram')
 				if (category.id === exercise.category_id) {
 					// Place exercises with IDs matching category in category's exercises array
 					$scope.category.exercises.push(exercise);
-
-					console.log($scope.category.exercises); 
+					console.log($scope.category.exercises)
 				}; 
 
 			})
