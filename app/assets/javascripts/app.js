@@ -45,16 +45,6 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 templateUrl: 'assets/workout.html', 
                 controller: 'workoutCtrl'
             })
-            .state('login', {
-              url: '/login',
-              templateUrl: 'assets/_login.html',
-              controller: 'authCtrl',
-              onEnter: ['$state', 'Auth', function ($state, Auth) {
-                    Auth.currentUser().then(function (){
-                        $state.go('train');
-                    }); 
-                }]
-            })
             .state('register', {
                 url: '/register',
                 templateUrl: 'assets/_register.html',
@@ -63,6 +53,16 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                     Auth.currentUser().then(function (){
                         $state.go('train');
                     })
+                }]
+            })
+            .state('login', {
+              url: '/login',
+              templateUrl: 'assets/_login.html',
+              controller: 'authCtrl',
+              onEnter: ['$state', 'Auth', function ($state, Auth) {
+                    Auth.currentUser().then(function (){
+                        $state.go('train');
+                    }); 
                 }]
             }); 
             

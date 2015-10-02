@@ -23,7 +23,6 @@ angular.module('trainingProgram')
 					$scope.parents.push(parent); 
 					console.log('parent is ', parent.name); 
 					console.log('parents are ', $scope.parents); 
-
 				})
 			})
 		}; 

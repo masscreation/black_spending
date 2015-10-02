@@ -1,4 +1,4 @@
-
+<hr>
 <div class="col-md-12">
 	<div class="col-md-4">
 		<li ui-sref-active="selected" ng-repeat="workout in workouts">
@@ -7,28 +7,23 @@
 	</div>
 	<div class="col-md-8" >
 		<table>
-			<form ng-submit="createWorkout()">
+			
 				<th>
 					<tr>
 						<td>Create a New Workout</td>
 					</tr>
 				</th>
-				<tr>
-					<td>
-						<input ng-model="workout.name" type="text" placeholder="name">
-					</td>
-					<td>
-						<input ng-model="workout.description" type="textarea" placeholder="description">
-					</td>
-					<td>
-						<select ng-model="workout.trainingProgram" ng-options="trainingProgram as trainer.trainingPrograms" >
-					</td>
-					<td>
-						<input type="submit" value="Add {{workout.name}}" />
-					</td>
-				</tr>
-			</form>
-		</table>
+		</table>	
+		<form ng-submit="createWorkout()">
+			<input name="workout-name" ng-model="workout.name" type="text" placeholder="name">
+		
+			<input name="workout-description" ng-model="workout.description" type="textarea" placeholder="description">
+		
+			<select name="workout-training-program" ng-model="workout.trainingProgram" ng-options="trainingProgram as trainer.trainingPrograms" >
+		
+			<button type="submit" class="btn btn-primary btn-md" value="Add {{workout.name}}" /></button>
+		</form>
+		
 		<ui-view></ui-view>
 	</div>
 </div>

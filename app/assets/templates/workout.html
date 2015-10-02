@@ -1,6 +1,4 @@
 <div>
-	
-
 <h2>{{workout.name}}</h2>
 <p>
 	{{workout.description}}
@@ -8,33 +6,5 @@
 <div ng-repeat="exercise in workout.exercises | orderBy:'name'">
 	{{exercise.name}}
 </div>
-<div>
-	<div>
-		<table> 
-		<form ng-submit="createExercise()">
-			<th>
-				<tr>{{workout.name}}</tr><br>
-				<tr>{{workout.description}}</tr>
-				<tr>{{exercise.workout}}</tr>
-			</th>
-				<td>
-					<input ng-model="exercise.name" type="text" placeholder="name">
-				</td>
-				<td>
-					<input ng-model="exercise.description" type="textarea" placeholder="description">
-				</td>
-				<td>
-					<input type="textarea" placeholder="instructions">
-				</td>
-				<td>
-					<input id="{{workout}}" type="hidden" ng-model="exercise.workout" >
-				</td>
-				<td>
-					<input type="submit" value="Add {{category.name}} Exercise" />
-				</td>
 
-		</form>
-		</table>
-	</div>
-</div>
 	
