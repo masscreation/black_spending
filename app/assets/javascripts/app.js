@@ -25,6 +25,9 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             	templateUrl: 'assets/training-sessions.html',
             	controller: 'trainingSessionCtlr'
             })
+            .state('compete', {
+                url: '/compete'
+            })
             .state('categories', {
             	url: '/categories',
             	templateUrl: 'assets/categories.html',
