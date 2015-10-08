@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002232758) do
+ActiveRecord::Schema.define(version: 20151007224749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,11 +85,21 @@ ActiveRecord::Schema.define(version: 20151002232758) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "training_routines", force: :cascade do |t|
+    t.string   "name"
+    t.string   "focus"
+    t.integer  "duration"
+    t.integer  "trainer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "training_routines", ["trainer_id"], name: "index_training_routines_on_trainer_id", using: :btree
+
   create_table "training_sessions", force: :cascade do |t|
     t.datetime "scheduled_on"
     t.boolean  "complete"
     t.integer  "volume"
-    t.integer  "category_id"
     t.integer  "athlete_id"
     t.integer  "period_id"
     t.datetime "created_at",   null: false
@@ -125,4 +135,5 @@ ActiveRecord::Schema.define(version: 20151002232758) do
     t.datetime "updated_at",          null: false
   end
 
+  add_foreign_key "training_routines", "trainers"
 end
