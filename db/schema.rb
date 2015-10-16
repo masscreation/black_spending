@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007224749) do
+ActiveRecord::Schema.define(version: 20151013140319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20151007224749) do
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
 
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "athlete_id"
+    t.integer  "training_routine_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "enrollments", ["athlete_id"], name: "index_enrollments_on_athlete_id", using: :btree
+  add_index "enrollments", ["training_routine_id"], name: "index_enrollments_on_training_routine_id", using: :btree
+
   create_table "exercise_sets", force: :cascade do |t|
     t.boolean  "completed"
     t.integer  "athlete_id"
@@ -48,6 +58,9 @@ ActiveRecord::Schema.define(version: 20151007224749) do
     t.integer  "exercise_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "tempo"
+    t.integer  "load"
+    t.integer  "rest"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -102,9 +115,12 @@ ActiveRecord::Schema.define(version: 20151007224749) do
     t.integer  "volume"
     t.integer  "athlete_id"
     t.integer  "period_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "training_routine_id"
   end
+
+  add_index "training_sessions", ["training_routine_id"], name: "index_training_sessions_on_training_routine_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -130,10 +146,16 @@ ActiveRecord::Schema.define(version: 20151007224749) do
   create_table "workouts", force: :cascade do |t|
     t.string   "name"
     t.text     "description",         null: false
-    t.integer  "training_program_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "training_routine_id"
   end
 
+  add_index "workouts", ["training_routine_id"], name: "index_workouts_on_training_routine_id", using: :btree
+
+  add_foreign_key "enrollments", "athletes"
+  add_foreign_key "enrollments", "training_routines"
   add_foreign_key "training_routines", "trainers"
+  add_foreign_key "training_sessions", "training_routines"
+  add_foreign_key "workouts", "training_routines"
 end

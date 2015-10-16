@@ -28,8 +28,18 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             .state('compete', {
                 url: '/compete'
             })
-            .state('categories', {
-            	url: '/categories',
+            .state('training-routines', {
+                url: '/training-routines',
+                templateUrl: 'assets/training-routines.html' 
+            })
+            .state('training-routines.name', {
+                url: '/training-routine', 
+                views: {
+                    { templateUrl: 'assets/training-routine.html' }, 
+                    'exercises@build': { templateUrl: 'assets/categories.html'}, 
+                    'workouts@build': { templateUrl: 'assets/workouts.html'}
+                }
+            })
             	templateUrl: 'assets/categories.html',
             	controller: 'categoriesCtrl'
              })

@@ -3,7 +3,8 @@ class TrainingSession < ActiveRecord::Base
 	belongs_to :training_routine
 	belongs_to :period
 	has_many :exercise_sets
-	accepts_nested_attributes_for :exercise_sets
+	validates :athlete_id, :training_routine_id, presence: true
+	accepts_nested_attributes_for :exercise_sets, allow_destroy: true
 
 	# Update the as_json method 
 	# to include the training

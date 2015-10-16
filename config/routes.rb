@@ -12,6 +12,19 @@ Rails.application.routes.draw do
     resources :trainers, only: [:update, :show]
   end
 
+  namespace :athlete do
+    resources :training_sessions
+    resources :enrollments
+  end
+
+  namespace :trainer do
+    resources :training_routines
+  end
+
+  resources :training_routines do 
+    resources :enrollments
+  end
+
   namespace :api, defaults: {format: 'json'} do 
 
     devise_scope :users do
@@ -20,7 +33,9 @@ Rails.application.routes.draw do
 
     resources :users, only: [:create, :update, :show]
 
-    resources :exercises
+    resources :training_routines 
+
+    resources :exercises, only: [:create, :index, :show]
 
     resources :training_sessions, only: [:create, :index, :show] do 
       resources :exercise_sets, only: [:create, :index]
