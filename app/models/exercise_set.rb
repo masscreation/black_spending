@@ -1,5 +1,6 @@
 class ExerciseSet < ActiveRecord::Base
 	belongs_to :exercise
+	# Athlete performs many exercise_sets 
 	belongs_to :athlete
 	belongs_to :training_session
 	validates :athlete_id, :training_session_id, :exercise_id, :completed, presence: true

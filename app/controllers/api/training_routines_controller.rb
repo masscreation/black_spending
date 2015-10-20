@@ -1,4 +1,5 @@
 class Api::TrainingRoutinesController < ApplicationController
+	# before_action :authenticate_trainer!
 
 	def index 
 	 	respond_with :api, training_routines
@@ -19,11 +20,11 @@ class Api::TrainingRoutinesController < ApplicationController
 	private
 
 		def training_routines
-	    	@training_regimens ||= TrainingRoutine.all
+	    	@training_routines ||= TrainingRoutine.all
 	  	end
 
 		def training_routine
-		    @training_regimen ||= training_routines.find(params[:id])
+		    @training_routine ||= training_routines.find(params[:id])
 		end
 
 		def training_routine_params

@@ -15,31 +15,13 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 templateUrl: 'assets/home.html',
                 controller: 'homeCtlr'
             })
-            .state('profile', {
-                url: '/profile', 
-                templateUrl: 'assets/profile.html',
-                controller: 'profileCtrl'
-            })
             .state('train', {
-            	url: '/train', 
-            	templateUrl: 'assets/training-sessions.html',
-            	controller: 'trainingSessionCtlr'
+                url: '/train', 
+                templateUrl: '/assets/training-sessions.html', 
+                controller: 'trainingSessionCtrl'
             })
-            .state('compete', {
-                url: '/compete'
-            })
-            .state('training-routines', {
-                url: '/training-routines',
-                templateUrl: 'assets/training-routines.html' 
-            })
-            .state('training-routines.name', {
-                url: '/training-routine', 
-                views: {
-                    { templateUrl: 'assets/training-routine.html' }, 
-                    'exercises@build': { templateUrl: 'assets/categories.html'}, 
-                    'workouts@build': { templateUrl: 'assets/workouts.html'}
-                }
-            })
+            .state('categories', {
+                url: '/categories', 
             	templateUrl: 'assets/categories.html',
             	controller: 'categoriesCtrl'
              })

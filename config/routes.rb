@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'application#angular'
 
   devise_for :users, skip: [:registrations]
@@ -21,19 +20,17 @@ Rails.application.routes.draw do
     resources :training_routines
   end
 
-  resources :training_routines do 
-    resources :enrollments
-  end
-
   namespace :api, defaults: {format: 'json'} do 
 
-    devise_scope :users do
-      post 'users/password', to: 'password#create'
+    devise_scope :athletes do
+      post 'athletes/password', to: 'password#create'
     end
 
-    resources :users, only: [:create, :update, :show]
+    resources :athletes, only: [:create, :update, :show]
 
-    resources :training_routines 
+    resources :training_routines do 
+      resources :enrollments
+    end
 
     resources :exercises, only: [:create, :index, :show]
 

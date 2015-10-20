@@ -1,5 +1,6 @@
 angular.module('trainingProgram')
 .controller('trainingRoutinesCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) { 
+	
 	var baseRoutines = Restangular.all('api/training_routines')
 
 	baseRoutines.getList().then(function (routines) {
@@ -8,7 +9,7 @@ angular.module('trainingProgram')
 
 	$scope.createRoutine = function(routine) {
 		var allRoutines = Restangular.all('api/training_routines');
-		allWorkouts.post(workout)
+		allRoutines.post(routine)
 	}
 })
 .controller('trainingRoutineCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) { 

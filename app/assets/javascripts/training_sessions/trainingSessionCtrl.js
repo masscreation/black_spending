@@ -1,5 +1,5 @@
 angular.module('trainingProgram')
-.controller('trainingSessionCtlr', ['$scope', '$http', function ($scope, $http) {
+.controller('trainingSessionsCtlr', ['$scope', '$http', function ($scope, $http) {
 	
 	$http.get('/api/training_sessions')
 		.success(function (data) {
