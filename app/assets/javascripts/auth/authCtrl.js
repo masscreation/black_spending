@@ -15,7 +15,7 @@ function($scope, $state, $http, Auth){
   // Log in trainers
   $scope.trainerLogin = function() {
     Auth.login($scope.trainer).then(function(){
-      $state.go('dashboard');
+      $state.go('routines');
     });
   };
 
@@ -28,7 +28,7 @@ function($scope, $state, $http, Auth){
     		$scope.athletes.push(data); 
     	}); 
 
-    	$state.go('home');
+    	$state.go('profile');
     });
   };
 
@@ -41,7 +41,7 @@ function($scope, $state, $http, Auth){
         $scope.trainers.push(data); 
       }); 
 
-      $state.go('program-builder');
+      $state.go('routines');
     });
   };
 

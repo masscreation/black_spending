@@ -1,14 +1,12 @@
 angular.module('trainingProgram')
-.controller('trainingSessionsCtlr', ['$scope', '$http', function ($scope, $http) {
+.controller('trainingSessionCtlr', ['$scope', 'Restangular', function ($scope, Restangular) {
 	
-	$http.get('/api/training_sessions')
-		.success(function (data) {
-			console.log(data); 
-			$scope.training_sessions = data; 
-		})
-		.error(function (data) {
-			console.log("error" + data); 
-		}); 
+	
+	var baseTrainingSessions = Restangular.all('api/training_sessions'); 
+	
+	console.log(baseTrainingSessions);
+
+	$scope.training_sessions = baseTrainingSessions; 
 
 		$scope.eventSources = [$scope.training_sessions];
 		/* config object */

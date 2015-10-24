@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013140319) do
+ActiveRecord::Schema.define(version: 20151024001142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 20151013140319) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "athlete_training_sessions", force: :cascade do |t|
+    t.datetime "scheduled_on"
+    t.boolean  "complete"
+    t.integer  "volume"
+    t.integer  "training_session_id"
+    t.integer  "athlete_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "athlete_training_sessions", ["athlete_id"], name: "index_athlete_training_sessions_on_athlete_id", using: :btree
+  add_index "athlete_training_sessions", ["training_session_id"], name: "index_athlete_training_sessions_on_training_session_id", using: :btree
 
   create_table "athletes", force: :cascade do |t|
     t.integer  "rank_id"
@@ -67,7 +80,6 @@ ActiveRecord::Schema.define(version: 20151013140319) do
     t.string   "name"
     t.text     "description",  null: false
     t.integer  "category_id"
-    t.integer  "workout_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.text     "instructions"
@@ -103,17 +115,14 @@ ActiveRecord::Schema.define(version: 20151013140319) do
     t.string   "focus"
     t.integer  "duration"
     t.integer  "trainer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "description"
   end
 
   add_index "training_routines", ["trainer_id"], name: "index_training_routines_on_trainer_id", using: :btree
 
   create_table "training_sessions", force: :cascade do |t|
-    t.datetime "scheduled_on"
-    t.boolean  "complete"
-    t.integer  "volume"
-    t.integer  "athlete_id"
     t.integer  "period_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -145,17 +154,19 @@ ActiveRecord::Schema.define(version: 20151013140319) do
 
   create_table "workouts", force: :cascade do |t|
     t.string   "name"
-    t.text     "description",         null: false
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "training_routine_id"
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "trainer_id"
   end
 
-  add_index "workouts", ["training_routine_id"], name: "index_workouts_on_training_routine_id", using: :btree
+  add_index "workouts", ["trainer_id"], name: "index_workouts_on_trainer_id", using: :btree
 
+  add_foreign_key "athlete_training_sessions", "athletes"
+  add_foreign_key "athlete_training_sessions", "training_sessions"
   add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
   add_foreign_key "training_routines", "trainers"
   add_foreign_key "training_sessions", "training_routines"
-  add_foreign_key "workouts", "training_routines"
+  add_foreign_key "workouts", "trainers"
 end

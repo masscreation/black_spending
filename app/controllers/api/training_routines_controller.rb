@@ -10,7 +10,7 @@ class Api::TrainingRoutinesController < ApplicationController
 	end
 
 	def create
-		respond_with TrainingRoutine.create(category_params)
+		respond_with training_routine.create(training_routine_params)
 	end
 
 	def destroy
@@ -28,6 +28,6 @@ class Api::TrainingRoutinesController < ApplicationController
 		end
 
 		def training_routine_params
-			params.require(:training_routine).permit(:name, :focus, :trainer_id)
+			params.require(:training_routine).permit(:name, :description, :focus, :duration, :trainer_id)
 		end
 end

@@ -20,6 +20,34 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 templateUrl: '/assets/training-sessions.html', 
                 controller: 'trainingSessionCtrl'
             })
+            .state('routines', {
+                url: '/routines', 
+                templateUrl: '/assets/training-routines.html',
+                controller: 'trainingRoutinesCtrl' 
+
+            })
+            .state('routines.id', {
+                url: '/:id', 
+                views: {
+                    // the main template will be placed here (relatively named)
+                   '': {templateUrl: '/assets/training-routine.html'}, 
+
+                   'workouts@routines.id': { 
+                        templateUrl: 'workouts.html', 
+                        controller: 'workoutsCtrl'
+                    }, 
+                   'categories@routines.id': {
+                        templateUrl: 'categories.html',
+                        controller: 'categoriesCtrl'
+                    },
+                    'training-sessions@routines.id': {
+                        templateUrl: 'training-sessions.html',
+                        controller: 'trainingSessionCtrl' 
+                    }
+                
+                },
+                controller: 'trainingRoutineCtrl' 
+            })
             .state('categories', {
                 url: '/categories', 
             	templateUrl: 'assets/categories.html',
