@@ -18,7 +18,7 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             .state('train', {
                 url: '/train', 
                 templateUrl: '/assets/training-sessions.html', 
-                controller: 'trainingSessionCtrl'
+                controller: 'trainingSessionsCtrl'
             })
             .state('routines', {
                 url: '/routines', 
@@ -44,7 +44,6 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                         templateUrl: 'training-sessions.html',
                         controller: 'trainingSessionCtrl' 
                     }
-                
                 },
                 controller: 'trainingRoutineCtrl' 
             })

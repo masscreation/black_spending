@@ -2,7 +2,7 @@ angular.module('trainingProgram')
 .controller('trainingSessionsCtlr', ['$scope', 'Restangular', function ($scope, Restangular) {
 	
 	
-	var baseTrainingSessions = Restangular.all('api/training_sessions'); 
+	var AthleteTrainingSessions = Restangular.all('api/athlete_training_sessions'); 
 	
 	console.log(baseTrainingSessions);
 
@@ -26,10 +26,10 @@ angular.module('trainingProgram')
 	    };
 
 	$scope.createTrainingSession = function() {
-		$http.post('training_sessions', $scope.training_sessions)
+		$http.post('athlete_training_sessions', $scope.athlete_training_sessions)
 		.success(function(data) {
 
-			$scope.training_sessions.push(data); 
+			$scope.athlete_training_sessions.push(data); 
 
 		})
 		.error(data, function() {

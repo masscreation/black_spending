@@ -1,40 +1,37 @@
 class Api::WorkoutsController < ApplicationController
 
-  # GET /workouts
-  # GET /workouts.json
+  # GET api/workouts
   def index
     respond_with :api, workouts
   end
 
-  # GET /workouts/1
-  # GET /workouts/1.json
+  # GET api/workouts/1
   def show
     respond_with :api, workout
   end
 
-  # POST /workouts
-  # POST /workouts.json
+  # POST /api/workouts
   def create
     respond_with :api, Workout.create(workout_params)
   end
 
-  # PATCH/PUT /workouts/1
-  # PATCH/PUT /workouts/1.json
-
-  # DELETE /workouts/1
-  # DELETE /workouts/1.json
+  # DELETE /api/workouts
   def destroy
     respond_with :api, workout.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_workout
-      @workout = Workout.find(params[:id])
+    def workout
+      @workout ||= workouts.find(params[:id])
+    end
+
+    def workouts
+      @workouts ||= Workout.all 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def workout_params
-      params.require(:workout).permit(:name, :description, :training_program_id)
+      params.require(:workout).permit(:name, :description, :trainer_id)
     end
 end

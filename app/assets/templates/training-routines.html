@@ -1,38 +1,39 @@
-<h1 style="text-align:center;">Trainer Dashboard</h1>
-<div class="col-md-6">
+<div class="col-md-12">
+	<h1 style="text-align:center;">Trainer Dashboard</h1>
+	<div class="col-md-6">
 
-	<h2>Training Routines</h2>
-	<div ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
-		<a ui-sref="routines.id({id: routine.id })">{{routine.name}}</a><br>
-		# of athletes enrolled: {{routine.enrollments.count}}
-	</div>
-	<div>
-		<table>
-			<tr>
-				<th>Name</th><th>Description</th><th>Focus</th><th>Duration</th>
-			</tr>
-			<tr>
-				<td>{{routine.name}}</td><td>{{routine.description}}</td><td>{{routine.focus}}</td><td>{{routine.duration}} weeks</td>
-			</tr>
-		</table>
+		<h2>Training Routines</h2>
+		<li ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
+			<a ui-sref="routines.id({id: routine.id })">{{routine.name}}</a><br>
+		</li>
+		
+		<!-- Routine Form --> 
+		<div>
+			<table>
+				<tr>
+					<th>Name</th><th>Description</th><th>Focus</th><th>Duration</th>
+				</tr>
+				<tr>
+					<td>{{routine.name}}</td><td>{{routine.description}}</td><td>{{routine.focus}}</td><td>{{routine.duration}} weeks</td>
+				</tr>
+			</table>
 
-		<button class="btn btn-primary" ng-click="hideme = !hideme" title="Build A New Training Routine"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
-		<div class="hideme" ng-hide="!hideme"><!-- New Training Routine --> 
-			<form>
-				<input name="routine-name" ng-model='routine.name' type="text" placeholder="name">
+			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Build A New Training Routine"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
+			<div class="hideme" ng-hide="!hideme"><!-- New Training Routine --> 
+				<form>
+					<input name="routine-name" ng-model='routine.name' type="text" placeholder="name">
 
-				<input name="routine-description" ng-model="routine.description" type="textarea" placeholder="description">
+					<input name="routine-description" ng-model="routine.description" type="textarea" placeholder="description">
 
-				<input name="routine-focus" ng-model="routine.focus" id="routine-focus" type="textarea" placeholder="focus">
+					<input name="routine-focus" ng-model="routine.focus" id="routine-focus" type="textarea" placeholder="focus">
 
-				<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration in weeks">
+					<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration in weeks">
 
-				<button type="button" class="btn btn-primary btn-md" ng-click="createRoutine(routine)" >Build A New Training Routine</button>
-			</form>
+					<button type="button" class="btn btn-primary btn-md" ng-click="createRoutine(routine)" >Build A New Training Routine</button>
+				</form>
+			</div>
 		</div>
 	</div>
 	
-
 	<div ui-view></div>
-
 </div>

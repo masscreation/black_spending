@@ -10,7 +10,7 @@ angular.module('trainingProgram')
 		$scope.workouts = workouts; 
 	})
 
-	createWorkout = function (workout) {
+	$scope.createWorkout = function (workout) {
 		var allWorkouts = Restangular.all('api/workouts');
 		allWorkouts.post(workout)
 	}
@@ -26,7 +26,7 @@ angular.module('trainingProgram')
 
 		$scope.workout.exercises = []; 
 		
-		$scope.workout.getList('exercises').then(function (exercises) {
+		$scope.workout.getList('workout_exercises').then(function (exercises) {
 			exercises.forEach(function (exercise) {
 				if (workout.id === exercise.workout_id) {
 					$scope.workout.exercises.push(exercise);

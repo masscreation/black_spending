@@ -1,14 +1,17 @@
-<h1>{{training-routine.name}}</h1>
+<div class="col-md-6">
+	<h1>{{training-routine.name}}</h1>
 
-<!-- Exercise template --> 
-<div class="row">
-	<div ui-view="categories"></div>
+	<!-- Exercise template --> 
+	<div class="row">
+		<div ui-view="categories"></div>
+	</div>
+	<!-- Workouts --> 
+	<div class="row">
+		<div ui-view="workouts"></div>
+	</div>`
+	<div class="row">
+		<div ui-view="training-sessions"></div>
+	</div>
 </div>
-<!-- Workouts --> 
-<div class="row">
-	<div ui-view="workouts"></div>
-</div>`
-<div class="row">
-	<div ui-view="training-sessions"></div>
-</div>
+
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024001142) do
+ActiveRecord::Schema.define(version: 20151026150655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,9 @@ ActiveRecord::Schema.define(version: 20151024001142) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "training_routine_id"
+    t.integer  "order_in_routine"
+    t.string   "description"
+    t.string   "session_type"
   end
 
   add_index "training_sessions", ["training_routine_id"], name: "index_training_sessions_on_training_routine_id", using: :btree
@@ -152,6 +155,16 @@ ActiveRecord::Schema.define(version: 20151024001142) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  create_table "workout_exercises", force: :cascade do |t|
+    t.integer  "workout_id"
+    t.integer  "exercise_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "workout_exercises", ["exercise_id"], name: "index_workout_exercises_on_exercise_id", using: :btree
+  add_index "workout_exercises", ["workout_id"], name: "index_workout_exercises_on_workout_id", using: :btree
+
   create_table "workouts", force: :cascade do |t|
     t.string   "name"
     t.text     "description", null: false
@@ -168,5 +181,7 @@ ActiveRecord::Schema.define(version: 20151024001142) do
   add_foreign_key "enrollments", "training_routines"
   add_foreign_key "training_routines", "trainers"
   add_foreign_key "training_sessions", "training_routines"
+  add_foreign_key "workout_exercises", "exercises"
+  add_foreign_key "workout_exercises", "workouts"
   add_foreign_key "workouts", "trainers"
 end

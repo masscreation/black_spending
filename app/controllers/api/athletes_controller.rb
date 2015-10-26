@@ -4,7 +4,7 @@ class Api::AthletesController < ApplicationController
   end
 
   def create
-    respond_with :api, Athlete.create(user_params)
+    respond_with :api, Athlete.create(athlete_params)
   end
 
   def update
@@ -22,7 +22,7 @@ class Api::AthletesController < ApplicationController
   end
 
   def athlete 
-  	@athlete ||= Athlete.find(params[:id])
+  	@athlete ||= athletes.find(params[:id])
   end
 
   def athlete_params
