@@ -6,6 +6,7 @@ angular.module('trainingProgram')
 	var baseWorkouts = Restangular.all('api/workouts'); 
 	console.log(baseWorkouts)
 	
+	
 	baseWorkouts.getList().then(function (workouts) {
 		$scope.workouts = workouts; 
 	})

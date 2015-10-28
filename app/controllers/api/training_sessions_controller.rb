@@ -10,11 +10,9 @@ class Api::TrainingSessionsController < ApplicationController
   end
 
   def create
-    respond_with :api, TrainingSession.create(training_session_params)
+    respond_with :api, training_session.create(training_session_params)
   end
 
-  def update
-  end
 
   def destroy
     respond_with :api, training_session.destroy
@@ -31,7 +29,6 @@ class Api::TrainingSessionsController < ApplicationController
     end
 
     def training_session_params
-      params.require(:training_session).permit(:scheduled_on, :complete, :volume, :category_id, :athlete_id, :period_id, 
-        exercise_set_attributes: [:exercise_id, :athlete_id, :completed])
+      params.require(:training_session).permit(:session_type, :description, :training_routine_id, :order_in_routine, :period_id)
     end
 end

@@ -1,6 +1,14 @@
 angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calendar', 'restangular', 'youtube-embed', 'xeditable'])
-	.config(['$stateProvider', '$urlRouterProvider', '$sceDelegateProvider',
-		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+	.config(['$stateProvider', '$urlRouterProvider', '$sceDelegateProvider', 'AuthProvider',
+		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider) {
+
+            AuthProvider.registerPath('api/athletes');
+            AuthProvider.registerMethod('GET');
+            AuthProvider.resourceName('athlete');
+
+            AuthProvider.loginPath('api/athletes');
+            AuthProvider.loginMethod('GET');
+            
 
             $sceDelegateProvider.resourceUrlWhitelist([
                 // Allow same origin resource loads.
@@ -74,6 +82,7 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
               onEnter: ['$state', 'Auth', function ($state, Auth) {
                     Auth.currentUser().then(function (){
                         $state.go('train');
+                        console.log('current user is:', currentUser())
                     }); 
                 }]
             })
@@ -84,6 +93,7 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 onEnter: ['$state', 'Auth', function ($state, Auth) {
                     Auth.currentUser().then(function (){
                         $state.go('train');
+                        console.log('current user is:', currentUser())
                     })
                 }]
             }); 

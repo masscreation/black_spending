@@ -1,16 +1,13 @@
 <div>
-	<form ng-submit="createTrainingSession()">
+	<form ng-submit="createTrainingSession(training_session)">
 	
-  		<input type="datetime-local" id="exampleInput" name="input" ng-model="traininSession.scheduled_on"
-      placeholder="yyyy-MM-ddTHH:mm:ss" min="2001-01-01T00:00:00" max="2013-12-31T00:00:00" required />
-      <br>
-      	<select type="text" placeholder>
+  		<select ng-model="training_session.session_type">
+  
+      	
 
-		<input type="checkbox" ng-model="training_session.completed"
-           ng-true-value="'YES'" ng-false-value="'NO'">
         
-        <br/>
-		<button></button>
+ 
+		<button type="button" class="btn btn-primary btn-md" ng-click="createTrainingSession(session)">Build A New Training Session</button> 
 	</form>
 
 	<div ui-calendar="uiConfig.calendar" ng-model="eventSources">

@@ -25,16 +25,17 @@ angular.module('trainingProgram')
 	      }
 	    };
 
-	$scope.createTrainingSession = function() {
-		$http.post('training_sessions', $scope.training_sessions)
-		.success(function(data) {
-
-			$scope.training_sessions.push(data); 
-
-		})
-		.error(data, function() {
-			alert("No training_sessions created"); 
-		})
+	$scope.createTrainingSession = function(training_session) {
+		var allRoutines = Restangular.all('api/training_sessions');
+		$scope.training_session.training_routine_id = $stateParams.id ; 
+		// post training_session to training_sessions
+		allTrainingSessions.post(training_session); 
+		
+		// Clear training training_session form 
+		$scope.training_session.session_type = ''; 
+ 		$scope.training_session.focus = ''; 
+ 		$scope.training_session.duration = ''
+ 
 	}; 
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026150655) do
+ActiveRecord::Schema.define(version: 20151027161421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,16 +94,19 @@ ActiveRecord::Schema.define(version: 20151026150655) do
   end
 
   create_table "periods", force: :cascade do |t|
-    t.string   "name"
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "duration_weeks"
-    t.integer  "period_type_id"
-    t.integer  "user_id"
-    t.integer  "training_program_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "training_routine_id"
+    t.integer  "athlete_id"
+    t.integer  "period_type_id"
   end
+
+  add_index "periods", ["athlete_id"], name: "index_periods_on_athlete_id", using: :btree
+  add_index "periods", ["period_type_id"], name: "index_periods_on_period_type_id", using: :btree
+  add_index "periods", ["training_routine_id"], name: "index_periods_on_training_routine_id", using: :btree
 
   create_table "trainers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -179,6 +182,9 @@ ActiveRecord::Schema.define(version: 20151026150655) do
   add_foreign_key "athlete_training_sessions", "training_sessions"
   add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
+  add_foreign_key "periods", "athletes"
+  add_foreign_key "periods", "period_types"
+  add_foreign_key "periods", "training_routines"
   add_foreign_key "training_routines", "trainers"
   add_foreign_key "training_sessions", "training_routines"
   add_foreign_key "workout_exercises", "exercises"
