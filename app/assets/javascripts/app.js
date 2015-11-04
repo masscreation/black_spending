@@ -2,12 +2,13 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
 	.config(['$stateProvider', '$urlRouterProvider', '$sceDelegateProvider', 'AuthProvider',
 		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider) {
 
-            AuthProvider.registerPath('api/athletes');
-            AuthProvider.registerMethod('GET');
-            AuthProvider.resourceName('athlete');
 
-            AuthProvider.loginPath('api/athletes');
+            AuthProvider.registerMethod('POST');
             AuthProvider.loginMethod('GET');
+
+            AuthProvider.resourceName('athlete');
+            AuthProvider.registerPath('api/athletes');
+            AuthProvider.loginPath('api/athletes');
             
 
             $sceDelegateProvider.resourceUrlWhitelist([
@@ -26,7 +27,7 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
             .state('train', {
                 url: '/train', 
                 templateUrl: '/assets/training-sessions.html', 
-                controller: 'trainingSessionsCtrl'
+                controller: 'athleteTrainingSessionsCtrl'
             })
             .state('routines', {
                 url: '/routines', 
@@ -50,7 +51,7 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                     },
                     'training-sessions@routines.id': {
                         templateUrl: 'training-sessions.html',
-                        controller: 'trainingSessionCtrl' 
+                        controller: 'trainingSessionsCtrl' 
                     }
                 },
                 controller: 'trainingRoutineCtrl' 
@@ -80,10 +81,19 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
               templateUrl: 'assets/_login.html',
               controller: 'authCtrl',
               onEnter: ['$state', 'Auth', function ($state, Auth) {
-                    Auth.currentUser().then(function (){
-                        $state.go('train');
-                        console.log('current user is:', currentUser())
-                    }); 
+                    Auth.currentUser().then(function (user){
+                        
+                        console.log('user is:', user.type);
+                        // Differentiate between user types to route
+                        if (user.type === "athlete") {
+                            $state.go('train')
+                        } else {
+                            $state.go('routines')
+                        }
+                    }, function (error) {
+
+                        console.log('error:', error)
+                    }) 
                 }]
             })
             .state('register', {
@@ -91,9 +101,15 @@ angular.module('trainingProgram', ['ui.router', 'templates', 'Devise', 'ui.calen
                 templateUrl: 'assets/_register.html',
                 controller: 'authCtrl',
                 onEnter: ['$state', 'Auth', function ($state, Auth) {
-                    Auth.currentUser().then(function (){
-                        $state.go('train');
-                        console.log('current user is:', currentUser())
+                    Auth.currentUser().then(function (user) {
+
+                        console.log('user is:', user.type);
+                        // Send registered user to log in
+                        $state.go('login'); 
+                        
+                    }, function (error) {
+                        // Handle error
+                        console.log('error:', error)
                     })
                 }]
             }); 

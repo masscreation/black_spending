@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027161421) do
+ActiveRecord::Schema.define(version: 20151104020102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20151027161421) do
     t.integer  "athlete_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "training_routine_id"
   end
 
   add_index "athlete_training_sessions", ["athlete_id"], name: "index_athlete_training_sessions_on_athlete_id", using: :btree
+  add_index "athlete_training_sessions", ["training_routine_id"], name: "index_athlete_training_sessions_on_training_routine_id", using: :btree
   add_index "athlete_training_sessions", ["training_session_id"], name: "index_athlete_training_sessions_on_training_session_id", using: :btree
 
   create_table "athletes", force: :cascade do |t|
@@ -126,15 +128,16 @@ ActiveRecord::Schema.define(version: 20151027161421) do
   add_index "training_routines", ["trainer_id"], name: "index_training_routines_on_trainer_id", using: :btree
 
   create_table "training_sessions", force: :cascade do |t|
-    t.integer  "period_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "training_routine_id"
     t.integer  "order_in_routine"
     t.string   "description"
     t.string   "session_type"
+    t.integer  "period_type_id"
   end
 
+  add_index "training_sessions", ["period_type_id"], name: "index_training_sessions_on_period_type_id", using: :btree
   add_index "training_sessions", ["training_routine_id"], name: "index_training_sessions_on_training_routine_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -179,6 +182,7 @@ ActiveRecord::Schema.define(version: 20151027161421) do
   add_index "workouts", ["trainer_id"], name: "index_workouts_on_trainer_id", using: :btree
 
   add_foreign_key "athlete_training_sessions", "athletes"
+  add_foreign_key "athlete_training_sessions", "training_routines"
   add_foreign_key "athlete_training_sessions", "training_sessions"
   add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
@@ -186,6 +190,7 @@ ActiveRecord::Schema.define(version: 20151027161421) do
   add_foreign_key "periods", "period_types"
   add_foreign_key "periods", "training_routines"
   add_foreign_key "training_routines", "trainers"
+  add_foreign_key "training_sessions", "period_types"
   add_foreign_key "training_sessions", "training_routines"
   add_foreign_key "workout_exercises", "exercises"
   add_foreign_key "workout_exercises", "workouts"

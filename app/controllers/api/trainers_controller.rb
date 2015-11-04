@@ -3,16 +3,20 @@ class Api::TrainersController < ApplicationController
   	respond_with :api, trainers
   end
 
+  def show
+    respond_with :api, trainer
+  end
+
   def create
-    respond_with :api, Trainer.create(user_params)
+    respond_with :api, trainer.create(user_params)
   end
 
   def update
-  	respond_with :api, Trainer.update
+  	respond_with :api, trainer.update
   end
 
   def destroy
-  	respond_with :api, Trainer.destroy
+  	respond_with :api, trainer.destroy
   end
 
   private

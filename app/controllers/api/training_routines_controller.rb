@@ -10,7 +10,10 @@ class Api::TrainingRoutinesController < ApplicationController
 	end
 
 	def create
-		respond_with TrainingRoutine.create(training_routine_params)
+		respond_with training_routine.create(training_routine_params)
+		36.times do 
+			training_routine.training_sessions.build()
+		end
 	end
 
 	def destroy

@@ -28,11 +28,10 @@ angular.module('trainingProgram')
 			})
 		}; 
 	
-		
-	
 		// Create an exercises array to hold exercises that belong to category
 		$scope.category.exercises = []; 
 		
+		//Grab all exercises in this category
 		$scope.category.getList('exercises').then(function (exercises) {
 			exercises.forEach(function (exercise) {
 				if (category.id === exercise.category_id) {
@@ -40,11 +39,8 @@ angular.module('trainingProgram')
 					$scope.category.exercises.push(exercise);
 					console.log($scope.category.exercises)
 				}; 
-
 			})
-			
 		})
-		
 	}); 
 
 	$scope.playerVars = {
@@ -52,14 +48,15 @@ angular.module('trainingProgram')
 		rel: 0
 	};  
 	
-	// Create exercise for selected category
+	// Create exercise for this selected category
 	$scope.createExercise = function(exercise) {
 		var allExercises = Restangular.all('api/exercises');
 		console.log('createExercise'); 
 		// Tag created exercise with category_id using stateParams
-		$scope.exercise.category_id = $stateParams.id; 
+		$scope.exercise.category_id = $stateParams.id;
+		$scope.category.exercises.push(exercise);  
 	 	allExercises.post(exercise).then(function (exercise) {
-	 		console.log('Just created exercise:', exercise); 
+	 		console.log('Just created exercise:', exercise.name); 
 	 		$scope.exercise.name = ''; 
 	 		$scope.exercise.description = ''; 
 	 		$scope.exercise.instructions = ''; 

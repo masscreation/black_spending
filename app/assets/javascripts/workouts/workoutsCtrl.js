@@ -1,5 +1,5 @@
 angular.module('trainingProgram')
-.controller('workoutsCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
+.controller('workoutsCtrl', ['$scope', '$http', '$stateParams', 'Restangular', 'Auth', function ($scope, $http, $stateParams, Restangular, Auth) {
 	
 	console.log("workouts controller"); 
 
@@ -8,22 +8,32 @@ angular.module('trainingProgram')
 	
 	
 	baseWorkouts.getList().then(function (workouts) {
-		$scope.workouts = workouts; 
-	})
+		$scope.workouts = []; 
+		workouts.forEach(function (workout) {
+			if (workout.trainer_id === Auth.currentUser().id {
+				$scope.workouts.push(workout) 
+			}) 
+		})
+	}); 
 
+	//Create new workouts
 	$scope.createWorkout = function (workout) {
+		// Tag workout to current logged in trainer
+		$scope.workout.trainer_id = currentUser().id
 		var allWorkouts = Restangular.all('api/workouts');
-		allWorkouts.post(workout)
+		allWorkouts.post(workout); 
+
+		// Clear workout form
+		$scope.workout.name = '';
+		$scope.workout.description = ''
 	}
 }])
 .controller('workoutCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
 
-	console.log('workout controller'); 
-
 	Restangular.one('api/workouts', $stateParams.id).get()
 	.then(function (workout) {
 		$scope.workout = workout; 
-		console.log(workout);
+		console.log('Workout is:', workout);
 
 		$scope.workout.exercises = []; 
 		
@@ -31,7 +41,7 @@ angular.module('trainingProgram')
 			exercises.forEach(function (exercise) {
 				if (workout.id === exercise.workout_id) {
 					$scope.workout.exercises.push(exercise);
-					console.log($scope.workout.exercises); 
+					console.log($scope.workout.exercises) 
 				}
 			})
 			

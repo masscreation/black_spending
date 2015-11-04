@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       post 'athletes/password', to: 'password#create'
     end
     devise_scope :trainers do
-      post 'athletes/password', to: 'password#create'
+      post 'trainers/password', to: 'password#create'
     end
 
     resource :admin do 

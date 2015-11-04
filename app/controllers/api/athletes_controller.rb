@@ -3,6 +3,10 @@ class Api::AthletesController < ApplicationController
   	respond_with :api, athletes
   end
 
+  def show
+    respond_with :api, athlete
+  end
+
   def create
     respond_with :api, Athlete.create(athlete_params)
   end

@@ -16,6 +16,8 @@
 
 //= require angular
 //= require angular-devise
+//= require angular-devise/lib/devise
+
 //= require angular-ui-router
 //= require angular-ui-calendar
 //= require angular-rails-templates
