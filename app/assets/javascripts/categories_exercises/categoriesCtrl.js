@@ -1,5 +1,10 @@
 angular.module('trainingProgram')
-.controller('categoriesCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
+.controller('categoriesCtrl', [
+	'$scope', 
+	'$http', 
+	'$stateParams', 
+	'Restangular', 
+	function ($scope, $http, $stateParams, Restangular) {
 	
 	console.log("categories controller"); 
 

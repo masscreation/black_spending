@@ -3,7 +3,6 @@
 		<h3>Exercise Categories</h3>
 		<li ui-sref-active="selected" ng-repeat="category in primecategories | orderBy:'ancestry'">
 			<a ui-sref="categories.id({id: category.id })">{{category.name}}</a>
-			{{category.child.name}}
 		</li>
 		<h4>Exercise subcategories</h4>
 		

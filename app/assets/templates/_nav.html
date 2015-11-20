@@ -1,5 +1,5 @@
   <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container" ng-controller="navCtrl">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
@@ -13,24 +13,28 @@
             <ul class="nav navbar-nav">
               <li ng-hide="signedIn()" class="active"><a ui-sref="home">Home</a></li>
               <li ng-show="signedIn()" ><a ui-sref="train">Train</a></li>
-              <li ng-show="signedIn()"><a ui-sref="profile">Profile</a></li>
+              <li ng-show="signedIn()"><a ui-sref="athlete-profile">Profile</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GreatCornerback.com <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li><a href="http://www.greatcornerback.com/cornerback-training.html" target="_blank">Cornerback Skills Training</a></li>
                   <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
+                  <li><a href="http://www.greatcornerback.com/cornerback-training.html" target="_blank">Speed & Agility Training</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="http://www.greatcornerback.com/ " target="_blank">Football Skills</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="http://www.greatcornerback.com/" target="_blank">Cornerback Weight Training</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="http://www.greatcornerback.com/" target="_blank">Cornerback IQ</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="http://www.greatcornerback.com/" target="_blank">Diet & Supplements</a></li>
                 </ul>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li ng-show="signedIn()"><a ui-sref="/">{{ user.username }}</a></li>
               <li ng-hide="signedIn()"><a ui-sref="login">Log In</a></li>
               <li ng-hide="signedIn()"><a ui-sref="register">Register</a></li>
+              <li ng-show="signedIn()"><a ui-sref="/">{{ user.username }}</a></li>
               <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
             </ul>
           </div><!--/.nav-collapse -->

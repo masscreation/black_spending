@@ -1,27 +1,54 @@
 Rails.application.routes.draw do
 
-
   root 'application#angular'
 
-  devise_for :users, defaults: {format: 'json'}
+  
 
   namespace :api, defaults: {format: 'json'} do 
 
-    devise_scope :users do
-      post 'users/password', to: 'password#create'
+  devise_for :users, skip: [:registrations]
+  devise_for :athletes, defaults: {format: 'json'}, skip: :sessions
+  devise_for :trainers, defaults: {format: 'json'}, skip: :sessions
+  devise_for :admins, skip: [:sessions, :registrations]
+
+    devise_scope :athletes do
+      post 'athletes/password', to: 'password#create'
+    end
+    devise_scope :trainers do
+      post 'trainers/password', to: 'password#create'
     end
 
-    resources :users, only: [:create, :update, :show]
+    resource :admin do 
+      resources :trainers, only: [:update, :show]
+    end
 
-    resources :exercises
+    resources :trainers do
+      resources :training_routines
+      resources :workouts
+    end
+
+    resources :workouts, only: [:create, :index, :show] do 
+       resources :workout_exercises, only: [:create, :index, :show]
+    end
+
+    resources :athletes, only: [:create, :update, :show] do 
+      resources :enrollments
+      resources :athlete_training_sessions
+      resources :exercise_sets 
+    end 
+
+    resources :training_routines do 
+      resources :training_sessions
+      resources :enrollments
+    end
+
+    resources :exercises, only: [:create, :index, :show]
 
     resources :training_sessions, only: [:create, :index, :show] do 
-      resources :exercise_sets, only: [:create, :index]
+      resources :workout_exercises, only: [:create, :index, :show]
     end
 
-     resources :workouts, only: [:create, :index, :show] do 
-       resources :exercises, only: [:create, :index, :show]
-     end
+     
 
     resources :categories, only: [:create, :index, :show] do 
       resources :exercises, only: [:create, :index, :show]

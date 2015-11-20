@@ -1,14 +1,12 @@
 class TrainingSession < ActiveRecord::Base
-	belongs_to :athlete
+	belongs_to :training_routine
 	belongs_to :period
-	belongs_to :category
-	has_many :exercise_sets
-	accepts_nested_attributes_for :exercise_sets
+	validates  :training_routine_id, :period_id, presence: true
 
 	# Update the as_json method 
 	# to include the training
 	# session and exercise_set' users:
 	def as_json(options = {})
-    	super(options.merge(include: [:user, exercise_sets: {include: :user}]))
+    	super(options.merge(include: [:training_routine, workout_exercises: {include: :training_routine}]))
   	end
 end

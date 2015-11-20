@@ -18,3 +18,58 @@
 @import "bootstrap-sprockets"; 
 @import "bootstrap"; 
 
+form .centerform {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.carousel {
+  position: relative;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%); 
+}
+
+.carousel-caption {
+	color: #000
+}
+
+.carousel-caption .btn-primary {
+    text-shadow: none;
+    background-color: #FFE200; 
+    border-color: #FFFFFF
+}
+
+a:visited {
+    color: #000;
+}
+
+.navbar-default .navbar-brand {
+    color: #F7BE00;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #e7e7e7;
+    background-color: #000; 
+}
+.navbar-default .navbar-nav > li > a {
+    color: #FFE200;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: #FFF;
+}
+
+.container-marketing {
+	h2 {
+		color: #000
+	}
+}
+
+.container-marketing#one {
+	color: #000
+}
+
+.dropdown-menu {
+    background-color: #000
+}
+
+.dropdown-menu > li > a {
+    color: #FFE200
+}
