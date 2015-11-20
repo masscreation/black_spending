@@ -1,13 +1,18 @@
 angular.module('trainingProgram')
-.controller('trainingSessionsCtlr', ['$scope', 'Restangular', function ($scope, Restangular) {
+.controller('athleteTrainingSessionsCtlr', ['$scope', 'Restangular', function ($scope, Restangular) {
 	
+	var trainingRoutines = Restangular.all('api/training_routines'); 
 	
-	var AthleteTrainingSessions = Restangular.all('api/athlete_training_sessions'); 
-	
-	console.log(baseTrainingSessions);
+	//Tag athlete's training sessions to routine using enrollment
+	Restangular.all('api/enrollments').forEach(function(enrollment) {
+		trainigRoutines.forEach(function (routine) {
+			
+		})
+	})
 
-	$scope.training_sessions = baseTrainingSessions; 
-
+	Restangular.all('api/athlete_training_sessions').forEach(function(session) {
+		$scope.athleteTrainingSessions = [];
+	})
 		$scope.eventSources = baseTrainingSessions;
 		/* config object */
 	    $scope.uiConfig = {
@@ -27,6 +32,7 @@ angular.module('trainingProgram')
 
 	$scope.createTrainingSession = function() {
 		$http.post('athlete_training_sessions', $scope.athlete_training_sessions)
+
 		.success(function(data) {
 
 			$scope.athlete_training_sessions.push(data); 

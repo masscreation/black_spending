@@ -7,18 +7,18 @@ angular.module('trainingProgram')
 'Auth',
 function($scope, $state, $http, Restangular, Auth){
 
-  console.log('current user is:', Auth._currentUser); 
-
- // Register athletes
+  console.log('user is logged in: ', Auth.isAuthenticated());
+  // Register athletes
   $scope.registerAthlete = function(athlete) { 
     $scope.athlete = athlete
-      Auth.register().then(function(athlete) {
+    console.log(athlete); 
+      Auth.register(athlete).then(function(athlete) {
       allAthletes.post(athlete); 
-      
+      // Clear the athlete registration form
       $scope.athlete.email = ''; 
       $scope.athlete.username = ''; 
       $scope.athlete.password = ''; 
-      $state.go('train')
+      $state.go('login')
 
     }), function (error) {
         //handle registration error
@@ -49,19 +49,22 @@ function($scope, $state, $http, Restangular, Auth){
 
   //Log in athletes
 	$scope.loginAthlete = function(athlete) {
-    Auth.login().then(function(user){
-
+    Auth.login(athlete).then(function(athlete){
       $state.go('train')
-
     }), function(error) {
       //Handle login errors
+      console.log(error)
     }
   };
+
   // Log in trainers
   $scope.loginTrainer = function(trainer) {
     Auth.login(trainer).then(function(){
-      $state.go('routines');
-    });
+      $state.go('routines')
+    }), function (error) {
+      // Handle login errors
+      console.log(error)
+    }
   };
 
   // Set variables for athletes and trainers

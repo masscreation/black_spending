@@ -30,7 +30,7 @@ class Api::AthletesController < ApplicationController
   end
 
   def athlete_params
-  	params.require(:athlete).permit(:email, :username, :encrypted_password)
+  	params.require(:athlete).permit(:email, :username, :password)
   end
 
 end

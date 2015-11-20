@@ -1,5 +1,11 @@
 angular.module('trainingProgram')
-.controller('trainingRoutinesCtrl', ['$scope', '$http', '$stateParams', 'Restangular', 'Auth', function ($scope, $http, $stateParams, Restangular, Auth) { 
+.controller('trainingRoutinesCtrl', [
+	'$scope', 
+	'$http', 
+	'$stateParams', 
+	'Restangular', 
+	'Auth', 
+	function ($scope, $http, $stateParams, Restangular, Auth) { 
 	
 	// Grab training_routines 
 	var baseRoutines = Restangular.all('api/training_routines'); 

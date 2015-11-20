@@ -1,6 +1,11 @@
 angular.module('trainingProgram') 
-.controller('categoryCtrl', ['$scope', '$http', '$stateParams', 'Restangular', '$sce', 'exercisesSrvc', 
-	function ($scope, $http, $stateParams, Restangular, $sce, exercisesSrvc) {
+.controller('categoryCtrl', [
+	'$scope', 
+	'$http', 
+	'$stateParams', 
+	'Restangular', 
+	'$sce', 
+	function ($scope, $http, $stateParams, Restangular, $sce) {
 
 
 	console.log("category controller"); 

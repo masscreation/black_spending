@@ -11,7 +11,7 @@
 	    </ul>
 
 		<div ng-show="isSet(1)">
-			<form style="margin: 0 auto;" ng-submit="athleteLogin()">
+			<form style="margin: 0 auto;" >
 				<label><h4>Athlete</h4></label>
 		  		<div class="input-group">
 		    		<input type="email" class="form-control" placeholder="Email" ng-model="athlete.email">
@@ -19,7 +19,7 @@
 			  	<div class="input-group">
 			    	<input type="password" class="form-control" placeholder="Password" ng-model="athlete.password">
 			  	</div>
-		  		<input type="submit" class="btn btn-default" value="Dominate!">
+		  		<button type="button" ng-click="loginAthlete(athlete)" class="btn btn-primary">Dominate!</button>
 			</form>	
 		</div>
 		<div ng-show="isSet(2)">

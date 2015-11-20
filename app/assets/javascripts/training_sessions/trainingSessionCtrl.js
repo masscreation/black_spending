@@ -1,5 +1,8 @@
 angular.module('trainingProgram')
-.controller('trainingSessionsCtrl', ['$scope', 'Restangular', function ($scope, Restangular) {
+.controller('trainingSessionsCtrl', [
+	'$scope', 
+	'Restangular', 
+	function ($scope, Restangular) {
 	
 	console.log('trainingSessionsCtlr'); 
 
@@ -14,14 +17,16 @@ angular.module('trainingProgram')
 	 //Create training sessions
 	$scope.createTrainingSession = function(training_session) {
 		var allRoutines = Restangular.all('api/training_sessions');
+
+		// Set the training session's routine as the current routine in view
 		$scope.training_session.training_routine_id = $stateParams.id ;
 		
 		//Declare variables that represent session order and period
-		var sessionOrder = $scope.training_session.order_in_routine
-		var sessionPeriod = $scope.training_sessios.period_type_id 
+		var sessionOrder = $scope.training_session.order_in_routine;
+		var sessionPeriod = $scope.training_sessios.period_type_id; 
 
 		// Determine what period the session is tagged in 
-		// by the sessions order in the training routine. 
+		// by the session's order in the training routine. 
 		if (sessionOrder < 13) {
 			sessionPeriod = 1
 		} else if (sessionOrder > 12 && sessionOrder < 37) {
@@ -38,7 +43,6 @@ angular.module('trainingProgram')
 		$scope.training_session.session_type = ''; 
  		$scope.training_session.focus = ''; 
  		$scope.training_session.duration = ''
- 
 	}; 
 
 

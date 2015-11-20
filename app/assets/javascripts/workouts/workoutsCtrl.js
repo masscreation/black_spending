@@ -1,5 +1,11 @@
 angular.module('trainingProgram')
-.controller('workoutsCtrl', ['$scope', '$http', '$stateParams', 'Restangular', 'Auth', function ($scope, $http, $stateParams, Restangular, Auth) {
+.controller('workoutsCtrl', [
+	'$scope', 
+	'$http', 
+	'$stateParams', 
+	'Restangular', 
+	'Auth', 
+	function ($scope, $http, $stateParams, Restangular, Auth) {
 	
 	console.log("workouts controller"); 
 
@@ -10,9 +16,9 @@ angular.module('trainingProgram')
 	baseWorkouts.getList().then(function (workouts) {
 		$scope.workouts = []; 
 		workouts.forEach(function (workout) {
-			if (workout.trainer_id === Auth.currentUser().id {
+			if (workout.trainer_id === Auth.currentUser().id) {
 				$scope.workouts.push(workout) 
-			}) 
+			}
 		})
 	}); 
 
