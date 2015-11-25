@@ -49,6 +49,32 @@ a:visited {
     border-color: #e7e7e7;
     background-color: #000; 
 }
+.navbar-default .navbar-collapse, .navbar-header {
+    border-color: #e7e7e7;
+    background-color: #000; 
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFE200;
+}
+.navbar-default .navbar-toggle {
+    border-color: #FFE200;
+}
+.navbar-default .navbar-toggle:focus, 
+.navbar-default .navbar-toggle:hover {
+   background-color: #FFE200; 
+   border-color: #000
+}
+.navbar-default .navbar-toggle:focus .icon-bar, 
+.navbar-default .navbar-toggle:hover .icon-bar {
+   background-color: #000; 
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ffe200;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: #FFF ;
+}
 .navbar-default .navbar-nav > li > a {
     color: #FFE200;
 }
@@ -56,6 +82,10 @@ a:visited {
     color: #FFF;
 }
 
+.marketing .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
 .container-marketing {
 	h2 {
 		color: #000

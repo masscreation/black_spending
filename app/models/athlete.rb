@@ -4,4 +4,9 @@ class Athlete < User
 	has_many :training_routines, through: :enrollments
 	validates :email, :password, presence: true 
 	validates :email, :username, uniqueness: true
+
+	def get_age
+		return nil unless birthdate.present
+		Date.today.year - birthdate.year
+	end
 end

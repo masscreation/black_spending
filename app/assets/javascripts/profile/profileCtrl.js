@@ -1,11 +1,11 @@
 angular.module('trainingProgram')
-.controller('athleteProfileCtrl', ['$scope', 'Auth', function ($scope, Auth) {
+.controller('athleteProfileCtrl', ['$scope', 'Auth', 'Restangular', function ($scope, Auth, Restangular) {
 	console.log('athleteProfileCtrl'); 
-	Auth.currentUser().then(function (user){
-  		$scope.user = user;
+	Auth.currentUser().then(function (athlete){
+  		$scope.athlete = athlete;
 	});
 
-	console.log('user is', $scope.user)
+	console.log('athlete is', $scope.athlete)
 }])
 .controller('trainerProfileCtrl', ['$scope', 'Auth', function ($scope, Auth) {
 

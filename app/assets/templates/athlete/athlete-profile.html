@@ -1,0 +1,11 @@
+<div class="col-md-8">
+	
+	<h2>{{athlete.username}} Profile</h2>
+
+		<h3>Level:</h3> <a href="#" editable-select="athlete.level_id" e-ng-	options="level.id as level.name for level in levels">{{ showLevel() || 'select your level' }}</a>
+		<br>
+      	<h3>Height:</h3>  <a href="#" editable-text="athlete.height">{{ athlete.height || "enter your height" }}</a>
+		<br> 
+		<h3>Weight:</h3>  <a href="#" editable-text="athlete.height">{{ athlete.weight || "enter your weight" }}</a>
+	
+</div>

@@ -1,10 +1,12 @@
 angular.module('trainingProgram')
 .controller('navCtrl', [
 '$scope',
+'$state',
 'Auth',
-function ($scope, Auth) {
+function ($scope, $state, Auth) {
 
 	$scope.signedIn = Auth.isAuthenticated;
+	console.log('signed in?', $scope.signedIn()); 
 
   	$scope.logout = Auth.logout;
 
@@ -22,6 +24,7 @@ function ($scope, Auth) {
 
 	$scope.$on('devise:logout', function (e, user){
   		$scope.user = {};
+  		$state.go('login')
 	});
 
 

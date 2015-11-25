@@ -7,16 +7,18 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">The Platform</a>
+            <a class="navbar-brand" href=" ">The Platform</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li ng-hide="signedIn()" class="active"><a ui-sref="home">Home</a></li>
+              <li ng-hide="signedIn()" class="active"><a ui-sref="/">Home</a></li>
               <li ng-show="signedIn()" ><a ui-sref="train">Train</a></li>
               <li ng-show="signedIn()"><a ui-sref="athlete-profile">Profile</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GreatCornerback.com <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                   <li><a href="http://www.greatcornerback.com/index.html" target="_blank">GreatCornerback.com</a></li>
+                  <li role="separator" class="divider"></li>
                   <li><a href="http://www.greatcornerback.com/cornerback-training.html" target="_blank">Cornerback Skills Training</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="http://www.greatcornerback.com/cornerback-training.html" target="_blank">Speed & Agility Training</a></li>
@@ -35,7 +37,7 @@
               <li ng-hide="signedIn()"><a ui-sref="login">Log In</a></li>
               <li ng-hide="signedIn()"><a ui-sref="register">Register</a></li>
               <li ng-show="signedIn()"><a ui-sref="/">{{ user.username }}</a></li>
-              <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
+              <li ng-show="signedIn()"><a href="#" ng-click="logout()">Log Out</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
