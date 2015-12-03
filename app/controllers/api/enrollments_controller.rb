@@ -10,7 +10,12 @@ class Api::EnrollmentsController < ApplicationController
 	end
 
 	def create
-		respond_with Enrollment.create(enrollment_params)
+		@athlete = Athlete.find(params[:id])
+		@training_routine = TrainingRoutine.find(params[:id])
+		respond_with enrollment.create(enrollment_params)
+		36.times do 
+			@athlete.build_athlete_training_sessions
+		end
 	end
 
 	def destroy

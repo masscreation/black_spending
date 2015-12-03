@@ -41,7 +41,7 @@ angular.module('trainingProgram')
 				if (category.id === exercise.category_id) {
 					// Place exercises with IDs matching category in category's exercises array
 					$scope.category.exercises.push(exercise);
-					console.log($scope.category.exercises)
+					console.log('Exercises in this category: ', $scope.category.exercises)
 				}; 
 			})
 		})

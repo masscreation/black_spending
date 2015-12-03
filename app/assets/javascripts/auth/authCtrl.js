@@ -12,7 +12,7 @@ function($scope, $state, $http, Restangular, Auth){
   $scope.registerAthlete = function(athlete) { 
     $scope.athlete = athlete
     console.log(athlete); 
-      Auth.register(athlete).then(function(athlete) {
+      Auth.register($scope.athlete).then(function(athlete) {
       allAthletes.post(athlete); 
       // Clear the athlete registration form
       $scope.athlete.email = ''; 

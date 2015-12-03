@@ -9,14 +9,19 @@ angular.module('trainingProgram')
 	
 	// Grab training_routines 
 	var baseRoutines = Restangular.all('api/training_routines'); 
+	
+	baseRoutines.getList().then(function (routines) {
+		$scope.allRoutines = routines
+	})
 
+	console.log('routines:', baseRoutines);
 	// Tag routines to a $scope for displaying in the view
 	baseRoutines.getList().then(function (routines) {
-		$scope.routines = []
+		$scope.trainerRoutines = []
 		if (Auth.isAuthenticated && Auth.currentUser().type === 'Trainer') {
 			routines.forEach(function (routine) {
 				if (routine.trainer_id === Auth.currentUser().id) {
-					$scope.routines.push(routine)
+					$scope.trainerRoutines.push(routine)
 				}
 			})
 		}

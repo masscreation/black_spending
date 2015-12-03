@@ -5,6 +5,8 @@ angular.module('trainingProgram')
   		$scope.athlete = athlete;
 	});
 
+	Restangular.all('')
+
 	console.log('athlete is', $scope.athlete)
 }])
 .controller('trainerProfileCtrl', ['$scope', 'Auth', function ($scope, Auth) {

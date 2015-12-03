@@ -45,6 +45,10 @@ a:visited {
 .navbar-default .navbar-brand {
     color: #F7BE00;
 }
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #000;
+    background-color: #ffe200;
+}
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: #e7e7e7;
     background-color: #000; 
@@ -81,6 +85,18 @@ a:visited {
 .navbar-default .navbar-nav > li > a:hover {
     color: #FFF;
 }
+.dropdown-menu {
+    background-color: #000
+}
+.dropdown-menu > li > a {
+    color: #FFE200
+}
+
+.carousel-caption .btn-primary {
+    color: #FFE200;
+    background-color: #000;
+    border-color: #FFE200 ;
+}
 
 .marketing .col-lg-4 {
     margin-bottom: 20px;
@@ -91,15 +107,59 @@ a:visited {
 		color: #000
 	}
 }
-
 .container-marketing#one {
 	color: #000
 }
 
-.dropdown-menu {
-    background-color: #000
+a.btn.btn-default:hover {
+   color: #000;
+    background-color: #FFE200;
+    border-color: #000; 
+}
+a.btn.btn-default {
+   color: #FFE200;
+    background-color: #000;
+    border-color: #FFE200; 
 }
 
-.dropdown-menu > li > a {
+.marketing#one.btn-default:hover {
+    color: #000;
+    background-color: #FFE200;
+    border-color: #000;
+} 
+
+
+
+.btn-primary {
+    color: #FFE200;
+    background-color: #000000;
+    border-color: #FFFFFF;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+    color: #000;
+    background-color: #FFE200;
+    border-color: #000;
+}
+.btn-default {
+    color: #FFE200;
+    background-color: #000;
+    border-color: #FFF
+}
+.btn-default:hover {
+    color: #000;
+    background-color: #FFE200;
+    border-color: #000
+}
+// .btn-default:hover; after {
+//     content: 'Sign Up'
+// }
+
+footer.ng-scope {
+    background-color: #000; 
     color: #FFE200
+
+}
+footer.ng-scope a {
+    color: #F7BE00; 
+    
 }

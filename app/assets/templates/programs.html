@@ -1,0 +1,24 @@
+<h2>Training Programs</h2>
+<div ng-repeat="routine in allRoutines">
+	<h3>{{routine.name}}</h3>
+	<table>
+		<tr>
+			<th>Description</th>
+			<td>{{routine.description}}</td>
+		</tr>
+		<tr>
+			<th>Focus</th>
+			<td>{{routine.focus}}</td>
+		</tr>
+		<tr>
+			<th>Duration</th>
+			<td>{{routine.duration}}</td>
+		</tr>
+		<tr>
+			<th>Trainer</th>
+			<td>{{routine.trainer_id}}</td>
+		</tr>
+
+	</table>
+	
+</div>

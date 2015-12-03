@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       resources :training_sessions
       resources :enrollments
     end
-
+   
     resources :exercises, only: [:create, :index, :show]
 
     resources :training_sessions, only: [:create, :index, :show] do 

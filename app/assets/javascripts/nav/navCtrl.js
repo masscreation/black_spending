@@ -6,7 +6,8 @@ angular.module('trainingProgram')
 function ($scope, $state, Auth) {
 
 	$scope.signedIn = Auth.isAuthenticated;
-	console.log('signed in?', $scope.signedIn()); 
+	
+	console.log('signed in?', $scope.signedIn); 
 
   	$scope.logout = Auth.logout;
 

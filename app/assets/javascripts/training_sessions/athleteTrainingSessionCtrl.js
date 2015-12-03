@@ -10,10 +10,14 @@ angular.module('trainingProgram')
 		})
 	})
 
+	$scope.athleteTrainingSessions = [];
 	Restangular.all('api/athlete_training_sessions').forEach(function(session) {
-		$scope.athleteTrainingSessions = [];
-	})
-		$scope.eventSources = baseTrainingSessions;
+		
+		if (session.athlete_id === currentUser().id) {
+			$scope.athleteTrainingSessions.push(session)
+		}
+
+		$scope.eventSources = $scope.athleteTrainingSessions;
 		/* config object */
 	    $scope.uiConfig = {
 	      calendar:{
@@ -30,18 +34,6 @@ angular.module('trainingProgram')
 	      }
 	    };
 
-	$scope.createTrainingSession = function() {
-		$http.post('athlete_training_sessions', $scope.athlete_training_sessions)
-
-		.success(function(data) {
-
-			$scope.athlete_training_sessions.push(data); 
-
-		})
-		.error(data, function() {
-			alert("No training_sessions created"); 
-		})
-	}; 
-
-
+	})
+		
 }]); 

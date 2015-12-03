@@ -10,29 +10,24 @@ angular.module('trainingProgram')
 
 	// Assign all catgories to a an array, baseCategories
 	var baseCategories = Restangular.all('api/categories'); 
-	console.log(baseCategories)
 	
 	// Place scope on categories for rendering in the view
 	baseCategories.getList().then(function (categories) {
 		$scope.primecategories = [];
 		$scope.subcategories = []; 
-		
 		categories.forEach(function (category) {
 
 			if (category.ancestry === null) { 
-				primecategory = category; 
-				$scope.primecategories.push(primecategory)
+				// primecategory = category; 
+				$scope.primecategories.push(category)
 			} else {
-				subcategory = category;
-				$scope.subcategories.push(subcategory)
+				// subcategory = category;
+				$scope.subcategories.push(category)
 			}
 
-			$scope.primecategories.forEach(function (category) {
-				$scope.children = category.children
-				console.log('children:', category.children)
-			})
-
 		})
+		console.log('primecategories: ', $scope.primecategories);
+		console.log('subcategories: ', $scope.subcategories)
 	})
 	
 
