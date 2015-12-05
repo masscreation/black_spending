@@ -72,6 +72,11 @@ angular.module('trainingProgram', [
                 templateUrl: '/assets/programs.html', 
                 controller: 'trainingRoutinesCtrl'
             })
+            .state('programs.id', {
+                url: '/:id', 
+                templateUrl: '/assets/program.html', 
+                controller: 'trainingRoutineCtrl'
+            })
             .state('trainer-profile', {
                 url:         '/trainer-profile', 
                 templateUrl: '/assets/trainer/trainer-profile.html',

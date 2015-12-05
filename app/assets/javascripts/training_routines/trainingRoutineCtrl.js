@@ -25,8 +25,20 @@ angular.module('trainingProgram')
 				}
 			})
 		}
+
+		// routines.forEach(function(routine) {
+		// 	routine.focus = ""; 
+		// 	routine.training_sessions.forEach(function(trainingSession) {
+		// 		trainingSession.
+		// 	})
+		// })
 		
 	}); 
+
+	$scope.playerVars = {
+		controls: 0,
+		rel: 0
+	};  
 
 	$scope.createRoutine = function(routine) {
 		var allRoutines = Restangular.all('api/training_routines');

@@ -1,24 +1,61 @@
-<h2>Training Programs</h2>
-<div ng-repeat="routine in allRoutines">
-	<h3>{{routine.name}}</h3>
-	<table>
-		<tr>
-			<th>Description</th>
-			<td>{{routine.description}}</td>
-		</tr>
-		<tr>
-			<th>Focus</th>
-			<td>{{routine.focus}}</td>
-		</tr>
-		<tr>
-			<th>Duration</th>
-			<td>{{routine.duration}}</td>
-		</tr>
-		<tr>
-			<th>Trainer</th>
-			<td>{{routine.trainer_id}}</td>
-		</tr>
+<div class="col-md-12">
+	<h2>Training Programs</h2>
+	<hr>
+	<div class="col-sm-12 col-md-8 col-lg-8" id="routine" ng-repeat="routine in allRoutines">
+		<h4>{{routine.name}}</h4>
+		<div>
+			<div  class="embed-responsive embed-responsive-16by9">
+				<youtube-video class="embed-responsive-item" video-id="routine.video_url" player-width="'480px'" player-height="'270px'" player-vars="playerVars" ></youtube-video>
+			</div> 
+			<table>
+				<tr>
+					<td><b>Description:</b></td>
+				</tr>
+				<tr>
+					<td>{{routine.description}}</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><b>Focus: </b></td>
+					<td>{{routine.focus}}</td>
+				</tr>
+				<tr>
+					<td><b>Duration: </b></td>
+					<td>{{routine.duration}} weeks</td>
+				</tr>
+				<tr>
+					<td><b>Trainer: </b></td>
+					<td>{{routine.trainer_id}}</td>
+				</tr>
+				<tr>
+					<td><b>Cost: </b></td>
+					<td>${{routine.cost}}</td>
+				</tr>
+				<tr>
+					<td><b>Free Trial:&nbsp;</b></td>
+					<td>
+						<span ng-show="routine.free_trial"> {{routine.free_trial_duration}} weeks </span>
 
-	</table>
+						<span ng-hide="routine.free_trial">No</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button type="button" class="btn btn-default" ng-click="enroll()">Enroll</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-default" ng-click="enroll()">Details</button>
+					</td>
+				</tr>
+			</table>			
+		</div>
 	
+	</div>
+	<hr>
+	<div class="col-md-8">
+	<!-- program.html loads here --> 
+		<ui-view></ui-view>
+	</div>
+
 </div>

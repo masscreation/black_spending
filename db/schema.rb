@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122134746) do
+ActiveRecord::Schema.define(version: 20151205091235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,9 +120,13 @@ ActiveRecord::Schema.define(version: 20151122134746) do
     t.string   "focus"
     t.integer  "duration"
     t.integer  "trainer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "description"
+    t.integer  "cost"
+    t.boolean  "free_trial"
+    t.integer  "free_trial_duration"
+    t.string   "video_url"
   end
 
   add_index "training_routines", ["trainer_id"], name: "index_training_routines_on_trainer_id", using: :btree
