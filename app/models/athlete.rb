@@ -10,4 +10,5 @@ class Athlete < User
 		return nil unless birthdate.present
 		Date.today.year - birthdate.year
 	end
+
 end

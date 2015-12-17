@@ -41,7 +41,17 @@ angular.module('trainingProgram', [
             .state('train', {
                 url:         '/train', 
                 templateUrl: '/assets/athlete/athlete-training-sessions.html', 
-                controller:  'athleteTrainingSessionsCtrl'
+                controller:  'athleteTrainingSessions'
+            })
+             .state('programs', {
+                url: '/programs', 
+                templateUrl: '/assets/programs.html', 
+                controller: 'athleteProgramsCtrl'
+            })
+            .state('programs.id', {
+                url: '/:id', 
+                templateUrl: '/assets/program.html', 
+                controller: 'athleteProgramCtrl'
             })
             .state('athlete-profile', {
                 url:         '/athlete-profile', 
@@ -67,16 +77,6 @@ angular.module('trainingProgram', [
             //         controller:  'bitcoinCtrl'
             //     }  
             // })
-            .state('programs', {
-                url: '/programs', 
-                templateUrl: '/assets/programs.html', 
-                controller: 'trainingRoutinesCtrl'
-            })
-            .state('programs.id', {
-                url: '/:id', 
-                templateUrl: '/assets/program.html', 
-                controller: 'trainingRoutineCtrl'
-            })
             .state('trainer-profile', {
                 url:         '/trainer-profile', 
                 templateUrl: '/assets/trainer/trainer-profile.html',

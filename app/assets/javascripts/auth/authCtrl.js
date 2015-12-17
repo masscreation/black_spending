@@ -8,7 +8,12 @@ angular.module('trainingProgram')
 function($scope, $state, $http, Restangular, Auth){
 
   console.log('user is logged in: ', Auth.isAuthenticated());
-  // Register athletes
+
+  // Set variables for athletes and trainers
+  var allAthletes = Restangular.all('api/athletes'); 
+  var allTrainers = Restangular.all('api/trainers'); 
+
+  // Register athlete
   $scope.registerAthlete = function(athlete) { 
     $scope.athlete = athlete
     console.log(athlete); 
@@ -26,14 +31,13 @@ function($scope, $state, $http, Restangular, Auth){
       }
   };
 
-  // Register trainers
+  // Register trainer
   $scope.registerTrainer = function(trainer) {
     
     Auth.register().then(function(trainer){
       // POST created trainer to trainers
       allTrainers.post(trainer);
       // Clear the trainer registration form
-      $scope.trainer = trainer;
       $scope.trainer.email = ''; 
       $scope.trainer.username = ''; 
       $scope.trainer.password = ''; 
@@ -66,10 +70,6 @@ function($scope, $state, $http, Restangular, Auth){
       console.log(error)
     }
   };
-
-  // Set variables for athletes and trainers
-  var allAthletes = Restangular.all('api/athletes'); 
-  var allTrainers = Restangular.all('api/trainers'); 
 
   // Logout users
   $scope.logout = function() {

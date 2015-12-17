@@ -1,15 +1,36 @@
 angular.module('trainingProgram')
-.controller('athleteTrainingSessionsCtlr', ['$scope', 'Restangular', function ($scope, Restangular) {
+.controller('athleteTrainingSessions', 
+	['$scope', 
+	'Restangular', 
+	'Auth',
+	function ($scope, Restangular, Auth) {
 	
-	var trainingRoutines = Restangular.all('api/training_routines'); 
-	
+	// Authenticate and grab current athlete
+	Auth.currentUser().then(function (user) {
+
+		if (user.type === "Athlete") {
+			$scope.currentAthlete = user
+		}
+	}, function (error) {
+		console.log(error)
+	});
+
+	// Get current athlete's training sessions for the current program
+	$scope.currentAthlete.getList('athlete_training_sessions').then(function (sessions) {
+
+		$scope.athlete_sessions = sessions
+	});  
+
 	//Tag athlete's training sessions to routine using enrollment
 	Restangular.all('api/enrollments').forEach(function(enrollment) {
-		trainigRoutines.forEach(function (routine) {
-			
-		})
-	})
+		trainingRoutines.forEach(function (routine) {
+			if (enrollment.routine_id === routine.id) {
 
+			}
+		})
+	}) 
+		
+	//Athlete training sessions in calendar view  
 	$scope.athleteTrainingSessions = [];
 	Restangular.all('api/athlete_training_sessions').forEach(function(session) {
 		
@@ -36,4 +57,10 @@ angular.module('trainingProgram')
 
 	})
 		
+}])
+.controller('athleteTrainingSession', 
+	['$scope', 'Restangular', function ($scope, Restangular) {
+
+
+
 }]); 

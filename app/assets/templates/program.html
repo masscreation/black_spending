@@ -1,5 +1,33 @@
-<div>
-	<h2>{{program.name}}</h2>
+<div class="routine-info">
+	<h5>{{program.name}}</h5>
+	<div  class="embed-responsive embed-responsive-16by9">
+		<youtube-video class="embed-responsive-item" video-id="program.video_url" player-width="'480px'" player-height="'270px'" player-vars="playerVars" ></youtube-video>
+	</div>
+	<table>
+		<tr>
+			<td><b>Description:</b></td>
+		</tr>
+		<tr>
+			<td>{{program.description}}</td>
+		</tr>
+	</table>
+	<table> 
+		<tr>
+			<td><b>Cost: </b></td>
+			<td>${{program.cost}}</td>
+		</tr>
+		<tr>
+			<td><b>Free Trial:&nbsp;</b></td>
+			<td>
+				<span ng-show="program.free_trial"> {{program.free_trial_duration}} weeks </span>
 
-	
+				<span ng-hide="program.free_trial">No</span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button type="button" class="btn btn-default" ng-click="enroll()">Enroll</button>
+			</td>
+		</tr>
+	</table>
 </div>
