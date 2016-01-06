@@ -5,26 +5,25 @@
 		<div class="col-sm-12 col-md-8 col-lg-8" id="routine" ng-repeat="program in allPrograms" >
 			<h5>{{program.name}}</h5>
 			<div class="routine-info"> 
-				<table>
-					<tr>
-						<td><b>Focus: </b></td>
-						<td>{{program.focus}}</td>
-					</tr>
-					<tr>
-						<td><b>Duration: </b></td>
-						<td>{{program.duration}} weeks</td>
-					</tr>
-					<tr>
-						<td><b>Trainer: </b></td>
-						<td>{{program.trainer_id}}</td>
-					</tr>
-					
-					<tr>
-						<td ui-sref-active="selected">
-							<a type="button" class="btn btn-default" ui-sref="programs.id({id: program.id })">Learn more</a>
-						</td>
-					</tr>
-				</table>			
+				
+				<div>
+					<p><b>Focus: </b>
+					<span class="program-focus">{{program.focus}}</span> </p>
+				</div>
+				<div>
+					<p><b>Duration:</b> 
+						{{program.duration}} weeks
+					</p>
+				</div>
+				<div>
+					<p><b>Trainer: </b> {{program.trainer_id}}</p>
+				</div>
+				<div>
+					<p ui-sref-active="selected">
+						<a type="button" class="btn btn-default" ui-sref="programs.id({id: program.id })">Learn more</a>
+					</p>
+				</div>
+							
 			</div>
 		</div>
 	</div> 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205091235) do
+ActiveRecord::Schema.define(version: 20151228233013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,13 +38,15 @@ ActiveRecord::Schema.define(version: 20151205091235) do
 
   create_table "athletes", force: :cascade do |t|
     t.integer  "rank_id"
-    t.integer  "level_id"
     t.integer  "height"
     t.integer  "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "birthdate"
+    t.integer  "level_id"
   end
+
+  add_index "athletes", ["level_id"], name: "index_athletes_on_level_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -86,6 +88,12 @@ ActiveRecord::Schema.define(version: 20151205091235) do
     t.datetime "updated_at",   null: false
     t.text     "instructions"
     t.string   "video_url"
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "period_types", force: :cascade do |t|
@@ -188,6 +196,7 @@ ActiveRecord::Schema.define(version: 20151205091235) do
   add_foreign_key "athlete_training_sessions", "athletes"
   add_foreign_key "athlete_training_sessions", "training_routines"
   add_foreign_key "athlete_training_sessions", "training_sessions"
+  add_foreign_key "athletes", "levels"
   add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
   add_foreign_key "periods", "athletes"

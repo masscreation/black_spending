@@ -19,12 +19,11 @@ angular.module('trainingProgram', [
             AuthProvider.logoutMethod('DELETE')
 
             AuthProvider.resourceName('athlete');
-            AuthProvider.registerPath('api/athletes');
-            AuthProvider.loginPath('api/athletes');
-            AuthProvider.logoutPath('api/athletes')
+            AuthProvider.registerPath('/api/athletes');
+            AuthProvider.loginPath('/api/athletes');
+            AuthProvider.logoutPath('/api/athletes/sign_out'); 
 
             
-
             $sceDelegateProvider.resourceUrlWhitelist([
                 // Allow same origin resource loads.
                 'self',
@@ -134,23 +133,28 @@ angular.module('trainingProgram', [
                 templateUrl: '/assets/_register.html',
                 controller: 'authCtrl',
                 onEnter: ['$state', 'Auth', function ($state, Auth) {
-                    console.log('user is authenticated? ', Auth.isAuthenticated()); 
+                    Auth.currentUser().then(function (user) {
+                        if (user.type === "Athlete") {
+                            $state.go('athlete-profile')
+                        } else {
+                            $state.go('trainer-profile')
+                        }
+                    }); 
                 }]
             })
             .state('login', {
-          url: '/login',
-            templateUrl: '/assets/_login.html',
-            controller: 'authCtrl'
-            // onEnter: ['$state', 'Auth', function ($state, Auth) {
-                    
-            //     if (Auth.isAuthenticated()) {
-            //          Auth.currentUser().then(function (){
-            //             $state.go('train');
-            //         });
-            //     }
-                
-            // }]
-            }); 
+                url: '/login',
+                templateUrl: '/assets/_login.html',
+                controller: 'authCtrl'
+                // onEnter: ['$state', 'Auth', function ($state, Auth) {
+                        
+                //     if (Auth.isAuthenticated()) {
+                //          Auth.currentUser().then(function (){
+                //             $state.go('train');
+                //         });
+                //     }
+                // }]
+                }); 
             
         $urlRouterProvider.otherwise('/');
 

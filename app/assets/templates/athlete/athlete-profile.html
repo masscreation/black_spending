@@ -1,11 +1,11 @@
 <div class="col-md-8">
 	
 	<h2>{{athlete.username}} Performance Profile</h2>
+		
+		 <a href="#" editable-select="athlete.level_id" e-ng-options="level.id as level.name for level in levels"><h4>Level: {{ level.name || 'select your level' }}</h4></a>
+		
+      	 <a href="#" ng-model="athlete.height" editable-text="athlete.height"><h4>Height: {{(athlete.height | toFeet) || '(in inches)' }}</h4> </a>
 
-		<h3>Level:</h3> <a href="#" editable-select="athlete.level_id" e-ng-options="level.id as level.name for level in levels">{{ showLevel() || 'select your level' }}</a>
-		<br>
-      	<h3>Height:</h3>  <a href="#" editable-text="athlete.height">{{ athlete.height || "enter your height" }}</a>
-		<br> 
-		<h3>Weight:</h3>  <a href="#" editable-text="athlete.height">{{ athlete.weight || "enter your weight" }}</a>
+		  <a href="#" ng-model="athlete.weight" editable-text="athlete.weight"><h4>Weight: {{(athlete.weight | addLbs) || '(in lbs)' }}</h4></a>
 	
 </div>

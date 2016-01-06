@@ -7,6 +7,13 @@ angular.module('trainingProgram')
 	'Auth', 
 	function ($scope, $http, $stateParams, Restangular, Auth) { 
 	
+	// Authenticate current trainer
+	Auth.currentUser().then(function (user) {
+		if (user.type === "Trainer") {
+			$scope.trainer = user; 
+			console.log('Trainer is logged in')
+		}
+	})
 	// Grab training_routines 
 	var baseRoutines = Restangular.all('api/training_routines'); 
 	
@@ -25,13 +32,6 @@ angular.module('trainingProgram')
 				}
 			})
 		}
-
-		// routines.forEach(function(routine) {
-		// 	routine.focus = ""; 
-		// 	routine.training_sessions.forEach(function(trainingSession) {
-		// 		trainingSession.
-		// 	})
-		// })
 		
 	}); 
 

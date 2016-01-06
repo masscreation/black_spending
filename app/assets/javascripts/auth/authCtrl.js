@@ -7,6 +7,7 @@ angular.module('trainingProgram')
 'Auth',
 function($scope, $state, $http, Restangular, Auth){
 
+
   console.log('user is logged in: ', Auth.isAuthenticated());
 
   // Set variables for athletes and trainers
@@ -31,6 +32,16 @@ function($scope, $state, $http, Restangular, Auth){
       }
   };
 
+    //Log in athletes
+  $scope.loginAthlete = function(athlete) { 
+    Auth.login(athlete).then(function(athlete){
+      $state.go('train')
+    }), function(error) {
+      //Handle login errors
+      console.log('error: ', error)
+    }
+  };
+
   // Register trainer
   $scope.registerTrainer = function(trainer) {
     
@@ -51,16 +62,6 @@ function($scope, $state, $http, Restangular, Auth){
     })
   };
 
-  //Log in athletes
-	$scope.loginAthlete = function(athlete) {
-    Auth.login(athlete).then(function(athlete){
-      $state.go('train')
-    }), function(error) {
-      //Handle login errors
-      console.log(error)
-    }
-  };
-
   // Log in trainers
   $scope.loginTrainer = function(trainer) {
     Auth.login(trainer).then(function(){
@@ -72,19 +73,19 @@ function($scope, $state, $http, Restangular, Auth){
   };
 
   // Logout users
-  $scope.logout = function() {
+  // $scope.logout = function() {
 
-    var config = {
-      headers: {
-        'X-HTTP-Method-Override': 'DELETE'
-      }
-    };
-    Auth.logout(config).then(function(oldUser) {
-              // alert(oldUser.name + "you're signed out now.");
-          }, function(error) {
-              // An error occurred logging out.
-          })
-  }; 
+  //   var config = {
+  //     headers: {
+  //       'X-HTTP-Method-Override': 'DELETE'
+  //     }
+  //   };
+  //   Auth.logout(config).then(function(oldUser) {
+  //             // alert(oldUser.name + "you're signed out now.");
+  //         }, function(error) {
+  //             // An error occurred logging out.
+  //         })
+  // }; 
    
         $scope.tab = 1;
         console.log('tab is: ',$scope.tab)

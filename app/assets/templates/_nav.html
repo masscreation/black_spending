@@ -11,8 +11,8 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li ng-hide="signedIn()" class="active"><a ui-sref="home">Home</a></li>
-              <li ng-show="signedIn()" ><a ui-sref="train">Train</a></li>
+              <li ng-hide="signedIn()"><a ui-sref="home">Home</a></li>
+              <li ng-show="signedIn()"><a ui-sref="train">Train</a></li>
               <li ng-show="signedIn()"><a ui-sref="athlete-profile">Profile</a></li>
               <li ><a ui-sref="programs">Programs</a></li>
               <li class="dropdown">
@@ -24,22 +24,34 @@
                   <li role="separator" class="divider"></li>
                   <li><a href="http://www.greatcornerback.com/cornerback-training.html" target="_blank">Speed & Agility Training</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="http://www.greatcornerback.com/ " target="_blank">Football Skills</a></li>
+                  <li><a href="http://www.greatcornerback.com/speed-training.html" target="_blank">Football Skills</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="http://www.greatcornerback.com/" target="_blank">Cornerback Weight Training</a></li>
+                  <li><a href="http://www.greatcornerback.com/cornerback-weight-training.html" target="_blank">Cornerback Weight Training</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="http://www.greatcornerback.com/" target="_blank">Cornerback IQ</a></li>
+                  <li><a href="http://www.greatcornerback.com/cornerback-iq.html" target="_blank">Cornerback IQ</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="http://www.greatcornerback.com/" target="_blank">Diet & Supplements</a></li>
+                  <li><a href="http://www.greatcornerback.com/diet-supps.html" target="_blank">Football Diet</a></li>
                 </ul>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li ng-hide="signedIn()"><a ui-sref="login">Log In</a></li>
-              <li ng-hide="signedIn()"><a ui-sref="register">Register</a></li>
-              <li ng-show="signedIn()"><a ui-sref="/">{{ user.username }}</a></li>
-              <li ng-show="signedIn()"><a href="#" ng-click="logout()">Log Out</a></li>
+              <li ng-hide="signedIn"><a ui-sref="login">Log In</a></li>
+              <li ng-hide="signedIn"><a ui-sref="register">Register</a></li>
+              <li ng-show="signedIn"><a ui-sref="/">{{ user.username }}</a></li>
+              <li ng-show="signedIn"><a href="#" ng-click="logout()">Log Out</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
   </nav>
+  <script>
+    $( document ).ready(function() {
+
+      console.log($('.navbar-nav > li')); 
+
+      for (var i = 0; i < $('.navbar-nav > li').length; i++) {
+        $( '.navbar-nav > li' )[i].click(function () {
+          $( '.navbar-nav > li' )[i].addClass('active')
+        })
+      }; 
+    }); 
+  </script>

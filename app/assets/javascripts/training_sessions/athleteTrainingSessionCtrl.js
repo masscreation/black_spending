@@ -12,7 +12,7 @@ angular.module('trainingProgram')
 			$scope.currentAthlete = user
 		}
 	}, function (error) {
-		console.log(error)
+		console.log('error:', error)
 	});
 
 	// Get current athlete's training sessions for the current program
