@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root 'application#angular'
 
   
 
   namespace :api, defaults: {format: 'json'} do 
 
-  devise_for :users, skip: [:registrations]
-  devise_for :athletes, skip: :sessions, defaults: {format: 'json'} 
-  devise_for :trainers, skip: :sessions, defaults: {format: 'json'}
-  devise_for :admins, skip: [:sessions, :registrations]
+  # devise_for :users, skip: [:registrations]
+  # devise_for :athletes, skip: :sessions, defaults: {format: 'json'} 
+  # devise_for :trainers, skip: :sessions, defaults: {format: 'json'}
+  # devise_for :admins, skip: [:sessions, :registrations]
 
     devise_scope :athletes do
       post 'athletes/password', to: 'password#create'

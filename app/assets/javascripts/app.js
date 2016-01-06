@@ -14,14 +14,14 @@ angular.module('trainingProgram', [
 		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider) {
 
 
-            AuthProvider.registerMethod('POST');
-            AuthProvider.loginMethod('GET');
-            AuthProvider.logoutMethod('DELETE')
+            // AuthProvider.registerMethod('POST');
+            // AuthProvider.loginMethod('GET');
+            // AuthProvider.logoutMethod('DELETE')
 
-            AuthProvider.resourceName('athlete');
-            AuthProvider.registerPath('/api/athletes');
-            AuthProvider.loginPath('/api/athletes');
-            AuthProvider.logoutPath('/api/athletes/sign_out'); 
+            // AuthProvider.resourceName('athlete');
+            // AuthProvider.registerPath('/api/athletes');
+            // AuthProvider.loginPath('/api/athletes');
+            // AuthProvider.logoutPath('/api/athletes/sign_out'); 
 
             
             $sceDelegateProvider.resourceUrlWhitelist([

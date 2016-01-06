@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20151228233013) do
   create_table "training_routines", force: :cascade do |t|
     t.string   "name"
     t.string   "focus"
-    t.integer  "duration"
+    t.integer  "duration_weeks"
     t.integer  "trainer_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -163,8 +163,8 @@ ActiveRecord::Schema.define(version: 20151228233013) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "username"
     t.string   "type"
   end
