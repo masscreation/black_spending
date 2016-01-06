@@ -145,16 +145,13 @@ angular.module('trainingProgram', [
             .state('login', {
                 url: '/login',
                 templateUrl: '/assets/_login.html',
-                controller: 'authCtrl'
-                // onEnter: ['$state', 'Auth', function ($state, Auth) {
-                        
-                //     if (Auth.isAuthenticated()) {
-                //          Auth.currentUser().then(function (){
-                //             $state.go('train');
-                //         });
-                //     }
-                // }]
-                }); 
+                controller: 'authCtrl',
+                onEnter: ['$state', 'Auth', function($state, Auth) {
+                  Auth.currentUser().then(function (){
+                    $state.go('home');
+                  })
+                }]
+            }); 
             
         $urlRouterProvider.otherwise('/');
 

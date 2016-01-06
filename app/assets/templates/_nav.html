@@ -35,23 +35,12 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li ng-hide="signedIn"><a ui-sref="login">Log In</a></li>
-              <li ng-hide="signedIn"><a ui-sref="register">Register</a></li>
-              <li ng-show="signedIn"><a ui-sref="/">{{ user.username }}</a></li>
-              <li ng-show="signedIn"><a href="#" ng-click="logout()">Log Out</a></li>
-            </ul>
+              <li ng-hide="signedIn()"><a ui-sref="login">Log In</a></li>
+              <li ng-hide="signedIn()"><a ui-sref="register">Register</a></li>
+              <li ng-show="signedIn()"><a ui-sref="/">{{ user.username }}</a></li>
+              <li ng-show="signedIn()"><a href="#" ng-click="logout()">Log Out</a></li>
+          </ul>
           </div><!--/.nav-collapse -->
         </div>
   </nav>
-  <script>
-    $( document ).ready(function() {
-
-      console.log($('.navbar-nav > li')); 
-
-      for (var i = 0; i < $('.navbar-nav > li').length; i++) {
-        $( '.navbar-nav > li' )[i].click(function () {
-          $( '.navbar-nav > li' )[i].addClass('active')
-        })
-      }; 
-    }); 
-  </script>
+  

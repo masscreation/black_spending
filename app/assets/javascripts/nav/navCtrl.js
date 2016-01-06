@@ -5,32 +5,27 @@ angular.module('trainingProgram')
 'Auth',
 function ($scope, $state, Auth) {
 
-	$scope.signedIn = Auth.isAuthenticated();
-	
-	console.log('User signed in?', $scope.signedIn); 
+  $scope.signedIn = Auth.isAuthenticated;
 
-  	$scope.logout = function(){ Auth.logout();}
+  $scope.logout = function () {
+    Auth.logout().then(function(data){
+      $state.go('login');
+    });
+  }
 
+  Auth.currentUser().then(function (user){
+    $scope.user = user;
+  });
 
-	Auth.currentUser().then(function (user){
-  		$scope.user = user;
-	});
+  $scope.$on('devise:new-registration', function (e, user){
+    $scope.user = user;
+  });
 
-	$scope.$on('devise:new-registration', function (e, user){
-  		$scope.user = user;
-	});
+  $scope.$on('devise:login', function (e, user){
+    $scope.user = user;
+  });
 
-	$scope.$on('devise:login', function (e, user){
-  		$scope.user = user;
-
-
-
-	});
-
-	$scope.$on('devise:logout', function (e, user){
-  		$scope.user = {};
-  		$state.go('login')
-	});
-
-
+  $scope.$on('devise:logout', function (e, user){
+    $scope.user = {};
+  });
 }]);
