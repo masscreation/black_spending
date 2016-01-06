@@ -12,9 +12,9 @@ angular.module('trainingProgram')
 			baseRoutines.getList().then(function (routines) {
 				$scope.allPrograms = routines
 			});
-debugger; 
+
 	if (Auth.isAuthenticated()) {
-		debugger;
+
 	// Authenticate current athlete
 		Auth.currentUser().then(function (athlete) {
 			$scope.athlete = athlete
@@ -32,7 +32,7 @@ debugger;
 			})
 		});   
 	} else {
-		debugger;
+
 		$state.go('login')
 	}
 }])
