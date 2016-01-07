@@ -14,7 +14,7 @@ angular.module('trainingProgram')
 			});
 
 	if (Auth.isAuthenticated()) {
-d
+
 	// Authenticate current athlete
 		Auth.currentUser().then(function (athlete) {
 			$scope.athlete = athlete
