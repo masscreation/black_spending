@@ -18,12 +18,14 @@ function($scope, $state, $http, Restangular, Auth){
   $scope.registerAthlete = function(athlete) { 
     $scope.athlete = athlete
     console.log(athlete); 
-      Auth.register($scope.athlete).then(function(athlete) {
+      Auth.register($scope.athlete).then(function(user) {
+        user.type = "Athlete"; 
       allAthletes.post(athlete); 
       // Clear the athlete registration form
       $scope.athlete.email = ''; 
       $scope.athlete.username = ''; 
       $scope.athlete.password = ''; 
+      // Go to Login
       $state.go('login')
 
     }), function (error) {
@@ -44,8 +46,9 @@ function($scope, $state, $http, Restangular, Auth){
 
   // Register trainer
   $scope.registerTrainer = function(trainer) {
-    
-    Auth.register().then(function(trainer){
+    $scope.trainer = trainer
+    Auth.register($scope.trainer).then(function(user){ 
+      user.type = "Trainer"; 
       // POST created trainer to trainers
       allTrainers.post(trainer);
       // Clear the trainer registration form
@@ -53,8 +56,8 @@ function($scope, $state, $http, Restangular, Auth){
       $scope.trainer.username = ''; 
       $scope.trainer.password = ''; 
       // Send authenticated trainer to the Training
-      // Routines template
-      $state.go('routines')
+      // Go to login
+      $state.go('login')
 
     }).then(function (error) {
       //Log registration error
@@ -71,21 +74,6 @@ function($scope, $state, $http, Restangular, Auth){
       console.log(error)
     }
   };
-
-  // Logout users
-  // $scope.logout = function() {
-
-  //   var config = {
-  //     headers: {
-  //       'X-HTTP-Method-Override': 'DELETE'
-  //     }
-  //   };
-  //   Auth.logout(config).then(function(oldUser) {
-  //             // alert(oldUser.name + "you're signed out now.");
-  //         }, function(error) {
-  //             // An error occurred logging out.
-  //         })
-  // }; 
    
         $scope.tab = 1;
         console.log('tab is: ',$scope.tab)
