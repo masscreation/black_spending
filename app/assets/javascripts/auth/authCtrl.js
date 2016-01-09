@@ -10,21 +10,14 @@ function($scope, $state, $http, Restangular, Auth){
 
   console.log('user is logged in: ', Auth.isAuthenticated());
 
-  // Set variables for athletes and trainers
-  var allAthletes = Restangular.all('api/athletes'); 
-  var allTrainers = Restangular.all('api/trainers'); 
 
   // Register athlete
   $scope.registerAthlete = function(athlete) { 
     $scope.athlete = athlete
-    console.log(athlete); 
+    console.log('Registering athlete:', athlete); 
       Auth.register($scope.athlete).then(function(user) {
         user.type = "Athlete"; 
       allAthletes.post(athlete); 
-      // Clear the athlete registration form
-      $scope.athlete.email = ''; 
-      $scope.athlete.username = ''; 
-      $scope.athlete.password = ''; 
       // Go to Login
       $state.go('login')
 
@@ -46,17 +39,11 @@ function($scope, $state, $http, Restangular, Auth){
 
   // Register trainer
   $scope.registerTrainer = function(trainer) {
-    $scope.trainer = trainer
-    Auth.register($scope.trainer).then(function(user){ 
-      user.type = "Trainer"; 
+    Auth.register(trainer).then(function(trainer){ 
+      trainer.type = "Trainer"; 
       // POST created trainer to trainers
       allTrainers.post(trainer);
-      // Clear the trainer registration form
-      $scope.trainer.email = ''; 
-      $scope.trainer.username = ''; 
-      $scope.trainer.password = ''; 
-      // Send authenticated trainer to the Training
-      // Go to login
+      // Send registered trainer to 'login'
       $state.go('login')
 
     }).then(function (error) {
@@ -67,11 +54,11 @@ function($scope, $state, $http, Restangular, Auth){
 
   // Log in trainers
   $scope.loginTrainer = function(trainer) {
-    Auth.login(trainer).then(function(){
+    Auth.login(trainer).then(function(trainer){
       $state.go('routines')
     }), function (error) {
       // Handle login errors
-      console.log(error)
+      console.log("Login error", error)
     }
   };
    

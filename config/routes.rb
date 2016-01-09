@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   root 'application#angular'
 
-  
-
   namespace :api, defaults: {format: 'json'} do 
 
   # devise_for :users, skip: [:registrations]
@@ -33,11 +31,14 @@ Rails.application.routes.draw do
       resources :training_sessions
       resources :enrollments
     end
-
     resources :workouts, only: [:create, :index, :show] do 
        resources :workout_exercises, only: [:create, :index, :show]
     end
 
+    resources :categories, only: [:create, :index, :show] do 
+      resources :exercises, only: [:create, :index, :show]
+    end
+    
     resources :athletes, only: [:create, :update, :show] do 
       resources :enrollments
       resources :athlete_training_sessions
@@ -52,9 +53,7 @@ Rails.application.routes.draw do
       resources :workout_exercises, only: [:create, :index, :show]
     end
 
-    resources :categories, only: [:create, :index, :show] do 
-      resources :exercises, only: [:create, :index, :show]
-    end
+    
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

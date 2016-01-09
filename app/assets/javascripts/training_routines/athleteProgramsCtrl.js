@@ -8,10 +8,11 @@ angular.module('trainingProgram')
 	function ($scope, $http, $stateParams, Restangular, Auth) { 
 	
 	//Grab all training routines
-			var baseRoutines = Restangular.all('api/training_routines');
-			baseRoutines.getList().then(function (routines) {
-				$scope.allPrograms = routines
-			});
+	var baseRoutines = Restangular.all('api/training_routines');
+	baseRoutines.getList().then(function (routines) {
+		console.log(routines); 
+		$scope.allPrograms = routines
+	});
 
 	if (Auth.isAuthenticated()) {
 

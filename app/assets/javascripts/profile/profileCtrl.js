@@ -41,5 +41,9 @@ angular.module('trainingProgram')
 	}
 })
 .controller('trainerProfileCtrl', ['$scope', 'Auth', function ($scope, Auth) {
+	
+	Auth.currentUser().then(function (user) {
+		$scope.trainer = user
+	})
 
 }]); 

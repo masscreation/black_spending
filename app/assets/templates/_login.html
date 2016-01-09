@@ -23,15 +23,15 @@
 			</form>	
 		</div>
 		<div ng-show="isSet(2)">
-			<form style="margin: 0 auto;" ng-submit="trainerLogin()">
+			<form style="margin: 0 auto;" ng-submit="loginTrainer(trainer)">
 				<label><h4>Trainer</h4></label>
 		  		<div class="input-group">
-		    		<input type="email" class="form-control" placeholder="Email" ng-model="athlete.email">
+		    		<input type="email" class="form-control" placeholder="Email" ng-model="trainer.email">
 		  		</div>
 			  	<div class="input-group">
-			    	<input type="password" class="form-control" placeholder="Password" ng-model="athlete.password">
+			    	<input type="password" class="form-control" placeholder="Password" ng-model="trainer.password">
 			  	</div>
-		  		<input type="submit" class="btn btn-default" value="Create Beasts!">
+		  		<button type="button" ng-click="loginTrainer(trainer)" class="btn btn-primary">Create Beasts!</button>
 			</form>	
 		</div>
 		<div>
