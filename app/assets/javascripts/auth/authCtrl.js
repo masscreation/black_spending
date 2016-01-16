@@ -57,8 +57,13 @@ function($scope, $state, $http, Restangular, Auth){
     Auth.login(trainer).then(function(trainer){
       $state.go('routines')
     }), function (error) {
-      // Handle login errors
-      console.log("Login error", error)
+      if (error) {
+        // Handle login errors
+        console.log("Login error:", error); 
+        $scope.error_message = error; 
+      }
+      return $scope.error_message
+      
     }
   };
    
