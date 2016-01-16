@@ -8,21 +8,9 @@ function ($scope, $state, Auth, Restangular) {
 
 	Auth.currentUser().then(function (user) {
 		$scope.user = user
-	
-		Restangular.one('api/trainers', $scope.user.id).get().then(function (user) {
-			console.log("user", user.type); 
-			if (user.type === "Trainer") {
-				$scope.trainer = trainer
-			}
-		});
-
-		$scope.trainerSignedIn = function () {
-			if (Auth.isAuthenticated && $scope.user === $scope.trainer) {
-				return true
-			};
-		}
-		console.log('Trainer signed in?', $scope.trainerSignedIn()); 
-
+		Restangular.one('users', user.id).get().then(function (user) {
+			console.log('grabbed user:', user); 
+		})
 	}); 
 
 	$scope.signedIn = Auth.isAuthenticated; 

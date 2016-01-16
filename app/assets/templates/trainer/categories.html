@@ -5,8 +5,10 @@
 			<a ui-sref="categories.id({id: category.id })">{{category.name}}</a>
 		</li>
 		<h4>Exercise subcategories</h4>
-		
-		<li ui-sref-active="selected" ng-repeat="category in subcategories" ><a ui-sref="categories.id({id: category.id })">{{category.name}}</a></li>
+		<ul>
+			<li ui-sref-active="selected" ng-repeat="category in subcategories" ><a ui-sref="categories.id({id: category.id })">{{category.name}}</a></li>
+		</ul>
+			
 
 	</div>
 	<div class="col-md-8">

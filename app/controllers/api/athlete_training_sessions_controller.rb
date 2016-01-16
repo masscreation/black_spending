@@ -31,8 +31,8 @@ class Api::AthleteTrainingSessionsController < ApplicationController
     end
 
     def athlete_training_session_params
-      params.require(:athlete_training_session).permit(:scheduled_on, :complete, :volume, :athlete_id, :training_session_id 
-        #exercise_set_attributes: [:exercise_id, :athlete_id, :completed])
+      params.require(:athlete_training_session).permit(:scheduled_on, :complete, :volume, :athlete_id, :training_session_id,  
+        exercise_set_attributes: [:exercise_id, :athlete_id, :completed])
     end
 end
 
