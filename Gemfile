@@ -55,7 +55,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'guard'
   gem 'guard-rails', require: false
-  gem 'rails-erd' 
+  gem 'rails-erd' e
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

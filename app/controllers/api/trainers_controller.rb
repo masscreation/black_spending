@@ -30,7 +30,7 @@ class Api::TrainersController < ApplicationController
   end
 
   def trainer_params
-  	params.require(:trainer).permit(:email, :username, :encrypted_password)
+  	params.require(:trainer).permit(:email, :username, :encrypted_password, :type)
   end
 
 end

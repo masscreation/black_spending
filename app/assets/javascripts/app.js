@@ -22,6 +22,7 @@ angular.module('trainingProgram', [
             // AuthProvider.registerPath('/api/athletes');
             // AuthProvider.loginPath('/api/athletes');
             // AuthProvider.logoutPath('/api/athletes/sign_out'); 
+            console.log('resource name:',AuthProvider.resourceName()); 
 
             
             $sceDelegateProvider.resourceUrlWhitelist([
@@ -38,6 +39,7 @@ angular.module('trainingProgram', [
                 controller:  'authCtrl', 
                 onEnter: ['$state', 'Auth', function ($state, Auth) {
                     Auth.currentUser().then(function (user) {
+                        console.log('user type:', user.type); 
                         if (user.type === "Athlete") {
                             $state.go('athlete-profile')
                         } else {

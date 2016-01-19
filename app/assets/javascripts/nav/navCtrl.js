@@ -8,9 +8,6 @@ function ($scope, $state, Auth, Restangular) {
 
 	Auth.currentUser().then(function (user) {
 		$scope.user = user
-		Restangular.one('users', user.id).get().then(function (user) {
-			console.log('grabbed user:', user); 
-		})
 	}); 
 
 	$scope.signedIn = Auth.isAuthenticated; 
