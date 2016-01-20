@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228233013) do
+ActiveRecord::Schema.define(version: 20160119235753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,13 +96,6 @@ ActiveRecord::Schema.define(version: 20151228233013) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "period_types", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "periods", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
@@ -111,11 +104,9 @@ ActiveRecord::Schema.define(version: 20151228233013) do
     t.datetime "updated_at",          null: false
     t.integer  "training_routine_id"
     t.integer  "athlete_id"
-    t.integer  "period_type_id"
   end
 
   add_index "periods", ["athlete_id"], name: "index_periods_on_athlete_id", using: :btree
-  add_index "periods", ["period_type_id"], name: "index_periods_on_period_type_id", using: :btree
   add_index "periods", ["training_routine_id"], name: "index_periods_on_training_routine_id", using: :btree
 
   create_table "trainers", force: :cascade do |t|
@@ -146,10 +137,8 @@ ActiveRecord::Schema.define(version: 20151228233013) do
     t.integer  "order_in_routine"
     t.string   "description"
     t.string   "session_type"
-    t.integer  "period_type_id"
   end
 
-  add_index "training_sessions", ["period_type_id"], name: "index_training_sessions_on_period_type_id", using: :btree
   add_index "training_sessions", ["training_routine_id"], name: "index_training_sessions_on_training_routine_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -200,10 +189,8 @@ ActiveRecord::Schema.define(version: 20151228233013) do
   add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
   add_foreign_key "periods", "athletes"
-  add_foreign_key "periods", "period_types"
   add_foreign_key "periods", "training_routines"
   add_foreign_key "training_routines", "trainers"
-  add_foreign_key "training_sessions", "period_types"
   add_foreign_key "training_sessions", "training_routines"
   add_foreign_key "workout_exercises", "exercises"
   add_foreign_key "workout_exercises", "workouts"

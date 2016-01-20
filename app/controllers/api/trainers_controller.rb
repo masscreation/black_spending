@@ -26,7 +26,7 @@ class Api::TrainersController < ApplicationController
   end
 
   def trainer 
-  	@trainer ||= Trainer.find(params[:id])
+  	@trainer ||= trainers.find(params[:id])
   end
 
   def trainer_params
