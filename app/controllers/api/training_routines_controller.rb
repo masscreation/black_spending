@@ -10,10 +10,7 @@ class Api::TrainingRoutinesController < ApplicationController
 	end
 
 	def create
-		respond_with training_routine.create(training_routine_params)
-		36.times do 
-			training_routine.training_sessions.build()
-		end
+		respond_with :api, TrainingRoutine.create(training_routine_params)
 	end
 
 	def destroy
@@ -31,6 +28,6 @@ class Api::TrainingRoutinesController < ApplicationController
 		end
 
 		def training_routine_params
-			params.require(:training_routine).permit(:name, :description, :focus, :duration, :trainer_id)
+			params.require(:training_routine).permit(:name, :description, :focus, :trainer_id, :duration_weeks, :video_url, :cost, :free_trial, :free_trial_duration)
 		end
 end

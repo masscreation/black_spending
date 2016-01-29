@@ -8,15 +8,15 @@ class Api::AthletesController < ApplicationController
   end
 
   def create
-    respond_with :api, Athlete.create(athlete_params)
+    respond_with :api, athlete.create(athlete_params)
   end
 
   def update
-  	respond_with :api, Athlete.update
+  	respond_with :api, athlete.update
   end
 
   def destroy
-  	respond_with :api, Athlete.destroy
+  	respond_with :api, athlete.destroy
   end
 
   private

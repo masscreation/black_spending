@@ -197,3 +197,10 @@ a.editable-click > h4 {
     background-color: #000;
     color: #FFE200;
 }
+a.ng-binding:hover {
+    color: #FFE200
+}
+li.ng-scope.selected > a {
+    color: #FFE200; 
+    background-color: #000 
+}

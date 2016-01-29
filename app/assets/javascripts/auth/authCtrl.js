@@ -23,7 +23,7 @@ function($scope, $state, $http, Restangular, Auth){
 
     }), function (error) {
         //handle registration error
-        console.log(error)
+        console.log("Athlete registration error:", error)
       }
   };
 
@@ -48,7 +48,7 @@ function($scope, $state, $http, Restangular, Auth){
 
     }).then(function (error) {
       //Log registration error
-      console.log(error)
+      console.log("Trainer registration error:", error)
     })
   };
 

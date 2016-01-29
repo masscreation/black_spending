@@ -1,5 +1,5 @@
 class ExerciseSet < ActiveRecord::Base
-	belongs_to :exercise
+	belongs_to :workout_exercise
 	# Athlete performs many exercise_sets 
 	belongs_to :athlete
 	belongs_to :athlete_training_session

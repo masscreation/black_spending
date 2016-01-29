@@ -9,53 +9,53 @@ angular.module('trainingProgram')
 	
 	// Authenticate current trainer
 	Auth.currentUser().then(function (user) {
-		if (user.type === "Trainer") {
-			$scope.trainer = user; 
-			console.log('Trainer is logged in')
-		}
-	})
-	// Grab training_routines 
-	var baseRoutines = Restangular.all('api/training_routines'); 
-	
-	baseRoutines.getList().then(function (routines) {
-		$scope.allRoutines = routines
-	})
+		console.log('user is:', user); 
+		$scope.trainer = user;  
+		var allRoutines = Restangular.all('api/training_routines');
+		// Tag routines to a $scope for displaying in the view 
+		
+		allRoutines.getList().then(function (routines) {
+			$scope.trainerRoutines = [];
 
-	console.log('routines:', baseRoutines);
-	// Tag routines to a $scope for displaying in the view
-	baseRoutines.getList().then(function (routines) {
-		$scope.trainerRoutines = []
-		if (Auth.isAuthenticated && Auth.currentUser().type === 'Trainer') {
 			routines.forEach(function (routine) {
-				if (routine.trainer_id === Auth.currentUser().id) {
-					$scope.trainerRoutines.push(routine)
+				if (routine.trainer_id === user.id) {
+					$scope.trainerRoutines.push(routines); 
+					console.log("trainer's routines:", $scope.trainerRoutines) 
 				}
 			})
-		}
+		})
 		
-	}); 
+		// user.getList('training_routines').then(function (routines) {
+	
+		$scope.playerVars = {
+			controls: 0,
+			rel: 0
+		};  
 
-	$scope.playerVars = {
-		controls: 0,
-		rel: 0
-	};  
+		$scope.createRoutine = function(routine) {
 
-	$scope.createRoutine = function(routine) {
-		var allRoutines = Restangular.all('api/training_routines');
-		
-		//Associate training routine with current trainer
-		// $scope.routine.trainer_id = current_trainer.id
-
-		// Post routine to routines
-		allRoutines.post(routine);
-
-		// Clear training routine form inputs
-		$scope.routine.name = ''; 
- 		$scope.routine.description = ''; 
- 		$scope.routine.focus = ''; 
- 		$scope.routine.duration = ''
-	}; 
+			var allRoutines = Restangular.all('api/training_routines');
+			
+			// Associate training routine with current trainer
+			$scope.routine.trainer_id = user.id;
+			// Push routine to trainer's routines
+			$scope.trainerRoutines.push(routine);  
+			// Post routine to routines
+			allRoutines.post(routine);
+			// Clear training routine form inputs
+			$scope.routine.name = ''; 
+	 		$scope.routine.description = ''; 
+	 		$scope.routine.focus = ''; 
+	 		$scope.routine.duration = '';
+	 		$scope.routine.video_url = ''
+		};
+	});  
 }])
+.filter('yesNo', function() {
+    return function(input) {
+        return input ? 'yes' : 'no';
+    }
+})
 .controller('trainingRoutineCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) { 
 
 	console.log('trainingRoutineCtrl'); 

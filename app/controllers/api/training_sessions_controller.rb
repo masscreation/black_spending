@@ -10,7 +10,7 @@ class Api::TrainingSessionsController < ApplicationController
   end
 
   def create
-    respond_with :api, training_session.create(training_session_params)
+    respond_with :api, TrainingSession.create(training_routine_params)
   end
 
 

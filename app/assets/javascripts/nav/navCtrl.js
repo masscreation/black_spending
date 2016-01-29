@@ -6,9 +6,13 @@ angular.module('trainingProgram')
 'Restangular',  
 function ($scope, $state, Auth, Restangular) {
 
+
+
 	Auth.currentUser().then(function (user) {
 		$scope.user = user
 	}); 
+
+  Restangular.one('/users')
 
 	$scope.signedIn = Auth.isAuthenticated; 
 	console.log("Signed in", $scope.signedIn()); 

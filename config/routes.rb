@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :training_routines
       resources :workouts
     end
+    resources :training_routines
 
     resources :training_routines do 
       resources :training_sessions

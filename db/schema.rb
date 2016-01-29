@@ -11,12 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119235753) do
+ActiveRecord::Schema.define(version: 20160120054112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "anatomical_adapations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,14 +76,17 @@ ActiveRecord::Schema.define(version: 20160119235753) do
   create_table "exercise_sets", force: :cascade do |t|
     t.boolean  "completed"
     t.integer  "athlete_id"
-    t.integer  "training_session_id"
-    t.integer  "exercise_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "tempo"
     t.integer  "load"
     t.integer  "rest"
+    t.integer  "athlete_training_session_id"
+    t.integer  "workout_exercise_id"
   end
+
+  add_index "exercise_sets", ["athlete_training_session_id"], name: "index_exercise_sets_on_athlete_training_session_id", using: :btree
+  add_index "exercise_sets", ["workout_exercise_id"], name: "index_exercise_sets_on_workout_exercise_id", using: :btree
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
@@ -90,8 +98,18 @@ ActiveRecord::Schema.define(version: 20160119235753) do
     t.string   "video_url"
   end
 
+  create_table "hypertrophies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "levels", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "maximum_strengths", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,14 +118,16 @@ ActiveRecord::Schema.define(version: 20160119235753) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "duration_weeks"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.integer  "training_routine_id"
-    t.integer  "athlete_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "name"
+    t.string   "type"
   end
 
-  add_index "periods", ["athlete_id"], name: "index_periods_on_athlete_id", using: :btree
-  add_index "periods", ["training_routine_id"], name: "index_periods_on_training_routine_id", using: :btree
+  create_table "powers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trainers", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -188,8 +208,8 @@ ActiveRecord::Schema.define(version: 20160119235753) do
   add_foreign_key "athletes", "levels"
   add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
-  add_foreign_key "periods", "athletes"
-  add_foreign_key "periods", "training_routines"
+  add_foreign_key "exercise_sets", "athlete_training_sessions"
+  add_foreign_key "exercise_sets", "workout_exercises"
   add_foreign_key "training_routines", "trainers"
   add_foreign_key "training_sessions", "training_routines"
   add_foreign_key "workout_exercises", "exercises"

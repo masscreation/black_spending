@@ -11,12 +11,25 @@
 		<div>
 			<table>
 				<tr>
-					<th>Name</th><th>Description</th><th>Focus</th><th>Duration</th>
+					<th>Name  &nbsp;</th>
+					<th>Description &nbsp;</th>
+					<th>Focus &nbsp;</th>
+					<th>Duration &nbsp;</th>
+					<th>Routine Video &nbsp;</th>
+					<th>Cost &nbsp;</th>
+					<th>Free Trial? &nbsp;</th>
+					<th>Trial Duration &nbsp;</th>
 				</tr>
 				<tr>
-					<td>{{routine.name}}</td>
-					<td>{{routine.description}}</td><td>{{routine.focus}}</td>
-					<td>{{routine.duration}} weeks</td>
+					<td valign="top">{{routine.name}}</td>
+					<td valign="top">{{routine.description}}</td>
+					<td valign="top">{{routine.focus}}</td>
+					<td valign="top">{{routine.duration + " weeks"}} </td>
+					<td valign="top"><youtube-video video-id="routine.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
+					<td valign="top">${{routine.cost}}</td>
+					<td valign="top">{{routine.free_trial | yesNo }}</td>
+					<td valign="top">{{routine.free_trial_duration}} weeks</td>
+
 				</tr>
 			</table>
 
@@ -24,13 +37,27 @@
 			<div class="hideme" ng-hide="!hideme"><!-- New Training Routine --> 
 				<form>
 					<input name="routine-name" ng-model='routine.name' type="text" placeholder="name">
-
+					<br>
 					<input name="routine-description" ng-model="routine.description" type="textarea" placeholder="description">
-
+					<br>
 					<input name="routine-focus" ng-model="routine.focus" id="routine-focus" type="textarea" placeholder="focus">
-
-					<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration in weeks">
-
+					<br>
+					<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration (weeks)">
+					<br>
+					<input name="video_url" ng-model="routine.video_url" type="text" id="video_url" placeholder="youtube video id" >
+					<br>
+					<input name="cost" ng-model="routine.cost" type="text" id="cost" placeholder="cost" >
+					<br>
+					<label for="free-trial">Free Trial?</label>
+					<label for="free-trial-true">Yes</label>
+					<input name="free-trial-true" ng-value="true" ng-model="routine.free_trial" type="radio" id="free-trial-true" >
+					<label for="free-trial-true">No</label>
+					<input name="free-trial-false" ng-value="false" ng-model="routine.free_trial" type="radio" id="free-trial-false">
+					<br>
+					<div ng-if="routine.free_trial">
+						<input name="trial-duration" ng-model="routine.free_trial_duration" ng-required="!routine.free-trial" type="number" id="trial-duration" placeholder="trial duration (weeks)" >
+					</div>
+					<br>
 					<button type="button" class="btn btn-primary btn-md" ng-click="createRoutine(routine)" >Build A New Training Routine</button>
 				</form>
 			</div>
