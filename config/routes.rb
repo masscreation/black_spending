@@ -36,6 +36,8 @@ Rails.application.routes.draw do
        resources :workout_exercises, only: [:create, :index, :show]
     end
 
+    resources :exercises, only: [:index, :show]
+
     resources :categories, only: [:create, :index, :show] do 
       resources :exercises, only: [:create, :index, :show]
     end

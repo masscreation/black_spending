@@ -18,17 +18,17 @@
 					<th>Routine Video &nbsp;</th>
 					<th>Cost &nbsp;</th>
 					<th>Free Trial? &nbsp;</th>
-					<th>Trial Duration &nbsp;</th>
+					<th ng-if="routine.free_trial">Trial Duration &nbsp;</th>
 				</tr>
 				<tr>
 					<td valign="top">{{routine.name}}</td>
 					<td valign="top">{{routine.description}}</td>
 					<td valign="top">{{routine.focus}}</td>
-					<td valign="top">{{routine.duration + " weeks"}} </td>
+					<td valign="top">{{routine.duration}} <span ng-if="routine.duration">weeks</span> </td>
 					<td valign="top"><youtube-video video-id="routine.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
-					<td valign="top">${{routine.cost}}</td>
+					<td valign="top"><span ng-if="routine.cost">$</span>{{routine.cost}}</td>
 					<td valign="top">{{routine.free_trial | yesNo }}</td>
-					<td valign="top">{{routine.free_trial_duration}} weeks</td>
+					<td ng-if="routine.free_trial" valign="top">{{routine.free_trial_duration}} <span ng-if="routine.free_trial_duration">weeks</span></td>
 
 				</tr>
 			</table>

@@ -1,9 +1,18 @@
 angular.module('trainingProgram')
-.service('exercises', ['$http', 'Restangular', function ($http, Restangular) {
+.service('exercises', ['$http', '$q', function ($http, $q) {
+	console.log('exercises service');
 
-	console.log('exercises service'); 
-	 var baseExercises = Restangular.all('api/exercises'); 
-		console.log(baseExercises)
+	var deferred = $q.defer(); 
+	 
+	$http.get('api/exercises').then(function (exercises) {
+		console.log('exercise service exercises: ', exercises); 
+		deferred.resolve(exercises)
+	}); 
 
+	 this.getExercises = function () 
+	 {
+		return deferred.promise
+	 }; 
+	
 }]); 
 		 

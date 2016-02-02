@@ -8,10 +8,11 @@ angular.module('trainingProgram', [
     'xeditable'])
 	.config([
         '$stateProvider', 
+        '$httpProvider',
         '$urlRouterProvider', 
         '$sceDelegateProvider', 
         'AuthProvider',
-		function ($stateProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider) {
+		function ($stateProvider, $httpProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider) {
 
 
             // AuthProvider.registerMethod('POST');
@@ -108,6 +109,7 @@ angular.module('trainingProgram', [
                         templateUrl: '/assets/trainer/workouts.html', 
                         controller: 'workoutsCtrl'
                     }, 
+                    // Absolutely targets the "categories" view in this state,  routines.id
                    'categories@routines.id': {
                         templateUrl: '/assets/trainer/categories.html',
                         controller: 'categoriesCtrl'

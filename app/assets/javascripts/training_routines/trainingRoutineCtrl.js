@@ -4,9 +4,18 @@ angular.module('trainingProgram')
 	'$http', 
 	'$stateParams', 
 	'Restangular', 
-	'Auth', 
-	function ($scope, $http, $stateParams, Restangular, Auth) { 
+	'Auth',
+	'exercises', 
+	function ($scope, $http, $stateParams, Restangular, Auth, exercises) { 
 	
+	 
+	var promise = exercises.getExercises(); 
+
+	promise.then(function(exercises) {
+		console.log('controller exercises: ', exercises.data); 
+		$scope.exercises = exercises
+	}); 
+
 	// Authenticate current trainer
 	Auth.currentUser().then(function (user) {
 		console.log('user is:', user); 
