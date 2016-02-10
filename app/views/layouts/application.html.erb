@@ -8,20 +8,22 @@
  	<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
 </head>
 <body ng-app="trainingProgram">
-	<div class="container">
-		<!-- Nav row --> 
-		<div class="row">
-			<div ng-include="'assets/_nav.html'" ></div>
-			<hr>
-		</div>
-		<!-- end of Nav row -->
-		<!-- Content row -->
-		<div class="row">
-		    
-		    	<ui-view></ui-view><!-- Templates load here --> 
-		   
-		</div>
-		 <!-- End Content row -->
+	<div class="background">
+		<div class="container">
+			<!-- Nav row --> 
+			<div class="row">
+				<div ng-include="'assets/_nav.html'" ></div>
+				<hr>
+			</div>
+			<!-- end of Nav row -->
+			<!-- Content row -->
+			<div class="row">
+			    
+			    	<ui-view></ui-view><!-- Templates load here --> 
+			   
+			</div>
+			 <!-- End Content row -->
+		 </div>
 	 </div>
 </body>
 </html>

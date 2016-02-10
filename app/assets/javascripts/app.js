@@ -99,6 +99,7 @@ angular.module('trainingProgram', [
                 controller: 'trainingRoutinesCtrl' 
 
             })
+            // Routines 
             .state('routines.id', {
                 url: '/:id', 
                 views: {
@@ -120,7 +121,8 @@ angular.module('trainingProgram', [
                     }
                 },
                 controller: 'trainingRoutineCtrl' 
-            })
+            }) 
+            // Exercises
             .state('categories', {
                 url: '/categories', 
             	templateUrl: '/assets/trainer/categories.html',

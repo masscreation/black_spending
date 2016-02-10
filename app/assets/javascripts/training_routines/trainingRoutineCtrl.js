@@ -48,7 +48,7 @@ angular.module('trainingProgram')
 			// Associate training routine with current trainer
 			$scope.routine.trainer_id = user.id;
 			// Push routine to trainer's routines
-			$scope.trainerRoutines.push(routine);  
+			// $scope.trainerRoutines.push(routine);  
 			// Post routine to routines
 			allRoutines.post(routine);
 			// Clear training routine form inputs
@@ -56,7 +56,8 @@ angular.module('trainingProgram')
 	 		$scope.routine.description = ''; 
 	 		$scope.routine.focus = ''; 
 	 		$scope.routine.duration = '';
-	 		$scope.routine.video_url = ''
+	 		$scope.routine.video_url = '';
+	 		$scope. 
 		};
 	});  
 }])

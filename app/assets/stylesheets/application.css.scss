@@ -26,6 +26,16 @@ form .centerform {
 .program-focus {
     font-size: 10; 
 }
+body {
+    background-image: url("horizontal-construction.jpg"); 
+    background-size: cover; 
+    color: #FFF
+}
+// .background {
+//     background-color: #FFF; 
+//     background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+//     // background-size: 
+// }
 
 .carousel {
   position: relative;
@@ -116,6 +126,9 @@ a:visited {
     margin-bottom: 20px;
     text-align: center;
 }
+.container {
+    
+}
 .container-marketing {
 	h2 {
 		color: #000
@@ -141,8 +154,6 @@ a.btn.btn-default {
     background-color: #FFE200;
     border-color: #000;
 } 
-
-
 
 .btn-primary {
     color: #FFE200;
@@ -197,10 +208,27 @@ a.editable-click > h4 {
     background-color: #000;
     color: #FFE200;
 }
+.nav {
+    background-color: #000 
+}
 a.ng-binding:hover {
     color: #FFE200
 }
 li.ng-scope.selected > a {
     color: #FFE200; 
     background-color: #000 
+}
+
+h1.dashboard {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0.25) 100%);
+    color: #FFE200; 
+    border-radius: 4px
+}
+.routines {
+    color: #FFF; 
+    border-radius: 4px; 
+}
+
+th {
+    vertical-align: top; 
 }

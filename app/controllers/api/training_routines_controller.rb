@@ -11,6 +11,9 @@ class Api::TrainingRoutinesController < ApplicationController
 
 	def create
 		respond_with :api, TrainingRoutine.create(training_routine_params)
+		# 144.times do 
+		# 	training_routine.build
+			
 	end
 
 	def destroy

@@ -1,35 +1,54 @@
 <div class="col-md-12">
-	<h1 style="text-align:center;">Trainer Dashboard</h1>
+	<h1 style="text-align:center;" class="dashboard">Trainer Dashboard</h1>
 	<div class="col-md-6">
 
-		<h2>Training Routines</h2>
+		<h2 style="color: white;">Training Routines</h2>
 		<li ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
 			<a ui-sref="routines.id({id: routine.id })">{{routine.name}}</a><br>
 		</li>
 		
 		<!-- Routine Form --> 
-		<div>
+		<div class="routines">
 			<table>
 				<tr>
-					<th>Name  &nbsp;</th>
-					<th>Description &nbsp;</th>
-					<th>Focus &nbsp;</th>
-					<th>Duration &nbsp;</th>
-					<th>Routine Video &nbsp;</th>
-					<th>Cost &nbsp;</th>
-					<th>Free Trial? &nbsp;</th>
-					<th ng-if="routine.free_trial">Trial Duration &nbsp;</th>
+					<th>Name:  </th>
+					<td>&nbsp;</td>
+					<td valign="top">{{routine.name}}</td>
 				</tr>
 				<tr>
-					<td valign="top">{{routine.name}}</td>
+					<th>Description:</th>
+					<td>&nbsp;</td>
 					<td valign="top">{{routine.description}}</td>
+				</tr>
+				<tr>
+					<th>Focus:</th>
+					<td>&nbsp;</td>
 					<td valign="top">{{routine.focus}}</td>
+				</tr>
+				<tr>
+					<th>Duration: &nbsp; </th>
+					<td>&nbsp;</td>
 					<td valign="top">{{routine.duration}} <span ng-if="routine.duration">weeks</span> </td>
+				</tr>
+				<tr>
+					<th>Video &nbsp; </th>
+					<td>&nbsp;</td>
 					<td valign="top"><youtube-video video-id="routine.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
+				</tr>
+				<tr>
+					<th>Cost: &nbsp; </th>
+					<td>&nbsp;</td>
 					<td valign="top"><span ng-if="routine.cost">$</span>{{routine.cost}}</td>
+				</tr>
+				<tr>
+					<th>Trial?: &nbsp; </th>
+					<td>&nbsp;</td>
 					<td valign="top">{{routine.free_trial | yesNo }}</td>
+				</tr>
+				<tr>
+					<th ng-if="routine.free_trial">Trial Period: &nbsp; </th>
+					<td>&nbsp;</td>
 					<td ng-if="routine.free_trial" valign="top">{{routine.free_trial_duration}} <span ng-if="routine.free_trial_duration">weeks</span></td>
-
 				</tr>
 			</table>
 
