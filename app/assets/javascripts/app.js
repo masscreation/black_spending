@@ -5,7 +5,8 @@ angular.module('trainingProgram', [
     'ui.calendar', 
     'restangular', 
     'youtube-embed', 
-    'xeditable'])
+    'xeditable',
+    'ngTagsInput'])
 	.config([
         '$stateProvider', 
         '$httpProvider',
@@ -13,8 +14,7 @@ angular.module('trainingProgram', [
         '$sceDelegateProvider', 
         'AuthProvider',
 		function ($stateProvider, $httpProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider) {
-
-
+ 
             // AuthProvider.registerMethod('POST');
             // AuthProvider.loginMethod('GET');
             // AuthProvider.logoutMethod('DELETE')
@@ -23,7 +23,7 @@ angular.module('trainingProgram', [
             // AuthProvider.registerPath('/api/athletes');
             // AuthProvider.loginPath('/api/athletes');
             // AuthProvider.logoutPath('/api/athletes/sign_out'); 
-            console.log('resource name:',AuthProvider.resourceName()); 
+            console.log('resource name:', AuthProvider.resourceName()); 
 
             
             $sceDelegateProvider.resourceUrlWhitelist([
@@ -106,6 +106,7 @@ angular.module('trainingProgram', [
                     // the main template will be placed here (relatively named)
                    '': {templateUrl: '/assets/training-routine.html'}, 
 
+                   // Absolutely targets the "workouts" view in this state,  routines.id 
                    'workouts@routines.id': { 
                         templateUrl: '/assets/trainer/workouts.html', 
                         controller: 'workoutsCtrl'
@@ -115,6 +116,7 @@ angular.module('trainingProgram', [
                         templateUrl: '/assets/trainer/categories.html',
                         controller: 'categoriesCtrl'
                     },
+                    // Absolutely targets the "training-sessions" view in this state,  routines.id
                     'training-sessions@routines.id': {
                         templateUrl: '/assets/trainer/training-sessions.html',
                         controller: 'trainingSessionsCtrl' 

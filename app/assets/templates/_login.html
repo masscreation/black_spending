@@ -9,11 +9,11 @@
 		</div>
 
 		<ul style="text-align: center;" class="nav nav-pills">
-	        <li ng-class="{active:tab.isSet(1)}"><a href ng-click="setTab(1)">Athlete</a></li>
-	        <li ng-class="{active:tab.isSet(2)}"><a href ng-click="setTab(2)">Trainer</a></li>
+	        <li ng-class="{active:tab.isSet(1)}"><a id="athlete" href ng-click="setTab(1)">Athlete</a></li>
+	        <li  ng-class="{active:tab.isSet(2)}"><a id="trainer" href ng-click="setTab(2)">Trainer</a></li>
 	    </ul>
 
-		<div ng-show="isSet(1)">
+		<div class="athlete" ng-show="isSet(1)">
 			<form style="margin: 0 auto;" >
 				<label><h4>Athlete</h4></label>
 		  		<div class="input-group">
@@ -25,7 +25,7 @@
 		  		<button type="button" ng-click="loginAthlete(athlete)" class="btn btn-primary">Dominate!</button>
 			</form>	
 		</div>
-		<div ng-show="isSet(2)">
+		<div class="trainer" ng-show="isSet(2)">
 			<form style="margin: 0 auto;" ng-submit="loginTrainer(trainer)">
 				<label><h4>Trainer</h4></label>
 		  		<div class="input-group">
@@ -43,3 +43,17 @@
 	</div>
 	<div class="col-xs-4 col-sm-4 col-md-4"></div>
 </div>
+<script>
+	$(function() {
+		
+		$('a#trainer').on('click', function() {
+			console.log('trainer clicked'); 
+			$('.trainer').addClass('animated slideInRight')
+		})
+
+		$('a#athlete').on('click', function() {
+			console.log('athlete clicked'); 
+			$('.athlete').addClass('animated slideInLeft')
+		})
+	})
+</script>

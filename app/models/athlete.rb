@@ -11,4 +11,5 @@ class Athlete < User
 		Date.today.year - birthdate.year
 	end
 
+
 end

@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       resources :trainers, only: [:update, :show]
     end
 
+    resources :tags, only: [:create, :index, :show] do
+      resources :routine_tags, only: [:create, :index, :show]
+    end
+
     # Trainer-related resources -------->
     resources :trainers do
       resources :training_routines
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
     resources :training_routines do 
       resources :training_sessions
       resources :enrollments
+      resources :routine_tags 
     end
     resources :workouts, only: [:create, :index, :show] do 
        resources :workout_exercises, only: [:create, :index, :show]

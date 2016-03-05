@@ -22,6 +22,10 @@ angular.module('trainingProgram')
 		})
 	}); 
 
+	Auth.currentUser().then(function (user) {
+		$scope.trainer = user
+	})
+
 	//Create new workouts
 	$scope.createWorkout = function (workout) {
 		// Tag workout to current logged in trainer

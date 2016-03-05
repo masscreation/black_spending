@@ -72,7 +72,7 @@ function($scope, $state, $http, Restangular, Auth){
 
         $scope.setTab = function (tabId) {
             $scope.tab = tabId;
-            console.log('now tab is: ', $scope.tab)
+            // console.log('now tab is: ', $scope.tab)
         };
 
         $scope.isSet = function (tabId) {

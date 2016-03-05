@@ -1,36 +1,42 @@
 <div class="col-md-12">
 	<div class="col-md-4">
-		<h2>Workouts</h2>
-		<li ui-sref-active="selected" ng-repeat="workout in workouts">
-			<a ui-sref="workouts.id({id: workout.id })">{{workout.name}}</a>
-		</li>
-	</div>
-	<!-- Routine Form --> 
-	<div>
-		<table>
-			<tr>d
-				<th>Name: </th>
-				<td>{{workout.name}}</td>
-			</tr>
-			<tr>
-				<th>Description: </th>
-				<td>{{workout.description}}</td>
-			</tr>
-		</table>
+		<div>
+			<br>
+			<h2>Workouts</h2>
+			<li ui-sref-active="selected" ng-repeat="workout in workouts">
+				<a ui-sref="workouts.id({id: workout.id })">{{workout.name}}</a>
+			</li>
+		</div>
+	
+		<!-- Routine Form --> 
+		<div>
+			<table>
+				<tr>
+					<th>Name: </th>
+					<td>{{workout.name}}</td>
+				</tr>
+				<tr>
+					<th>Description: </th>
+					<td>{{workout.description}}</td>
+				</tr>
+			</table>
 
-		<button class="btn btn-primary" ng-click="hideme = !hideme" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
+			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
 
-		<!-- Workout Form --> 
-		<div class="hideme" ng-hide="!hideme">
-			<form>
-				<input name="workout-name" ng-model='workout.name' type="text" placeholder="name">
-				<br>
-				<input name="workout-description" ng-model="workout.description" type="textarea" placeholder="description">
-				<br>
-				<button type="button" class="btn btn-primary btn-md" ng-click="createWorkout(workout)" >Build a new workout</button>
-			</form>
+			<!-- Workout Form --> 
+			<div class="hideme" ng-hide="!hideme">
+				<form>
+					<input name="workout-name" ng-model='workout.name' type="text" placeholder="name">
+					<br>
+					<input name="workout-description" ng-model="workout.description" type="textarea" placeholder="description">
+					<br>
+					<button type="button" class="btn btn-primary btn-md" ng-click="createWorkout(workout)" >Build a new workout</button>
+				</form>
+			</div>
 		</div>
 	</div>
+	<div class="col-sm-8">
+		<ui-view></ui-view>
+	</div>
 	
-	<ui-view></ui-view>
 </div>

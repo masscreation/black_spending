@@ -1,8 +1,9 @@
+<br> 
 <div class="col-md-12">
 	<h1 style="text-align:center;" class="dashboard">Trainer Dashboard</h1>
 	<div class="col-md-6">
 
-		<h2 style="color: white;">Training Routines</h2>
+		<h2>Training Routines</h2>
 		<li ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
 			<a ui-sref="routines.id({id: routine.id })">{{routine.name}}</a><br>
 		</li>
@@ -11,57 +12,63 @@
 		<div class="routines">
 			<table>
 				<tr>
-					<th>Name:  </th>
+					<td>Name:  </td>
 					<td>&nbsp;</td>
 					<td valign="top">{{routine.name}}</td>
 				</tr>
 				<tr>
-					<th>Description:</th>
+					<td>Description:</td>
 					<td>&nbsp;</td>
 					<td valign="top">{{routine.description}}</td>
 				</tr>
 				<tr>
-					<th>Focus:</th>
+					<td>Focus:</td>
 					<td>&nbsp;</td>
-					<td valign="top">{{routine.focus}}</td>
+					<td valign="top">{{routine.tags}}</td>
 				</tr>
 				<tr>
-					<th>Duration: &nbsp; </th>
+					<td>Duration: &nbsp; </td>
 					<td>&nbsp;</td>
 					<td valign="top">{{routine.duration}} <span ng-if="routine.duration">weeks</span> </td>
 				</tr>
 				<tr>
-					<th>Video &nbsp; </th>
+					<td>Video &nbsp; </td>
 					<td>&nbsp;</td>
 					<td valign="top"><youtube-video video-id="routine.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
 				</tr>
 				<tr>
-					<th>Cost: &nbsp; </th>
+					<td>Cost: &nbsp; </td>
 					<td>&nbsp;</td>
 					<td valign="top"><span ng-if="routine.cost">$</span>{{routine.cost}}</td>
 				</tr>
 				<tr>
-					<th>Trial?: &nbsp; </th>
+					<td>Trial?: &nbsp; </td>
 					<td>&nbsp;</td>
 					<td valign="top">{{routine.free_trial | yesNo }}</td>
 				</tr>
 				<tr>
-					<th ng-if="routine.free_trial">Trial Period: &nbsp; </th>
+					<td ng-if="routine.free_trial">Trial Period: &nbsp; </td>
 					<td>&nbsp;</td>
 					<td ng-if="routine.free_trial" valign="top">{{routine.free_trial_duration}} <span ng-if="routine.free_trial_duration">weeks</span></td>
 				</tr>
 			</table>
 
 			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Build A New Training Routine"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
+			
 			<div class="hideme" ng-hide="!hideme"><!-- New Training Routine --> 
 				<form>
 					<input name="routine-name" ng-model='routine.name' type="text" placeholder="name">
 					<br>
 					<input name="routine-description" ng-model="routine.description" type="textarea" placeholder="description">
 					<br>
-					<input name="routine-focus" ng-model="routine.focus" id="routine-focus" type="textarea" placeholder="focus">
+					<tags-input ng-model="routine.tags">
+        				<auto-complete source="loadTags($query)"></auto-complete>
+    				</tags-input>
+					<!-- <input name="routine-focus" ng-model="routine.focus" id="routine-focus" type="textarea" placeholder="focus"> -->
 					<br>
-					<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration (weeks)">
+					<div class="w-timeline-item">
+						<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration (weeks)">
+					</div>
 					<br>
 					<input name="video_url" ng-model="routine.video_url" type="text" id="video_url" placeholder="youtube video id" >
 					<br>
@@ -79,9 +86,13 @@
 					<br>
 					<button type="button" class="btn btn-primary btn-md" ng-click="createRoutine(routine)" >Build A New Training Routine</button>
 				</form>
+
 			</div>
 		</div>
 	</div>
 	
 	<div ui-view></div>
 </div>
+<script>
+
+</script>

@@ -30,6 +30,7 @@
     "lodash": "~3.10.0",
     "underscore": "~1.8.3",
     "angular-youtube-mb": "~1.1.0",
-    "videogular-youtube": "~2.0.3"
+    "videogular-youtube": "~2.0.3",
+    "ng-tags-input": "~3.0.0"
   }
 }
