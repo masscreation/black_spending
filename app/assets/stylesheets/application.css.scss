@@ -356,8 +356,13 @@ input {
   padding: 0 10px;
 }
 
-.check-element {
-  padding: 10px;
-  border: 1px solid black;
-  background: white;
+.hideme {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    -webkit-animation-duration: 0.5s
 }
+
+// .hideme.ng-hide {
+//     opacity: 0; 
+//     line-height: 0; 
+// }

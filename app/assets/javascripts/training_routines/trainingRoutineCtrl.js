@@ -6,17 +6,10 @@ angular.module('trainingProgram')
 	'Restangular', 
 	'Auth',
 	'exercises',
+	'tags', 
 	'$q',
-	function ($scope, $http, $stateParams, Restangular, Auth, exercises, $q) { 
+	function ($scope, $http, $stateParams, Restangular, Auth, exercises, tags, $q) { 
 	
-	var deferred = $q.defer(); 
-	var promise = exercises.getExercises(); 
-
-	promise.then(function(exercises) {
-		console.log('controller exercises: ', exercises.data); 
-		$scope.exercises = exercises
-	}); 
-
 	// Authenticate current trainer
 	Auth.currentUser().then(function (user) {
 		console.log('user is:', user); 
@@ -45,19 +38,18 @@ angular.module('trainingProgram')
 		var allRoutines = Restangular.all('api/training_routines');
 
 		// Training routine tags
-		var allTags = Restangular.all('api/tags'); 
+		// var allTags = Restangular.all('api/tags'); 
 
-		allTags.getList().then(function(tags) {
-			$scope.tags = tags; 
-			console.log('tags: ', tags)
-		});
+		// allTags.getList().then(function(tags) {
+		// 	$scope.tags = tags; 
+		// 	console.log('tags: ', tags)
+		// });
 
-		$scope.loadTags = function (query) {
-			console.log('query :', query);
-			return $http.get('api/tags?query=' + query)
-		};
+		$scope.loadTags = function(query) {
+    		return tags.load();
+  		};
 
-		console.log('loadTags: ', $scope.loadTags());
+		console.log('loadTags: ', $scope.loadTags(query));
 
 		$scope.createRoutine = function(routine) {
 			
