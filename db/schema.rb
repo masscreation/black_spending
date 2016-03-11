@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210174658) do
+ActiveRecord::Schema.define(version: 20160311113543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160210174658) do
     t.boolean  "free_trial"
     t.integer  "free_trial_duration"
     t.string   "video_url"
+    t.integer  "sessions_per_week"
   end
 
   add_index "training_routines", ["trainer_id"], name: "index_training_routines_on_trainer_id", using: :btree

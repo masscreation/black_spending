@@ -21,10 +21,12 @@
 					<td>&nbsp;</td>
 					<td valign="top">{{routine.description}}</td>
 				</tr>
+			</table>
+			<table>
 				<tr>
-					<td>Focus:</td>
+					<td>Focus (Tags):</td>
 					<td>&nbsp;</td>
-					<td valign="top">{{routine.tags}}</td>
+					<td ng-repeat="tag in routine.focus" valign="top">{{tag.name + ", "}}</td>
 				</tr>
 				<tr>
 					<td>Duration: &nbsp; </td>
@@ -32,7 +34,12 @@
 					<td valign="top">{{routine.duration}} <span ng-if="routine.duration">weeks</span> </td>
 				</tr>
 				<tr>
-					<td>Video &nbsp; </td>
+					<td>Sessions/Week: &nbsp; </td>
+					<td>&nbsp;</td>
+					<td valign="top">{{routine.sessions_per_week}}</td>
+				</tr>
+				<tr>
+					<td>Video: &nbsp; </td>
 					<td>&nbsp;</td>
 					<td valign="top"><youtube-video video-id="routine.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
 				</tr>
@@ -59,16 +66,14 @@
 				<form>
 					<input name="routine-name" ng-model='routine.name' type="text" placeholder="name">
 					<br>
-					<input name="routine-description" ng-model="routine.description" type="textarea" placeholder="description">
+						<input name="routine-description" ng-model="routine.description" type="textarea" placeholder="description">
 					<br>
-					<tags-input ng-model="routine.tags">
-        				<auto-complete source="loadTags($query)"></auto-complete>
-    				</tags-input>
-					<!-- <input name="routine-focus" ng-model="routine.focus" id="routine-focus" type="textarea" placeholder="focus"> -->
+						<tags-input ng-model="(routine.focus)" display-property="name">
+        				<auto-complete source="loadTags($query)"></auto-complete></tags-input>
 					<br>
-					<div class="w-timeline-item">
-						<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration (weeks)">
-					</div>
+					<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration (weeks)">
+					<br>
+					<input name="routine-sessions" ng-model="routine.sessions_per_week" type="number" id="routine-sessions" placeholder="# of sessions/week">
 					<br>
 					<input name="video_url" ng-model="routine.video_url" type="text" id="video_url" placeholder="youtube video id" >
 					<br>

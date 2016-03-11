@@ -13,7 +13,8 @@ angular.module('trainingProgram')
 	// Authenticate current trainer
 	Auth.currentUser().then(function (user) {
 		console.log('user is:', user); 
-		$scope.trainer = user;  
+		$scope.trainer = user;
+
 		var allRoutines = Restangular.all('api/training_routines');
 		// Tag routines to a $scope for displaying in the view 
 		
@@ -37,27 +38,32 @@ angular.module('trainingProgram')
 
 		var allRoutines = Restangular.all('api/training_routines');
 
-		// Training routine tags
-		// var allTags = Restangular.all('api/tags'); 
-
-		// allTags.getList().then(function(tags) {
-		// 	$scope.tags = tags; 
-		// 	console.log('tags: ', tags)
-		// });
-
 		$scope.loadTags = function(query) {
-    		return tags.load();
+			return $http.get('api/tags?query=' + query)
   		};
 
-		console.log('loadTags: ', $scope.loadTags(query));
+		console.log('loadTags: ', $scope.loadTags());
 
 		$scope.createRoutine = function(routine) {
 			
 			// Associate training routine with current trainer
 			$scope.routine.trainer_id = user.id;
 			console.log(user.id); 
-			// Push routine to trainer's routines
-			// $scope.trainerRoutines.push(routine);  
+
+			// Convert routine.tags (objects) names into strings and 
+			// and assign to routine.focus
+			routine.focus = function() {
+				var tags = [];
+				routine.tags.forEach(function(tag) {
+					tags.push(tag.name)
+				}); 
+				var newTags = tags.join(", "); 
+
+				console.log(newTags); 
+
+				return newTags
+			}
+
 			// Post routine to routines
 			allRoutines.post(routine);
 			// Clear training routine form inputs
@@ -65,6 +71,7 @@ angular.module('trainingProgram')
 	 		$scope.routine.description = ''; 
 	 		$scope.routine.tags = ''; 
 	 		$scope.routine.duration = '';
+	 		$scope.routine.sessions_per_week = ''; 
 	 		$scope.routine.video_url = '';
 	 		$scope.routine.cost = ''; 
 	 		$scope.routine.free_trial = ''; 
@@ -76,6 +83,11 @@ angular.module('trainingProgram')
     return function(input) {
         return input ? 'yes' : 'no';
     }
+})
+.filter('tagNames', function () {
+	return function(tag) {
+		return tag.name	
+	}	
 })
 .controller('trainingRoutineCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) { 
 
