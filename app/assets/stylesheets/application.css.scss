@@ -351,6 +351,7 @@ input {
 }
 
 .animate-show.ng-hide {
+
   line-height: 0;
   opacity: 0;
   padding: 0 10px;
@@ -360,6 +361,10 @@ input {
     -webkit-transition:all linear 0.5s;
     transition:all linear 0.5s;
     -webkit-animation-duration: 0.5s
+}
+
+.embolden {
+    font-weight: bold
 }
 
 // .hideme.ng-hide {

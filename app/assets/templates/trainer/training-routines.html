@@ -10,55 +10,33 @@
 		
 		<!-- Routine Form --> 
 		<div class="routines">
-			<table>
-				<tr>
-					<td>Name:  </td>
-					<td>&nbsp;</td>
-					<td valign="top">{{routine.name}}</td>
-				</tr>
-				<tr>
-					<td>Description:</td>
-					<td>&nbsp;</td>
-					<td valign="top">{{routine.description}}</td>
-				</tr>
-			</table>
-			<table>
-				<tr>
-					<td>Focus (Tags):</td>
-					<td>&nbsp;</td>
-					<td ng-repeat="tag in routine.focus" valign="top">{{tag.name + ", "}}</td>
-				</tr>
-				<tr>
-					<td>Duration: &nbsp; </td>
-					<td>&nbsp;</td>
-					<td valign="top">{{routine.duration}} <span ng-if="routine.duration">weeks</span> </td>
-				</tr>
-				<tr>
-					<td>Sessions/Week: &nbsp; </td>
-					<td>&nbsp;</td>
-					<td valign="top">{{routine.sessions_per_week}}</td>
-				</tr>
-				<tr>
-					<td>Video: &nbsp; </td>
-					<td>&nbsp;</td>
-					<td valign="top"><youtube-video video-id="routine.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
-				</tr>
-				<tr>
-					<td>Cost: &nbsp; </td>
-					<td>&nbsp;</td>
-					<td valign="top"><span ng-if="routine.cost">$</span>{{routine.cost}}</td>
-				</tr>
-				<tr>
-					<td>Trial?: &nbsp; </td>
-					<td>&nbsp;</td>
-					<td valign="top">{{routine.free_trial | yesNo }}</td>
-				</tr>
-				<tr>
-					<td ng-if="routine.free_trial">Trial Period: &nbsp; </td>
-					<td>&nbsp;</td>
-					<td ng-if="routine.free_trial" valign="top">{{routine.free_trial_duration}} <span ng-if="routine.free_trial_duration">weeks</span></td>
-				</tr>
-			</table>
+			<div>
+				<p><span class="embolden">Name: </span>{{routine.name}}</p> 
+
+				<p><span class="embolden">Description: </span>{{routine.description}}</p>
+				
+				<p><span class="embolden">Focus (tags):</b>
+				<span ng-repeat="tag in routine.tags" valign="top">{{tag.name + " "}}</span>
+
+				<p><span class="embolden">Duration: </span> {{routine.duration}} <span ng-if="routine.duration">weeks</span></p>
+
+				<b>Sessions/week:</b>
+				<p>{{routine.sessions_per_week}}<span ng-if="routine.sessions_per_week"> sessions/week</span>
+					 
+				<span ng-if="(routine.duration && routine.sessions_per_week)"> = {{routine.duration * routine.sessions_per_week}} total sessions</span></p>
+
+				<span class="embolden">Video: </span>
+				<p><youtube-video video-id="routine.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></p>
+
+				<p><span class="embolden">Cost: </span>
+				<span ng-if="routine.cost">$</span>{{routine.cost}}</p>
+
+				<p><span class="embolden">Trial?: </span>
+				{{routine.free_trial | yesNo }}</p>
+
+				<p ng-if="routine.free_trial"><span class="embolden">Trial Period: </span> {{routine.free_trial_duration}} <span ng-if="routine.free_trial_duration">weeks</span></p>
+
+			</div>
 
 			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Build A New Training Routine"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
 			
@@ -68,7 +46,7 @@
 					<br>
 						<input name="routine-description" ng-model="routine.description" type="textarea" placeholder="description">
 					<br>
-						<tags-input ng-model="(routine.focus)" display-property="name">
+						<tags-input ng-model="routine.tags" display-property="name">
         				<auto-complete source="loadTags($query)"></auto-complete></tags-input>
 					<br>
 					<input name="routine-duration" ng-model="routine.duration" type="number" id="routine-duration" placeholder="duration (weeks)">

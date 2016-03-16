@@ -12,12 +12,13 @@ angular.module('trainingProgram')
 	
 	// Authenticate current trainer
 	Auth.currentUser().then(function (user) {
-		console.log('user is:', user); 
+		console.log('user is:', user);
+		console.log('user type is: ', user.type);  
 		$scope.trainer = user;
 
 		var allRoutines = Restangular.all('api/training_routines');
+
 		// Tag routines to a $scope for displaying in the view 
-		
 		allRoutines.getList().then(function (routines) {
 			$scope.trainerRoutines = [];
 
@@ -47,22 +48,16 @@ angular.module('trainingProgram')
 		$scope.createRoutine = function(routine) {
 			
 			// Associate training routine with current trainer
-			$scope.routine.trainer_id = user.id;
-			console.log(user.id); 
+			$scope.routine.trainer_id = $scope.trainer.id;
+			console.log($scope.trainer.id); 
 
-			// Convert routine.tags (objects) names into strings and 
-			// and assign to routine.focus
-			routine.focus = function() {
-				var tags = [];
-				routine.tags.forEach(function(tag) {
-					tags.push(tag.name)
-				}); 
-				var newTags = tags.join(", "); 
-
-				console.log(newTags); 
-
-				return newTags
-			}
+			var focusArray = [];  
+			routine.tags.forEach(function(tag) {
+				focusArray.push(tag.name);
+				routine.focus = focusArray.join(', ');
+				return routine.focus 
+				console.log(routine.focus) 
+			})
 
 			// Post routine to routines
 			allRoutines.post(routine);
