@@ -1,4 +1,6 @@
 class Api::AthletesController < ApplicationController
+  before_action :authenticate_athlete! 
+
   def index
   	respond_with :api, athletes
   end

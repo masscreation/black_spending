@@ -1,4 +1,5 @@
 class AthleteTrainingSession < ActiveRecord::Base
+	resourcify
   has_many :exercise_sets
   belongs_to :training_session
   belongs_to :athlete

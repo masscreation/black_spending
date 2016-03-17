@@ -1,4 +1,6 @@
 class Api::TrainersController < ApplicationController
+  before_action :authenticate_
+
   def index
   	respond_with :api, trainers
   end

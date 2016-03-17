@@ -1,4 +1,5 @@
 class ExerciseSet < ActiveRecord::Base
+	resourcify
 	belongs_to :workout_exercise
 	# Athlete performs many exercise_sets 
 	belongs_to :athlete
