@@ -22,7 +22,7 @@ angular.module('trainingProgram')
 			$scope.trainerRoutines = [];
 
 			routines.forEach(function (routine) {
-				if (routine.trainer_id === user.id) {
+				if (routine.user_id === user.id) {
 					$scope.trainerRoutines.push(routines); 
 					console.log("trainer's routines:", $scope.trainerRoutines) 
 				}
