@@ -41,6 +41,7 @@ function($scope, $state, $http, Restangular, Auth){
   $scope.registerTrainer = function(trainer) {
     Auth.register(trainer).then(function(trainer){ 
       trainer.type = "Trainer"; 
+
       // POST created trainer to trainers
       allTrainers.post(trainer);
       // Send registered trainer to 'login'

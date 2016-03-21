@@ -10,10 +10,10 @@ class Api::TrainingRoutinesController < ApplicationController
 	end
 
 	def create
-		new_training_routine = TrainingRoutine.create(training_routine_params)
-		respond_with :api, new_training_routine
-		(new_training_routine.duration_weeks * new_training_routine.sessions_per_week).times do 
-			new_training_routine.training_sessions.build
+		@new_training_routine = TrainingRoutine.create(training_routine_params)
+		respond_with :api, @new_training_routine
+		(@new_training_routine.duration_weeks * @new_training_routine.sessions_per_week).times do 
+			@new_training_routine.training_sessions.build
 		end
 	end
 

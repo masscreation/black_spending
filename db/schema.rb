@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316231307) do
+ActiveRecord::Schema.define(version: 20160321084858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,7 +162,6 @@ ActiveRecord::Schema.define(version: 20160316231307) do
     t.string   "name"
     t.string   "focus"
     t.integer  "duration_weeks"
-    t.integer  "trainer_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "description"
@@ -172,8 +171,6 @@ ActiveRecord::Schema.define(version: 20160316231307) do
     t.string   "video_url"
     t.integer  "sessions_per_week"
   end
-
-  add_index "training_routines", ["trainer_id"], name: "index_training_routines_on_trainer_id", using: :btree
 
   create_table "training_sessions", force: :cascade do |t|
     t.datetime "created_at",          null: false
@@ -229,10 +226,7 @@ ActiveRecord::Schema.define(version: 20160316231307) do
     t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "trainer_id"
   end
-
-  add_index "workouts", ["trainer_id"], name: "index_workouts_on_trainer_id", using: :btree
 
   add_foreign_key "athlete_training_sessions", "athletes"
   add_foreign_key "athlete_training_sessions", "training_routines"
@@ -242,9 +236,7 @@ ActiveRecord::Schema.define(version: 20160316231307) do
   add_foreign_key "enrollments", "training_routines"
   add_foreign_key "exercise_sets", "athlete_training_sessions"
   add_foreign_key "exercise_sets", "workout_exercises"
-  add_foreign_key "training_routines", "trainers"
   add_foreign_key "training_sessions", "training_routines"
   add_foreign_key "workout_exercises", "exercises"
   add_foreign_key "workout_exercises", "workouts"
-  add_foreign_key "workouts", "trainers"
 end

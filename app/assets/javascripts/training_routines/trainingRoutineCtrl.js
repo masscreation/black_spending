@@ -48,7 +48,6 @@ angular.module('trainingProgram')
 			
 			// Associate training routine with current trainer
 			$scope.routine.trainer_id = user.id;
-			console.log(user.id); 
 
 			// Convert routine.tags (objects) names into strings and 
 			// and assign to routine.focus
@@ -57,11 +56,8 @@ angular.module('trainingProgram')
 				routine.tags.forEach(function(tag) {
 					tags.push(tag.name)
 				}); 
-				var newTags = tags.join(", "); 
-
-				console.log(newTags); 
-
-				return newTags
+				console.log(tags.join(", ")); 	
+				return tags.join(", "); 
 			}
 
 			// Post routine to routines

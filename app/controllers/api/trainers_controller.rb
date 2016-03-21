@@ -1,5 +1,4 @@
 class Api::TrainersController < ApplicationController
-  before_action :authenticate_
 
   def index
   	respond_with :api, trainers
@@ -10,7 +9,9 @@ class Api::TrainersController < ApplicationController
   end
 
   def create
-    respond_with :api, trainer.create(user_params)
+    @trainer = Trainer.create(trainer_params)
+    respond_with :api, @trainer
+    @trainer.add_role :trainer
   end
 
   def update
