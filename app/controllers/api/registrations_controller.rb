@@ -8,7 +8,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
   private
 
     def user_params
-      params.require(:trainer).permit(:email, :username, :password)
+      params.require(:user).permit(:email, :username, :password)
     end
 
 end
