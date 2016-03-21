@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321084858) do
+ActiveRecord::Schema.define(version: 20160321090136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,13 +31,11 @@ ActiveRecord::Schema.define(version: 20160321084858) do
     t.boolean  "complete"
     t.integer  "volume"
     t.integer  "training_session_id"
-    t.integer  "athlete_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "training_routine_id"
   end
 
-  add_index "athlete_training_sessions", ["athlete_id"], name: "index_athlete_training_sessions_on_athlete_id", using: :btree
   add_index "athlete_training_sessions", ["training_routine_id"], name: "index_athlete_training_sessions_on_training_routine_id", using: :btree
   add_index "athlete_training_sessions", ["training_session_id"], name: "index_athlete_training_sessions_on_training_session_id", using: :btree
 
@@ -64,13 +62,11 @@ ActiveRecord::Schema.define(version: 20160321084858) do
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
 
   create_table "enrollments", force: :cascade do |t|
-    t.integer  "athlete_id"
     t.integer  "training_routine_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
 
-  add_index "enrollments", ["athlete_id"], name: "index_enrollments_on_athlete_id", using: :btree
   add_index "enrollments", ["training_routine_id"], name: "index_enrollments_on_training_routine_id", using: :btree
 
   create_table "exercise_sets", force: :cascade do |t|
@@ -228,11 +224,9 @@ ActiveRecord::Schema.define(version: 20160321084858) do
     t.datetime "updated_at",  null: false
   end
 
-  add_foreign_key "athlete_training_sessions", "athletes"
   add_foreign_key "athlete_training_sessions", "training_routines"
   add_foreign_key "athlete_training_sessions", "training_sessions"
   add_foreign_key "athletes", "levels"
-  add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
   add_foreign_key "exercise_sets", "athlete_training_sessions"
   add_foreign_key "exercise_sets", "workout_exercises"
