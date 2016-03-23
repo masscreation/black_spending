@@ -17,7 +17,7 @@ function($scope, $state, $http, Restangular, Auth){
     console.log('Registering athlete:', athlete); 
       Auth.register($scope.athlete).then(function(user) {
         user.type = "Athlete"; 
-      allAthletes.post(athlete); 
+
       // Go to Login
       $state.go('login')
 
