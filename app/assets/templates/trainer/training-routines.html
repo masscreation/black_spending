@@ -8,9 +8,9 @@
 			<li><a ui-sref="routines.id({id: routine.id })">{{routine.name}}</a></li>
 		</ul>
 		
-		<!-- Routine Form --> 
-		<div class="routines">
-			<div>
+		
+		<div class="routines"><!-- new routine --> 
+			<div> <!-- routine info --> 
 				<p><span class="embolden">Name: </span>{{routine.name}}</p> 
 
 				<p><span class="embolden">Description: </span>{{routine.description}}</p>
@@ -36,11 +36,11 @@
 
 				<p ng-if="routine.free_trial"><span class="embolden">Trial Period: </span> {{routine.free_trial_duration}} <span ng-if="routine.free_trial_duration">weeks</span></p>
 
-			</div>
+			</div> <!-- end of routine info --> 
 
 			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Build A New Training Routine"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
 			
-			<div class="hideme" ng-hide="!hideme"><!-- New Training Routine --> 
+			<div class="hideme" ng-hide="!hideme"><!-- hideable routine form --> 
 				<form>
 					<input name="routine-name" ng-model='routine.name' type="text" placeholder="name">
 					<br>
@@ -70,11 +70,11 @@
 					<button type="button" class="btn btn-primary btn-md" ng-click="createRoutine(routine)" >Build A New Training Routine</button>
 				</form>
 
-			</div>
-		</div>
-	</div>
+			</div> <!-- end of hideable routine form --> 
+		</div> <!-- end of new routine --> 
+	</div> 
 	
-	<div ui-view></div>
+	<ui-view></ui-view>
 </div>
 <script>
 
