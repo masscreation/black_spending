@@ -10,15 +10,12 @@ angular.module('trainingProgram')
 	'$q',
 	function ($scope, $http, $stateParams, Restangular, Auth, exercises, tags, $q) { 
 	
-	// Authenticate current trainer
-	Auth.currentUser().then(function (user) {
-		console.log('user is:', user); 
-		$scope.trainer = user;
-
 		var allRoutines = Restangular.all('api/training_routines');
 		// Tag routines to a $scope for displaying in the view 
 		
 		allRoutines.getList().then(function (routines) {
+			$scope.routines = routines 
+			console.log('routines: ', routines); 
 			$scope.trainerRoutines = [];
 
 			routines.forEach(function (routine) {
@@ -28,6 +25,14 @@ angular.module('trainingProgram')
 				}
 			})
 		})
+		
+
+
+	// Authenticate current trainer
+	Auth.currentUser().then(function (user) {
+		console.log('user is:', user); 
+		$scope.trainer = user;
+
 		
 		// user.getList('training_routines').then(function (routines) {
 	

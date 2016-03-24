@@ -15,6 +15,7 @@ class Api::UsersController < ApplicationController
       @user.add_role :trainer
     else
       @user.add_role :athlete
+    end
   end
 
   def update
@@ -36,7 +37,7 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-  	params.require(:user).permit(:email, :username, :encrypted_password, :type)
+  	params.require(:user).permit(:email, :username, :encrypted_password)
   end
 
 end

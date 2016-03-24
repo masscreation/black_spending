@@ -22,7 +22,7 @@ angular.module('trainingProgram', [
             // AuthProvider.resourceName('athlete');
             // AuthProvider.registerPath('/api/athletes');
             // AuthProvider.loginPath('/api/athletes');
-            // AuthProvider.logoutPath('/api/athletes/sign_out'); 
+            // AuthProvider.logoutPath('/api/users/sign_out'); 
             console.log('resource name:', AuthProvider.resourceName()); 
 
             

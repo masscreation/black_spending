@@ -1,5 +1,6 @@
 class TrainingRoutine < ActiveRecord::Base
 	resourcify
+	validates :name, presence: true
 	has_many :routine_tags
 	has_many :tags, through: :routine_tags
 	has_many :enrollments
