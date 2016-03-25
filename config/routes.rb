@@ -13,6 +13,14 @@ Rails.application.routes.draw do
       resources :trainers, only: [:update, :show]
     end
 
+    resources :users do 
+      resources :user_roles
+    end
+
+    resources :roles do 
+      resources :user_roles
+    end
+
     resources :tags, only: [:create, :index, :show] do
       resources :routine_tags, only: [:create, :index, :show]
     end

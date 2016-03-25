@@ -93,40 +93,36 @@ angular.module('trainingProgram', [
                 templateUrl: '/assets/trainer/trainer-profile.html',
                 controller:  'trainerProfileCtrl'
             })
+            // Routines 
             .state('routines', {
                 url: '/routines', 
                 templateUrl: '/assets/trainer/training-routines.html',
                 controller: 'trainingRoutinesCtrl' 
-
             })
-            // Routines 
             .state('routines.id', {
-                url: '/:id',
-                templateUrl: '/assets/trainer/training-routine.html',  
-                controller: 'trainingRoutineCtrl' 
-                // views: {
-                //     // the main template will be placed here (relatively named)
-                //    '': {templateUrl: '/assets/training-routine.html', 
-                //         controller: 'trainingRoutineCtrl' 
-                //     }, 
-
-                //    // Absolutely targets the "workouts" view in this state,  routines.id 
-                //    'workouts@routines.id': { 
-                //         templateUrl: '/assets/trainer/workouts.html', 
-                //         controller: 'workoutsCtrl'
-                //     }, 
-                //     // Absolutely targets the "categories" view in this state,  routines.id
-                //    'categories@routines.id': {
-                //         templateUrl: '/assets/trainer/categories.html',
-                //         controller: 'categoriesCtrl'
-                //     },
-                //     // Absolutely targets the "training-sessions" view in this state,  routines.id
-                //     'training-sessions@routines.id': {
-                //         templateUrl: '/assets/trainer/training-sessions.html',
-                //         controller: 'trainingSessionsCtrl' 
-                //     }
-                // },
-               
+                url: '/:id', 
+                views: {
+                    // the main template will be placed here (relatively named)
+                   '': {
+                        templateUrl: '/assets/training-routine.html', 
+                        controller: 'trainingRoutineCtrl' 
+                    }, 
+                    // Absolutely targets the "categories" view in this state,  routines.id
+                   'categories@routines.id': {
+                        templateUrl: '/assets/trainer/categories.html',
+                        controller: 'categoriesCtrl'
+                    },
+                   // Absolutely targets the "workouts" view in this state,  routines.id 
+                   'workouts@routines.id': { 
+                        templateUrl: '/assets/trainer/workouts.html', 
+                        controller: 'workoutsCtrl'
+                    }, 
+                    // Absolutely targets the "training-sessions" view in this state,  routines.id
+                    'training-sessions@routines.id': {
+                        templateUrl: '/assets/trainer/training-sessions.html',
+                        controller: 'trainingSessionsCtrl' 
+                    }, 
+                },
             }) 
             // Exercises
             .state('categories', {
