@@ -1,19 +1,19 @@
 
-<div class="col-md-6">
+<div class="col-sm-6 col-md-6 col-lg-6 ">
 	<h1>{{routine.name}}</h1>
 	<p>{{routine.description}}</p>
 
 
 	<!-- Exercise template --> 
 	<div class="row">
-		<div ui-view="categories"></div>
+		<div ui-view='categories'></div>
 	</div>
 	<!-- Workouts --> 
 	<div class="row">
-		<div ui-view="workouts"></div>
-	</div>`
+		<div ui-view='workouts'></div>
+	</div>
 	<div class="row">
-		<div ui-view="training-sessions"></div>
+		<div ui-view='training-sessions'></div>
 	</div>
 </div>
 

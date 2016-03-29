@@ -83,7 +83,7 @@ angular.module('trainingProgram', [
             //         templateUrl: 'arena.html',
             //         controller:  'challengesCtrl'
             //     }, 
-            //     'compete@challenge-account' : {
+            //     'compete.challenge-account' : {
             //         templateUrl: 'challenge-account.html',
             //         controller:  'bitcoinCtrl'
             //     }  
@@ -103,7 +103,7 @@ angular.module('trainingProgram', [
                 url: '/:id', 
                 views: {
                     // the main template will be placed here (relatively named)
-                   '': {
+                   'main': {
                         templateUrl: '/assets/training-routine.html', 
                         controller: 'trainingRoutineCtrl' 
                     }, 
@@ -121,8 +121,8 @@ angular.module('trainingProgram', [
                     'training-sessions@routines.id': {
                         templateUrl: '/assets/trainer/training-sessions.html',
                         controller: 'trainingSessionsCtrl' 
-                    }, 
-                },
+                    } 
+                }
             }) 
             // Exercises
             .state('categories', {
