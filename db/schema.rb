@@ -140,7 +140,6 @@ ActiveRecord::Schema.define(version: 20160325172710) do
     t.string   "description"
     t.integer  "cost"
     t.boolean  "free_trial"
-    t.integer  "free_trial_duration"
     t.string   "video_url"
     t.integer  "sessions_per_week"
   end

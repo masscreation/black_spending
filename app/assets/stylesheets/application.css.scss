@@ -366,6 +366,26 @@ input {
     font-weight: bold
 }
 
+div.training-week {
+    background-color: #999; 
+    border-radius: 10px; 
+    margin-bottom: 2px
+}
+
+div.training-session {
+    background-color: #000;
+    border-radius: 5px; 
+    border: #FFE200 solid 1px; 
+    margin: 2px; 
+    text-align: center; 
+    p {
+        color: #F7BE00; 
+        font-size: 10px; 
+        font-weight: normal
+
+    }
+}
+
 // .hideme.ng-hide {
 //     opacity: 0; 
 //     line-height: 0; 

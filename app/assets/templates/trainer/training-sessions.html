@@ -1,15 +1,44 @@
-<div>
-	<form ng-submit="createTrainingSession(training_session)">
-		<!-- Input for the session's number in routine --> 
-		<input type="text" ng-model="training_session.order_in_routine" placeholder="Session number">
+<div class="col-md-6">
+	<h2>Training Sessions</h2>
+	<!-- Training Session Form -->
+		<div class="row">
+			<div class="col-md-3">
+				<table>
+					<tr>
+						<th>Session Order: </th>
+						<td>{{training_sessions.length + 1}}</td>
+					</tr>
+					<tr>
+						<th>Description: </th>
+						<td>{{training_session.description}}</td>
+					</tr>
+				</table>
 
-		<!-- Input for the session's description --> 
-		<input type="text" ng-model="training_session.description">
-        
-		<button type="button" class="btn btn-primary btn-md" ng-click="createTrainingSession(session)">Build A New Training Session</button> 
-	</form>
+				<button class="btn btn-primary" ng-click="hideme = !hideme" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
+
+				<!-- Training Session Form --> 
+				<div class="hideme" ng-hide="!hideme">
+					<form>
+						<input name="session-type" ng-model="training_session.session_type" type="textarea" placeholder="session_type">
+						<br>
+						<input name="session-description" ng-model="training_session.description" type="textarea" placeholder="description">
+						<br>
+						<button type="button" class="btn btn-primary btn-md" ng-click="createTrainingSession(training_session)" >Add a Training Session</button>
+					</form>
+				</div>
+			</div>
+		</div> 
+		<!-- training sessions --> 
+		<div class="row training-week" ng-repeat="rows in chunkedData">
+			<div class="col-xs-2 col-sm-2 col-md-2 training-session" ng-repeat="session in rows">	
+				<p>Session <br> #{{session}}</p>
+			</div>
+		</div>
+		
 	
-	<!-- Calendar view for training sessions --> 
-	<div ui-calendar="uiConfig.calendar" ng-model="eventSources">
+	<div class="col-md-3">
+		<ui-view="training-session"><ui-view>
+	</div>
+	
 </div>
 

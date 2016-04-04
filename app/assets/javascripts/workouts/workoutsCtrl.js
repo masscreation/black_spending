@@ -10,7 +10,7 @@ angular.module('trainingProgram')
 	console.log("workouts controller"); 
 
 	var baseWorkouts = Restangular.all('api/workouts'); 
-	console.log(baseWorkouts)
+	console.log('workouts: ', baseWorkouts); 
 	
 	
 	baseWorkouts.getList().then(function (workouts) {

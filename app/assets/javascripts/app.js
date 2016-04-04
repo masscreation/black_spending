@@ -2,7 +2,8 @@ angular.module('trainingProgram', [
     'ui.router', 
     'templates', 
     'Devise', 
-    'ui.calendar', 
+    'ui.calendar',
+    // 'ui.bootstrap', 
     'restangular', 
     'youtube-embed', 
     'xeditable',
@@ -100,17 +101,27 @@ angular.module('trainingProgram', [
                 controller: 'trainingRoutinesCtrl' 
             })
             .state('routines.id', {
-                url: '/:id', 
+                url: '/:id',
+                parent: 'routines', 
                 views: {
                     // the main template will be placed here (relatively named)
-                   'main': {
-                        templateUrl: '/assets/training-routine.html', 
+                   '': {
+                        templateUrl: '/assets/trainer/training-routine.html', 
                         controller: 'trainingRoutineCtrl' 
                     }, 
                     // Absolutely targets the "categories" view in this state,  routines.id
                    'categories@routines.id': {
-                        templateUrl: '/assets/trainer/categories.html',
-                        controller: 'categoriesCtrl'
+                        views: {
+                            '': {
+                                    templateUrl: '/assets/trainer/categories.html',
+                                    controller: 'categoriesCtrl'
+                                },
+                            'category@routines.id': {
+                                    templateUrl: '/assets/trainer/category.html',
+                                    controller: 'categoryCtrl'
+                            }
+                        }
+                        
                     },
                    // Absolutely targets the "workouts" view in this state,  routines.id 
                    'workouts@routines.id': { 
@@ -125,26 +136,26 @@ angular.module('trainingProgram', [
                 }
             }) 
             // Exercises
-            .state('categories', {
-                url: '/categories', 
-            	templateUrl: '/assets/trainer/categories.html',
-            	controller: 'categoriesCtrl'
-             })
-            .state('categories.id', {
-                url: '/:id',
-                templateUrl: '/assets/trainer/category.html',
-                controller: 'categoryCtrl' 
-            })
-            .state('workouts', {
-                url: '/workouts', 
-                templateUrl: '/assets/trainer/workouts.html', 
-                controller: 'workoutsCtrl'
-            })
-            .state('workouts.id', {
-                url: '/:id', 
-                templateUrl: '/assets/trainer/workout.html', 
-                controller: 'workoutCtrl'
-            })
+            // .state('categories', {
+            //     url: '/categories', 
+            // 	templateUrl: '/assets/trainer/categories.html',
+            // 	controller: 'categoriesCtrl'
+            //  })
+            // .state('categories.id', {
+            //     url: '/:id',
+            //     templateUrl: '/assets/trainer/category.html',
+            //     controller: 'categoryCtrl' 
+            // })
+            // .state('workouts', {
+            //     url: '/workouts', 
+            //     templateUrl: '/assets/trainer/workouts.html', 
+            //     controller: 'workoutsCtrl'
+            // })
+            // .state('workouts.id', {
+            //     url: '/:id', 
+            //     templateUrl: '/assets/trainer/workout.html', 
+            //     controller: 'workoutCtrl'
+            // })
             .state('register', {
                 url: '/register',
                 templateUrl: '/assets/_register.html',

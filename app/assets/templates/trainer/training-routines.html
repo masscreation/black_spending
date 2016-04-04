@@ -1,7 +1,7 @@
 <br> 
 <div class="col-md-12">
 	<h1 style="text-align:center;" class="dashboard">Trainer Dashboard</h1>
-	<div class="col-md-6">
+	<div class="col-md-4">
 
 		<h2>Training Routines</h2>
 		<ul ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
@@ -16,7 +16,7 @@
 				<p><span class="embolden">Description: </span>{{routine.description}}</p>
 				
 				<p><span class="embolden">Focus (tags):</b>
-				<span ng-repeat="tag in routine.tags" valign="top">{{tag.name + " "}}</span>
+				<span ng-repeat="tag in routine.tags" valign="top">{{tag.name + " "}}</span></p>
 
 				<p><span class="embolden">Duration: </span> {{routine.duration}} <span ng-if="routine.duration">weeks</span></p>
 
@@ -74,7 +74,8 @@
 		</div> <!-- end of new routine --> 
 	</div> 
 	
-	<ui-view='main'></ui-view>
+<div>
+	<ui-view></ui-view>
 </div>
 <script>
 

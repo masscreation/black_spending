@@ -21,6 +21,7 @@
 //= require ng-tags-input
 
 //= require angular-ui-router
+
 //= require angular-ui-calendar
 //= require angular-rails-templates
 //= require angular-sanitize

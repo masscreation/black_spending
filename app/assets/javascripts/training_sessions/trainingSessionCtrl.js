@@ -1,17 +1,33 @@
 angular.module('trainingProgram')
 .controller('trainingSessionsCtrl', [
-	'$scope', 
-	'Restangular', 
-	function ($scope, Restangular) {
+	'$scope',
+	'$stateParams', 
+	'Restangular',
+	'uiCalendarConfig', 
+	function ($scope, $stateParams, Restangular, uiCalendarConfig) {
 	
 	console.log('trainingSessionsCtlr'); 
 
 	// Just ONE GET to /training_routines/123/training_sessions
-	Restangular.one('api/training_routines', $stateParams.id).getList('training_sessions')
+	$scope.training_routine = Restangular.one('api/training_routines', $stateParams.id); 
+
+	$scope.training_routine.getList('training_sessions')
 	.then( function (training_sessions) {
 		// Tag training sessions to a $scope for 
 		// inclusion in the view
-		$scope.training_sessions = baseTrainingSessions;
+		console.log('training sessions: ', training_sessions); 
+		$scope.training_sessions = training_sessions;
+
+		function chunk(arr, size) {
+		  var newArr = [];
+		  for (var i=0; i<arr.length; i+=size) {
+		    newArr.push(arr.slice(i, i+size));
+		  }
+		  return newArr;
+		}
+		console.log("chunked sessions: ", chunk(training_sessions, 7)); 
+		$scope.chunkedData = chunk(training_sessions, $scope.training_routine.sessions_per_week)
+
 	});
 	 
 	 //Create training sessions
@@ -23,7 +39,7 @@ angular.module('trainingProgram')
 		
 		//Declare variables that represent session order and period
 		var sessionOrder = $scope.training_session.order_in_routine;
-		var sessionPeriod = $scope.training_sessios.period_type_id; 
+		var sessionPeriod = $scope.training_session.period_type_id; 
 
 		// Determine what period the session is tagged in 
 		// by the session's order in the training routine. 
@@ -41,7 +57,7 @@ angular.module('trainingProgram')
 		
 		// Clear training training_session form 
 		$scope.training_session.session_type = ''; 
- 		$scope.training_session.focus = ''; 
+ 		$scope.training_session.description = ''; 
  		$scope.training_session.duration = ''
 	}; 
 
