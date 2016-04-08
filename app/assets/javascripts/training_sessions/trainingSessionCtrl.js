@@ -9,26 +9,31 @@ angular.module('trainingProgram')
 	console.log('trainingSessionsCtlr'); 
 
 	// Just ONE GET to /training_routines/123/training_sessions
-	$scope.training_routine = Restangular.one('api/training_routines', $stateParams.id); 
+	$scope.training_routine = Restangular.one('api/training_routines', $stateParams.id).get()
+	.then(function (routine) {
 
-	$scope.training_routine.getList('training_sessions')
-	.then( function (training_sessions) {
-		// Tag training sessions to a $scope for 
-		// inclusion in the view
-		console.log('training sessions: ', training_sessions); 
-		$scope.training_sessions = training_sessions;
+		$scope.training_routine = routine
 
-		function chunk(arr, size) {
-		  var newArr = [];
-		  for (var i=0; i<arr.length; i+=size) {
-		    newArr.push(arr.slice(i, i+size));
-		  }
-		  return newArr;
-		}
-		console.log("chunked sessions: ", chunk(training_sessions, 7)); 
-		$scope.chunkedData = chunk(training_sessions, $scope.training_routine.sessions_per_week)
+		$scope.training_routine.getList('training_sessions').then(function (training_sessions) {
+			
+			$scope.training_sessions = training_sessions
 
-	});
+			function training_week(arr, size) {
+			  var newArr = [];
+			  for (var i=0; i<arr.length; i+=size) {
+			    newArr.push(arr.slice(i, i+size));
+			  }
+			  console.log('newArray: ', newArr);
+			  return newArr
+			}
+
+			$scope.weeklySessions = training_week($scope.training_sessions, $scope.training_routine.sessions_per_week);
+			console.log('sessions_per_week: ', $scope.training_routine.id, $scope.training_routine.sessions_per_week);  
+			console.log('training routine: ', $scope.training_routine)
+		})
+
+	});  
+
 	 
 	 //Create training sessions
 	$scope.createTrainingSession = function(training_session) {

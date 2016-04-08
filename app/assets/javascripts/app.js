@@ -111,14 +111,15 @@ angular.module('trainingProgram', [
                     }, 
                     // Absolutely targets the "categories" view in this state,  routines.id
                    'categories@routines.id': {
+                        parent: 'routines.id', 
                         views: {
                             '': {
-                                    templateUrl: '/assets/trainer/categories.html',
-                                    controller: 'categoriesCtrl'
-                                },
-                            'category@routines.id': {
-                                    templateUrl: '/assets/trainer/category.html',
-                                    controller: 'categoryCtrl'
+                                templateUrl: '/assets/trainer/categories.html',
+                                controller: 'categoriesCtrl'
+                            }, 
+                            'categories.category@routines.id': {
+                                templateUrl: '/assets/trainer/category.html', 
+                                controller: 'categoryCtrl'
                             }
                         }
                         

@@ -29,9 +29,9 @@
 			</div>
 		</div> 
 		<!-- training sessions --> 
-		<div class="row training-week" ng-repeat="rows in chunkedData">
+		<div class="row training-week" ng-repeat="rows in weeklySessions">
 			<div class="col-xs-2 col-sm-2 col-md-2 training-session" ng-repeat="session in rows">	
-				<p>Session <br> #{{session}}</p>
+				<p>Session <br> #{{session.order_in_routine}}</p>
 			</div>
 		</div>
 		

@@ -7,14 +7,14 @@
 		</li>
 		<h4>Exercise subcategories</h4>
 		<ul>
-			<li ui-sref-active="selected" ng-repeat="category in subcategories" ><a ui-sref="categories.id@routines.id({id: category.id })">{{category.name}}</a></li>
+			<li ui-sref-active="selected" ng-repeat="category in subcategories" ><a ui-sref="({id: category.id })">{{category.name}}</a></li>
 		</ul>
 			
 
 	</div>
 	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 	<!-- category.html loads here --> 
-		<div ui-view="category"></div>
+		<div ui-view=".category"></div>
 	</div>
 
 </div>
