@@ -1,21 +1,24 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<br>
-	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 categories">
 		<h3>Exercise Categories</h3>
-		<li ui-sref-active="selected" ng-repeat="category in primecategories | orderBy:'ancestry'">
-			<a ui-sref="categories.id@routines.id({id: category.id })">{{category.name}}</a>
-		</li>
-		<h4>Exercise subcategories</h4>
-		<ul>
-			<li ui-sref-active="selected" ng-repeat="category in subcategories" ><a ui-sref="({id: category.id })">{{category.name}}</a></li>
-		</ul>
+		<div class="primecategories">
+			<div ui-sref-active="selected" ng-repeat="category in primecategories | orderBy:'ancestry'" >
+			<a class="btn btn-xs btn-default" ui-sref="categories.id({id: category.id})">{{category.name}}</a>
+			</div>
+		</div>
 			
-
+		<h4>Exercise subcategories</h4>
+		<div class="subcategories">
+			<div ui-sref-active="selected" ng-repeat="category in subcategories" ><a class="btn btn-xs btn-default" ui-sref="categories.id({id: category.id})">{{category.name}}</a></div>
+		</div>
+			
 	</div>
-	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-	<!-- category.html loads here --> 
-		<div ui-view=".category"></div>
+	<div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+		<!-- category.html loads here --> 
+		<div ui-view></div>
 	</div>
+	
 
 </div>
 	

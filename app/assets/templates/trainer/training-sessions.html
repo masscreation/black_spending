@@ -1,23 +1,23 @@
-<div class="col-md-6">
+<div class="col-xs-12 col-sm-12 col-md-8">
 	<h2>Training Sessions</h2>
+	
+	<!-- training sessions --> 
+		<div class="row training-week" ng-repeat="rows in weeklySessions">
+			<div class="col-xs-2 col-sm-2 col-md-2 training-session" ng-repeat="session in rows">	
+				<p>Session <br> #{{session.order_in_routine}}</p>
+			</div>
+		</div>
+
 	<!-- Training Session Form -->
 		<div class="row">
-			<div class="col-md-3">
-				<table>
-					<tr>
-						<th>Session Order: </th>
-						<td>{{training_sessions.length + 1}}</td>
-					</tr>
-					<tr>
-						<th>Description: </th>
-						<td>{{training_session.description}}</td>
-					</tr>
-				</table>
+			<div class="col-md-4">
 
 				<button class="btn btn-primary" ng-click="hideme = !hideme" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
 
 				<!-- Training Session Form --> 
 				<div class="hideme" ng-hide="!hideme">
+					<h4>Session Order: {{training_sessions.length + 1}}</h4>
+					<h4>Description: {{training_session.description}}</h4>
 					<form>
 						<input name="session-type" ng-model="training_session.session_type" type="textarea" placeholder="session_type">
 						<br>
@@ -28,12 +28,6 @@
 				</div>
 			</div>
 		</div> 
-		<!-- training sessions --> 
-		<div class="row training-week" ng-repeat="rows in weeklySessions">
-			<div class="col-xs-2 col-sm-2 col-md-2 training-session" ng-repeat="session in rows">	
-				<p>Session <br> #{{session.order_in_routine}}</p>
-			</div>
-		</div>
 		
 	
 	<div class="col-md-3">

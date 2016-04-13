@@ -29,7 +29,7 @@ angular.module('trainingProgram')
 	//Create new workouts
 	$scope.createWorkout = function (workout) {
 		// Tag workout to current logged in trainer
-		$scope.workout.trainer_id = currentUser().id
+		$scope.workout.user_id = currentUser().id
 		var allWorkouts = Restangular.all('api/workouts');
 		allWorkouts.post(workout); 
 

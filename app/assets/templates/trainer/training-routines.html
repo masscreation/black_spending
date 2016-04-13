@@ -5,12 +5,16 @@
 
 		<h2>Training Routines</h2>
 		<ul ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
-			<li><a ui-sref="routines.id({id: routine.id })">{{routine.name}}</a></li>
+			<li><a class="btn btn-sm btn-default" ui-sref="routines.id({id: routine.id })">{{routine.name}}</a></li>
 		</ul>
 		
 		
 		<div class="routines"><!-- new routine --> 
-			<div> <!-- routine info --> 
+			
+			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Build A New Training Routine"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
+			
+			<div class="hideme" ng-hide="!hideme"><!-- hideable routine form --> 
+				<div> <!-- routine info --> 
 				<p><span class="embolden">Name: </span>{{routine.name}}</p> 
 
 				<p><span class="embolden">Description: </span>{{routine.description}}</p>
@@ -36,11 +40,7 @@
 
 				<p ng-if="routine.free_trial"><span class="embolden">Trial Period: </span> {{routine.free_trial_duration}} <span ng-if="routine.free_trial_duration">weeks</span></p>
 
-			</div> <!-- end of routine info --> 
-
-			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Build A New Training Routine"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
-			
-			<div class="hideme" ng-hide="!hideme"><!-- hideable routine form --> 
+			</div> <!-- end of routine info -->
 				<form>
 					<input name="routine-name" ng-model='routine.name' type="text" placeholder="name">
 					<br>

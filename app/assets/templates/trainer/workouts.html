@@ -1,5 +1,6 @@
-<div class="col-md-6">
-	<div class="col-md-3">
+<div class="col-md-8">
+	<div class="col-md-4">
+		<!-- Workouts --> 
 		<div>
 			<br>
 			<h2>Workouts</h2>
@@ -10,21 +11,16 @@
 	
 		<!-- Routine Form --> 
 		<div>
-			<table>
-				<tr>
-					<th>Name: </th>
-					<td>{{workout.name}}</td>
-				</tr>
-				<tr>
-					<th>Description: </th>
-					<td>{{workout.description}}</td>
-				</tr>
-			</table>
+		
+			
+			
 
 			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
 
 			<!-- Workout Form --> 
 			<div class="hideme" ng-hide="!hideme">
+				<h4>Name: {{workout.name}}</h4>
+				<h4>Description: {{workout.description}}</h4>
 				<form>
 					<input name="workout-name" ng-model='workout.name' type="text" placeholder="name">
 					<br>
@@ -35,7 +31,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-sm-4">
 		<ui-view="workout"></ui-view>
 	</div>
 	

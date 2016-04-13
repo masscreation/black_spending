@@ -41,8 +41,8 @@ angular.module('trainingProgram', [
                 controller:  'authCtrl', 
                 onEnter: ['$state', 'Auth', function ($state, Auth) {
                     Auth.currentUser().then(function (user) {
-                        console.log('user type:', user.type); 
-                        if (user.type === "Athlete") {
+                        console.log('user role:', user.role); 
+                        if (user.role === "Athlete") {
                             $state.go('athlete-profile')
                         } else {
                             $state.go('trainer-profile')
@@ -110,19 +110,13 @@ angular.module('trainingProgram', [
                         controller: 'trainingRoutineCtrl' 
                     }, 
                     // Absolutely targets the "categories" view in this state,  routines.id
-                   'categories@routines.id': {
-                        parent: 'routines.id', 
-                        views: {
-                            '': {
-                                templateUrl: '/assets/trainer/categories.html',
-                                controller: 'categoriesCtrl'
-                            }, 
-                            'categories.category@routines.id': {
-                                templateUrl: '/assets/trainer/category.html', 
-                                controller: 'categoryCtrl'
-                            }
-                        }
-                        
+                   'categories@routines.id': { 
+                        templateUrl: '/assets/trainer/categories.html',
+                        controller: 'categoriesCtrl'
+                    }, 
+                    'category@categories@routines.id': {        
+                        templateUrl: '/assets/trainer/category.html', 
+                        controller: 'categoryCtrl'
                     },
                    // Absolutely targets the "workouts" view in this state,  routines.id 
                    'workouts@routines.id': { 
@@ -137,26 +131,26 @@ angular.module('trainingProgram', [
                 }
             }) 
             // Exercises
-            // .state('categories', {
-            //     url: '/categories', 
-            // 	templateUrl: '/assets/trainer/categories.html',
-            // 	controller: 'categoriesCtrl'
-            //  })
-            // .state('categories.id', {
-            //     url: '/:id',
-            //     templateUrl: '/assets/trainer/category.html',
-            //     controller: 'categoryCtrl' 
-            // })
-            // .state('workouts', {
-            //     url: '/workouts', 
-            //     templateUrl: '/assets/trainer/workouts.html', 
-            //     controller: 'workoutsCtrl'
-            // })
-            // .state('workouts.id', {
-            //     url: '/:id', 
-            //     templateUrl: '/assets/trainer/workout.html', 
-            //     controller: 'workoutCtrl'
-            // })
+            .state('categories', {
+                url: '/categories', 
+            	templateUrl: '/assets/trainer/categories.html',
+            	controller: 'categoriesCtrl'
+             })
+            .state('categories.id', {
+                url: '/:id',
+                templateUrl: '/assets/trainer/category.html',
+                controller: 'categoryCtrl' 
+            })
+            .state('workouts', {
+                url: '/workouts', 
+                templateUrl: '/assets/trainer/workouts.html', 
+                controller: 'workoutsCtrl'
+            })
+            .state('workouts.id', {
+                url: '/:id', 
+                templateUrl: '/assets/trainer/workout.html', 
+                controller: 'workoutCtrl'
+            })
             .state('register', {
                 url: '/register',
                 templateUrl: '/assets/_register.html',
