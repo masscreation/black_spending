@@ -4,9 +4,9 @@
 	<div class="col-md-4">
 
 		<h2>Training Routines</h2>
-		<ul ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
-			<li><a class="btn btn-sm btn-default" ui-sref="routines.id({id: routine.id })">{{routine.name}}</a></li>
-		</ul>
+		<div ui-sref-active="selected" ng-repeat="routine in routines | orderBy: 'name'">
+			<a class="btn btn-sm btn-default" ui-sref="routines.id({id: routine.id })">{{routine.name}}</a>
+		</div>
 		
 		
 		<div class="routines"><!-- new routine --> 

@@ -19,7 +19,7 @@ angular.module('trainingProgram')
 		// display
 
 		if (category.ancestry !== null ) {
-			ancestryArray = category.ancestry.split("/"); 
+			var ancestryArray = category.ancestry.split("/"); 
 			ancestryArray.forEach(function (id) {
 				$scope.parents = [];
 				Restangular.one('api/categories', parseInt(id)).get()

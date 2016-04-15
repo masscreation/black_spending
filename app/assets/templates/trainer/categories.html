@@ -4,13 +4,13 @@
 		<h3>Exercise Categories</h3>
 		<div class="primecategories">
 			<div ui-sref-active="selected" ng-repeat="category in primecategories | orderBy:'ancestry'" >
-			<a class="btn btn-xs btn-default" ui-sref="categories.id({id: category.id})">{{category.name}}</a>
+				<a class="btn btn-xs btn-default" ui-sref="categories.id@routines.id({id: category.id})">{{category.name}}</a>
 			</div>
 		</div>
 			
 		<h4>Exercise subcategories</h4>
 		<div class="subcategories">
-			<div ui-sref-active="selected" ng-repeat="category in subcategories" ><a class="btn btn-xs btn-default" ui-sref="categories.id({id: category.id})">{{category.name}}</a></div>
+			<div ui-sref-active="selected" ng-repeat="category in subcategories" ><a class="btn btn-xs btn-default" ui-sref="categories.id@routines.id({id: category.id})">{{category.name}}</a></div>
 		</div>
 			
 	</div>

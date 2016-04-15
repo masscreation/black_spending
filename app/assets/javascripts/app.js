@@ -114,7 +114,7 @@ angular.module('trainingProgram', [
                         templateUrl: '/assets/trainer/categories.html',
                         controller: 'categoriesCtrl'
                     }, 
-                    'category@categories@routines.id': {        
+                    'categories.id@routines.id': {        
                         templateUrl: '/assets/trainer/category.html', 
                         controller: 'categoryCtrl'
                     },
@@ -136,11 +136,11 @@ angular.module('trainingProgram', [
             	templateUrl: '/assets/trainer/categories.html',
             	controller: 'categoriesCtrl'
              })
-            .state('categories.id', {
-                url: '/:id',
-                templateUrl: '/assets/trainer/category.html',
-                controller: 'categoryCtrl' 
-            })
+            // .state('categories.id', {
+            //     url: '/:id',
+            //     templateUrl: '/assets/trainer/category.html',
+            //     controller: 'categoryCtrl' 
+            // })
             .state('workouts', {
                 url: '/workouts', 
                 templateUrl: '/assets/trainer/workouts.html', 
