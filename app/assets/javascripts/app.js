@@ -114,7 +114,7 @@ angular.module('trainingProgram', [
                         templateUrl: '/assets/trainer/categories.html',
                         controller: 'categoriesCtrl'
                     }, 
-                    'categories.id@routines.id': {        
+                    'categories.id@routines.id': {         
                         templateUrl: '/assets/trainer/category.html', 
                         controller: 'categoryCtrl'
                     },
@@ -122,13 +122,19 @@ angular.module('trainingProgram', [
                    'workouts@routines.id': { 
                         templateUrl: '/assets/trainer/workouts.html', 
                         controller: 'workoutsCtrl'
-                    }, 
+                    },
                     // Absolutely targets the "training-sessions" view in this state,  routines.id
                     'training-sessions@routines.id': {
                         templateUrl: '/assets/trainer/training-sessions.html',
                         controller: 'trainingSessionsCtrl' 
                     } 
                 }
+            })
+            // Training Sessions
+            .state('routines.id.training-sessions', {
+                url: '/:id/training-sessions', 
+                templateUrl: '/assets/trainer/training-sessions.html',
+                controller: 'trainingSessionsCtrl' 
             }) 
             // Exercises
             .state('categories', {
@@ -136,11 +142,11 @@ angular.module('trainingProgram', [
             	templateUrl: '/assets/trainer/categories.html',
             	controller: 'categoriesCtrl'
              })
-            // .state('categories.id', {
-            //     url: '/:id',
-            //     templateUrl: '/assets/trainer/category.html',
-            //     controller: 'categoryCtrl' 
-            // })
+            .state('categories.id', {
+                url: '/:id',
+                templateUrl: '/assets/trainer/category.html',
+                controller: 'categoryCtrl' 
+            })
             .state('workouts', {
                 url: '/workouts', 
                 templateUrl: '/assets/trainer/workouts.html', 

@@ -1,5 +1,8 @@
-<div>
+<div ng-repeat="training-session in routine.training_sessions">
 	<h3>{{training_session.training_routine.name}} Session #{{training_session.order_in_routine}}</h3>
 
+	<div ng-repeat="exercise in training-session.workout_exercises">
+		{{exercise.exercise.name}}
+	</div>
 	
 </div>

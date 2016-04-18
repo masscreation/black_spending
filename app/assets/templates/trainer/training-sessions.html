@@ -3,8 +3,8 @@
 	
 	<!-- training sessions --> 
 		<div class="row training-week" ng-repeat="rows in weeklySessions">
-			<div class="col-xs-2 col-sm-2 col-md-2 training-session" ng-repeat="session in rows">	
-				<p>Session <br> #{{session.order_in_routine}}</p>
+			<div ui-sref="routines.id.training-sessions.id({id: training-session.id})" class="col-xs-2 col-sm-2 col-md-2 btn btn-xs btn-default training-session" ng-repeat="session in rows">
+				Session <br> {{session.order_in_routine}}
 			</div>
 		</div>
 
@@ -31,7 +31,7 @@
 		
 	
 	<div class="col-md-3">
-		<ui-view="training-session"><ui-view>
+		<ui-view><ui-view>
 	</div>
 	
 </div>

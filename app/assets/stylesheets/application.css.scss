@@ -172,14 +172,15 @@ a.btn.btn-default {
     border-color: #000;
 }
 .btn-default {
-    color: #FFE200;
+    color: #F7BE00;
     background-color: #000;
     border-color: #FFF
 }
 .btn-default:hover {
     color: #000;
     background-color: #FFE200;
-    border-color: #000
+    border-color: #000; 
+    box-shadow: 5px 5px 5px #333
 }
 // .btn-default:hover; after {
 //     content: 'Sign Up'
@@ -381,7 +382,7 @@ div.training-session {
     background-color: #000;
     border-radius: 5px; 
     border: #FFE200 solid 1px; 
-    margin: 2px; 
+    margin: 0px; 
     text-align: center; 
     padding: 1px;
     p {
@@ -395,7 +396,7 @@ div.training-session:hover {
     background-color: #FFE200; 
     border-radius: 10px;
     border: #000 solid 1px;
-    box-shadow: 5px 5px 5px teal; 
+    box-shadow: 5px 5px 5px #333; 
      p {
         color: #000; 
         font-size: 8px; 
