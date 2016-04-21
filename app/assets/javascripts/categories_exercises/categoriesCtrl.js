@@ -27,19 +27,19 @@ angular.module('trainingProgram')
 
 		})
 
-		$scope.primecategories.forEach(function (primecategory) {
-			$scope.primecategory = primecategory; 
-			$scope.primecategory.children = [];
-			$scope.subcategories.forEach(function (subcategory) {
-				subcategory.ancestryArray = subcategory.ancestry.split("/"); 
-				subcategory.ancestryArray.forEach(function (id) {
-					if (subcategory.id === id) {
-						$scope.primecategory.children.push(subcategory)
-					}
-				})
-			})
-			console.log('primecategory children:', $scope.primecategory.children)
-		})
+		// $scope.primecategories.forEach(function (primecategory) {
+		// 	$scope.primecategory = primecategory; 
+		// 	$scope.primecategory.children = [];
+		// 	$scope.subcategories.forEach(function (subcategory) {
+		// 		subcategory.ancestryArray = subcategory.ancestry.split("/"); 
+		// 		subcategory.ancestryArray.forEach(function (id) {
+		// 			if (subcategory.id === id) {
+		// 				$scope.primecategory.children.push(subcategory)
+		// 			}
+		// 		})
+		// 	})
+		// 	console.log('primecategory children:', $scope.primecategory.children)
+		// })
 		console.log('primecategories: ', $scope.primecategories);
 		console.log('subcategories: ', $scope.subcategories)
 	})

@@ -4,8 +4,9 @@ angular.module('trainingProgram')
 	'$http', 
 	'$stateParams', 
 	'Restangular', 
-	'Auth', 
-	function ($scope, $http, $stateParams, Restangular, Auth) {
+	'Auth',
+	'$state',  
+	function ($scope, $http, $stateParams, Restangular, Auth, $state) {
 	
 	console.log("workouts controller"); 
 
@@ -29,14 +30,25 @@ angular.module('trainingProgram')
 	//Create new workouts
 	$scope.createWorkout = function (workout) {
 		// Tag workout to current logged in trainer
-		$scope.workout.user_id = currentUser().id
 		var allWorkouts = Restangular.all('api/workouts');
-		allWorkouts.post(workout); 
-
-		// Clear workout form
+		$scope.workout.user_id = $scope.trainer.id; 
+		allWorkouts.post(workout).then(function() {
+			// Clear workout form
 		$scope.workout.name = '';
 		$scope.workout.description = ''
+		}); 
+		$state.go('workouts')
 	}
+	$scope.deleteWorkout = function (workout, $state) {
+		console.log('deleting workout...'); 
+		Restangular.one('api/workouts', workout.id).get().then(function (workout) {
+			workout.remove().then(function() {
+				console.log('workout deleted');
+				$state.go('workouts') 
+			})
+		})
+	}
+
 }])
 .controller('workoutCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
 

@@ -13,17 +13,11 @@
 		<p><b>This is a primary category. Select a sub-category to create exercises.</b></p>
 	</div> 
 	  
-		<div ng-hide="!category.ancestry">
-			<!-- <td><h4>Description &nbsp;</h4></td>
-			<td><h4>Instructions &nbsp;</h4></td> -->
-		</div>
-	
 	<div ng-repeat="exercise in category.exercises | orderBy:'name'">
 			
 			<!-- Button trigger modal -->
 		<a href="#" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> <button class="btn btn-primary">{{exercise.name}}</button> </a>
 
-	
 		<!-- Exercise Modal Directive --> 
 		<div class="modal fade" id="{{exercise.id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">

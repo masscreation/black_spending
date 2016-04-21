@@ -1,20 +1,16 @@
-
-<div class="col-sm-8 col-md-8 col-lg-8 ">
-	<h1>{{routine.name}}</h1>
+<div>
+	<h3>{{routine.name}}</h3>
 	<p>{{routine.description}}</p>
-
-
-	<!-- Exercise template --> 
-	<div class="row">
-		<div ui-view='categories'></div>
-	</div>
+	<!-- Training sessions template --> 
+	<a ui-sref='.training-sessions'>Training sessions</a>
+	<ui-view></ui-view>
 	<!-- Workouts --> 
-	<div class="row">
-		<div ui-view='workouts'></div>
-	</div>
-	<div class="row">
-		<div ui-view='training-sessions'></div>
-	</div>
+	<div ui-view='workouts'></div>
+	<!-- Exercise template --> 
+	<div ui-view='categories'></div>
+	
 </div>
+
+
 
 

@@ -66,11 +66,16 @@ angular.module('trainingProgram')
  		$scope.training_session.duration = ''
 	}; 
 
-
 }])
-.controller('trainingSessionCtr', ['$scope', 'Restangular', function ($scope, Restangular) {
+.controller('trainingSessionCtrl', ['$scope', 'Restangular', '$stateParams', function ($scope, Restangular, $stateParams) {
 	
 	console.log('trainingSessionCtrl'); 
+	// Grab a single training_session
+	Restangular.one('api/training_sessions', $stateParams.id).get()
+	.then(function (training_session) {
+		$scope.training_session = training_session; 
+		console.log('training_session: ', training_session)
+	})
 
 	
 

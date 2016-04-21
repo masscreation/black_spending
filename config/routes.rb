@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       resources :enrollments
       resources :routine_tags 
     end
-    resources :workouts, only: [:create, :index, :show] 
+    resources :workouts, only: [:create, :index, :show, :destroy] 
 
     resources :categories, only: [:create, :index, :show] do 
       resources :exercises, only: [:create, :index, :show]
