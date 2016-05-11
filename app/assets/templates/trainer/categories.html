@@ -1,28 +1,46 @@
-	<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 categories">
-		<h4>Exercise Categories</h4>
-		<hr> 
+	<div class="col-xs-8 col-sm-4 col-md-4 col-lg-4 categories">
+		<!-- <h4>Exercise Categories</h4> -->
+		<!-- <hr> --> 
 		<div class="primecategories">
-			<div class="list-item" ui-sref-active="selected" ng-repeat="category in primecategories | orderBy:'ancestry'" >
-				<a class="btn btn-xs btn-default" ui-sref="routines.id.categories.id({id: category.id})">{{category.name}}</a>
-			</div>
+			<slick settings="slickConfig" infinite="true" slides-to-show=1 slides-to-scroll=1 >
+				<div class="list-item" ui-sref-active="selected" ng-repeat="category in primecategories | orderBy:'ancestry'" style="text-align: center;">
+					<div ui-sref="categories.id({id: category.id})">
+						<h3>{{ category.name }}</h3>
+					</div>
+						<hr>
+						<div class="subcategories"> 
+							<div ng-repeat="child in category.children" style="text-align: left;">
+				            	<a ui-sref-active="selected" ui-sref="categories.id({id: child.id})"><div class="category-list list-item" ng-include="'tpl.html'"></div></a> 
+				        	</div>
+			        	</div>
+				</div>
+			</slick>
 		</div>
+    		<button class="btn btn-sm btn-default toggle" ng-click="toggleSlick()">Toggle</button>
 			
-		<h4>Exercise subcategories</h4>
-		<hr> 
-		<div class="subcategories">
-			<div ui-sref-active="selected" ng-repeat="category in subcategories" ><a class="btn btn-xs btn-default" ui-sref="categories.id({id: category.id})">{{category.name}}</a></div>
-			<li ng-repeat="exercise in category.exercises">
-				{{exercise.name}}
-			</li>
-		</div>
+		
 	</div>
 	
 	
 	<div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
 		<!-- category.html loads here --> 
-		<!-- <ui-view></ui-view> -->
+		<ui-view></ui-view>
 	</div>
-	
+	<script type="text/ng-template" id="tpl.html">
+        {{ child.name }}
+    </script>
+    <script>
+		$( document ).ready(function() {
+
+			$(".toggle").click(); 
+			
+			$(".category-list").on("click", function() {
+				console.log('category clicked'); 
+				$('.ng-scope').addClass('animated slideInRight')
+			})
+
+		})
+	</script>
 
 	
 

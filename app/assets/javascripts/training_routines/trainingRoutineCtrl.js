@@ -40,6 +40,29 @@ angular.module('trainingProgram')
 		};  
 
 		var allRoutines = Restangular.all('api/training_routines');
+		// Slick carousel
+		$scope.slickConfig = {
+	    	
+	    	arrows: false, 
+	    	swipe: false, 
+	    	dots: false, 
+	    	autoplay: true,
+	    	draggable: true, 
+	    	autoplaySpeed: 2000,
+	    	method: {},
+	    	event: {
+	        	beforeChange: function (event, slick, currentSlide, nextSlide) {
+
+	        	},
+	        	afterChange: function (event, slick, currentSlide, nextSlide) {
+
+	        	}
+	    	}
+		};
+		$scope.toggleSlick = function() {
+	      $scope.slickConfig.enabled 
+	      console.log('toggleSlick ran')
+	    }
 
 		$scope.loadTags = function(query) {
 			return $http.get('api/tags?query=' + query)
@@ -48,21 +71,30 @@ angular.module('trainingProgram')
 		console.log('loadTags: ', $scope.loadTags());
 
 		$scope.createRoutine = function(routine) {
-			
 			// Associate training routine with current trainer
 			$scope.routine.trainer_id = user.id;
-
 			// Convert routine.tags (objects) names into strings and 
 			// and assign to routine.focus
-			routine.focus = function() {
-				var tags = [];
-				routine.tags.forEach(function(tag) {
-					tags.push(tag.name)
-				}); 
-				console.log(tags.join(", ")); 	
-				return tags.join(", "); 
-			}
+			console.log("routine focus split", routine.focus.split());
 
+			// Assign routine tags to a variable 
+			var allRoutineTags = Restangular.all('api/RoutineTags');
+			// Post to routine tags
+			routine.focus.forEach(function(tag) {
+				var routine_tag = {};
+				routine_tag.tag_id = tag.id; 
+				routine_tag.training_routine_id = routine.id; 
+				allRoutineTags.post(routine_tag); 
+				console.log(routine_tag)
+			});
+
+			
+
+
+
+			 
+			// Push routine to the scope
+			$scope.routines.push(routine);
 			// Post routine to routines
 			allRoutines.post(routine);
 			// Clear training routine form inputs

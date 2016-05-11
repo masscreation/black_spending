@@ -30,6 +30,8 @@
 //= require restangular
 
 //= require angular-youtube-mb
+//= require slick-carousel
+//= require angular-slick-carousel
 
 //= require angular-xeditable
 

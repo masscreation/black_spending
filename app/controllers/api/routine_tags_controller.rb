@@ -23,15 +23,15 @@ class Api::RoutineTagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def routine_tag
-      @tag ||= routine_tags.find(params[:id])
+      @routine_tag ||= routine_tags.find(params[:id])
     end
 
     def routine_tags
-      @tags ||= RoutineTag.all 
+      @routine_tags ||= RoutineTag.all 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def routine_tag_params
-      params.require(:routine_tag).permit(:tag_id, :training_routine_id)
+      params.require(:routine_tag).permit(:name, :tag_id, :training_routine_id)
     end
 end

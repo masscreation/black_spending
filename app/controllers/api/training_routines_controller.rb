@@ -38,6 +38,6 @@ class Api::TrainingRoutinesController < ApplicationController
 		end
 
 		def training_routine_params
-			params.require(:training_routine).permit(:name, :description, :focus, :trainer_id, :duration_weeks, :video_url, :cost, :free_trial, :free_trial_duration, :sessions_per_week)
+			params.require(:training_routine).permit(:name, :description, :focus, :user_id, :duration_weeks, :video_url, :cost, :free_trial, :free_trial_duration, :sessions_per_week)
 		end
 end

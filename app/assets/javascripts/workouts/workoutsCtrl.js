@@ -27,27 +27,52 @@ angular.module('trainingProgram')
 		$scope.trainer = user
 	})
 
+	// Slick carousel
+	$scope.slickConfig = {
+    	enabled: true,
+    	arrows: false, 
+    	swipe: false, 
+    	dots: false, 
+    	autoplay: true,
+    	draggable: true, 
+    	autoplaySpeed: 2000,
+    	method: {},
+    	event: {
+        	beforeChange: function (event, slick, currentSlide, nextSlide) {
+
+        	},
+        	afterChange: function (event, slick, currentSlide, nextSlide) {
+
+        	}
+    	}
+	};
+	$scope.toggleSlick = function() {
+      $scope.slickConfig.enabled 
+      console.log('toggleSlick ran')
+    }
+
 	//Create new workouts
 	$scope.createWorkout = function (workout) {
+		$scope.workouts.push(workout)
 		// Tag workout to current logged in trainer
 		var allWorkouts = Restangular.all('api/workouts');
-		$scope.workout.user_id = $scope.trainer.id; 
 		allWorkouts.post(workout).then(function() {
 			// Clear workout form
-		$scope.workout.name = '';
-		$scope.workout.description = ''
-		}); 
-		$state.go('workouts')
-	}
+			$scope.workout.name = '';
+			$scope.workout.description = ''
+		})
+
+	};
+
 	$scope.deleteWorkout = function (workout, $state) {
 		console.log('deleting workout...'); 
+		$scope.workouts.pop(workout); 
 		Restangular.one('api/workouts', workout.id).get().then(function (workout) {
 			workout.remove().then(function() {
 				console.log('workout deleted');
-				$state.go('workouts') 
 			})
 		})
-	}
+	}; 
 
 }])
 .controller('workoutCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
@@ -56,18 +81,13 @@ angular.module('trainingProgram')
 	.then(function (workout) {
 		$scope.workout = workout; 
 		console.log('Workout is:', workout);
-
-		$scope.workout.exercises = []; 
 		
 		$scope.workout.getList('workout_exercises').then(function (exercises) {
-			exercises.forEach(function (exercise) {
-				if (workout.id === exercise.workout_id) {
-					$scope.workout.exercises.push(exercise);
-					console.log($scope.workout.exercises) 
-				}
-			})
 			
+			$scope.workout_exercises = exercises
+			console.log('workout exercises', exercises)
 		})
 		
 	}); 
+
 }]); 

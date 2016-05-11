@@ -8,7 +8,7 @@ angular.module('trainingProgram')
 	function ($scope, $http, $stateParams, Restangular, $sce) {
 
 
-	console.log("category controller"); 
+	console.log("categoryCtrl"); 
 	
 	// Grab a single category
 	Restangular.one('api/categories', $stateParams.id).get()
@@ -46,12 +46,37 @@ angular.module('trainingProgram')
 			})
 		})
 	}); 
-
+	
 	$scope.playerVars = {
 		controls: 0,
 		rel: 0
 	};  
 	
+	// Slick carousel
+	$scope.slickConfig = {
+    	arrows: false, 
+    	swipe: false, 
+    	dots: false, 
+    	autoplay: true,
+    	draggable: true, 
+    	autoplaySpeed: 2000,
+    	method: {},
+    	event: {
+        	beforeChange: function (event, slick, currentSlide, nextSlide) {
+
+        	},
+        	afterChange: function (event, slick, currentSlide, nextSlide) {
+
+        	}
+    	}
+	};
+	$scope.toggleSlick = function() {
+      $scope.slickConfig.enabled 
+      console.log('toggleSlick ran')
+    }
+    
+    $scope.toggleSlick(); 
+
 	// Create exercise for this selected category
 	$scope.createExercise = function(exercise) {
 		var allExercises = Restangular.all('api/exercises');

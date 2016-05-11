@@ -24,25 +24,63 @@ angular.module('trainingProgram')
 				// subcategory = category;
 				$scope.subcategories.push(category)
 			}
-
 		})
-
-		// $scope.primecategories.forEach(function (primecategory) {
-		// 	$scope.primecategory = primecategory; 
-		// 	$scope.primecategory.children = [];
-		// 	$scope.subcategories.forEach(function (subcategory) {
-		// 		subcategory.ancestryArray = subcategory.ancestry.split("/"); 
-		// 		subcategory.ancestryArray.forEach(function (id) {
-		// 			if (subcategory.id === id) {
-		// 				$scope.primecategory.children.push(subcategory)
-		// 			}
-		// 		})
-		// 	})
-		// 	console.log('primecategory children:', $scope.primecategory.children)
-		// })
 		console.log('primecategories: ', $scope.primecategories);
-		console.log('subcategories: ', $scope.subcategories)
-	})
+	 	console.log('subcategories: ', $scope.subcategories);
+
+		$scope.primecategories.forEach(function (primecategory) {
+			$scope.primecategory = primecategory; 
+			$scope.primecategory.children = [];
+
+			$scope.subcategories.forEach(function (subcategory) {
+				subcategory.ancestryArray = subcategory.ancestry.split("/"); 
+				console.log('ancestryArray: ', subcategory.name, subcategory.ancestryArray); 
+				subcategory.ancestryArray.forEach(function (id) {
+					if ($scope.primecategory.id === parseInt(id)) {
+						$scope.primecategory.children.push(subcategory)
+					}
+				})
+			}); 
+			console.log('children: ', $scope.primecategory.name, $scope.primecategory.children)
+		})
+	}); 
+	
+		
+		
+	
+	// Slick carousel
+	$scope.slickConfig = {
+    	arrows: true, 
+    	dots: true, 
+    	autoplay: false,
+    	draggable: true, 
+    	autoplaySpeed: 2000,
+    	method: {},
+    	// event: {
+     //    	beforeChange: function (event, slick, currentSlide, nextSlide) {
+
+     //    	},
+     //    	afterChange: function (event, slick, currentSlide, nextSlide) {
+
+     //    	}
+    	// }
+	};
+	$scope.toggleSlick = function() {
+      $scope.slickConfig.enabled = !$scope.slickConfig.enabled;
+      console.log('toggleSlick ran')
+    }
+
+    $scope.toggleSlick(); 
+
+	$scope.numberLoaded = true;
+	$scope.numberUpdate = function(){
+        $scope.numberLoaded = false; // disable slick
+
+        //number update
+
+        $scope.numberLoaded = true; // enable slick
+    };
+	
 	
 
 }]); 

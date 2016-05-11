@@ -7,14 +7,19 @@ angular.module('trainingProgram', [
     'restangular', 
     'youtube-embed', 
     'xeditable',
-    'ngTagsInput'])
+    'ngTagsInput',
+    'slickCarousel'])
 	.config([
         '$stateProvider', 
         '$httpProvider',
         '$urlRouterProvider', 
         '$sceDelegateProvider', 
         'AuthProvider',
-		function ($stateProvider, $httpProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider) {
+        'slickCarouselConfig',
+		function ($stateProvider, $httpProvider, $urlRouterProvider, $sceDelegateProvider, AuthProvider, slickCarouselConfig) {
+
+            slickCarouselConfig.dots = true;
+            slickCarouselConfig.autoplay = true;
  
             // AuthProvider.registerMethod('POST');
             // AuthProvider.loginMethod('GET');
@@ -103,32 +108,32 @@ angular.module('trainingProgram', [
             // Routine
             .state('routines.id', {
                 url: '/:id',
+                templateUrl: '/assets/trainer/training-routine.html', 
+                controller: 'trainingRoutineCtrl'
+            })
+            // Routine Training Sessions
+            .state('routines.id.training-sessions', {
+                url: '/training-sessions',
                 views: {
-                 '': {
-                        templateUrl: '/assets/trainer/training-routine.html', 
-                        controller: 'trainingRoutineCtrl'
-                    },
+                    '': {
+                        templateUrl: '/assets/trainer/training-sessions.html',
+                        controller: 'trainingSessionsCtrl'
+                    },                
                     // Routine w/ Workouts 
-                    'workouts@routines.id': {  
+                    'workouts@routines.id.training-sessions': {  
                         templateUrl: '/assets/trainer/workouts.html', 
                         controller: 'workoutsCtrl'
                     },
                     // Routine w/ Categories 
-                    'categories@routines.id': { 
+                    'categories@routines.id.training-sessions': { 
                         templateUrl: '/assets/trainer/categories.html',
                         controller: 'categoriesCtrl'
                     }
-                }  
-            })
-            // Routine Training Sessions
-            .state('routines.id.training-sessions', {
-                url: '/training-sessions/',
-                templateUrl: '/assets/trainer/training-sessions.html',
-                controller: 'trainingSessionsCtrl'
+                }
             })
             // Routine Training Session
-            .state('routines.id.training-sessions.session', {
-                url: '/training-sessions/:session_id', 
+            .state('routines.id.training-sessions.session_id', {
+                url: '/:session_id', 
                 templateUrl: '/assets/trainer/training-session.html', 
                 controller: 'trainingSessionCtrl'
             }) 
@@ -138,7 +143,7 @@ angular.module('trainingProgram', [
             	templateUrl: '/assets/trainer/categories.html',
             	controller: 'categoriesCtrl'
              })
-            // // Category/Exercises
+             // Category/Exercises
             .state('categories.id', {
                 url: '/:id',
                 templateUrl: '/assets/trainer/category.html',

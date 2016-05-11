@@ -34,6 +34,20 @@ angular.module('trainingProgram')
 
 	});  
 
+	// Set Tab
+	$scope.tab = 1;
+    console.log('tab is: ',$scope.tab)
+    //  Tab: calendar view
+
+    $scope.setTab = function (tabId) {
+        $scope.tab = tabId;
+        // console.log('now tab is: ', $scope.tab)
+    };
+
+    $scope.isSet = function (tabId) {
+        return $scope.tab === tabId
+    };
+
 	 
 	 //Create training sessions
 	$scope.createTrainingSession = function(training_session) {
