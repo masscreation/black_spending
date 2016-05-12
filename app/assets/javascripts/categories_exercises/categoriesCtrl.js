@@ -45,9 +45,6 @@ angular.module('trainingProgram')
 		})
 	}); 
 	
-		
-		
-	
 	// Slick carousel
 	$scope.slickConfig = {
 		enabled: true, 
@@ -62,28 +59,17 @@ angular.module('trainingProgram')
         		
         	},
         	afterChange: function (event, slick, currentSlide, nextSlide) {
-        		console.log('event: ', event, 'slick: ', slick, 'currentSlide: ', currentSlide, 'nextSlide: ', nextSlide )
+        
         	}
     	}
 	};
+
 	$scope.toggleSlick = function() {
-      $scope.slickConfig.enabled = !$scope.slickConfig.enabled;
-      console.log('toggleSlick ran')
-    }
+      $scope.slickConfig.enabled = !$scope.slickConfig.enabled
+    }; 
 
     $scope.toggleSlick(); 
-
-	$scope.numberLoaded = true;
-	$scope.numberUpdate = function(){
-        $scope.numberLoaded = false; // disable slick
-
-        //number update
-
-        $scope.numberLoaded = true; // enable slick
-    };
 	
-	
-
 }]); 
 
  

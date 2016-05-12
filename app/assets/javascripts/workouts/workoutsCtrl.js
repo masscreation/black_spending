@@ -15,11 +15,14 @@ angular.module('trainingProgram')
 	
 	
 	baseWorkouts.getList().then(function (workouts) {
-		$scope.workouts = []; 
+		$scope.workouts = workouts; 
 		workouts.forEach(function (workout) {
-			if (workout.trainer_id === Auth.currentUser().id) {
-				$scope.workouts.push(workout) 
-			}
+			// if (workout.trainer_id === Auth.currentUser().id) {
+				// $scope.workouts.push(workout) 
+			// };
+			workout.getList('workout_exercises').then(function (exercises) {
+				workout.exercises = exercises 
+			})
 		})
 	}); 
 
@@ -81,10 +84,11 @@ angular.module('trainingProgram')
 	.then(function (workout) {
 		$scope.workout = workout; 
 		console.log('Workout is:', workout);
+		$scope.workout.workout_exercises = []; 
 		
 		$scope.workout.getList('workout_exercises').then(function (exercises) {
 			
-			$scope.workout_exercises = exercises
+			$scope.workout.workout_exercises.push(exercises)
 			console.log('workout exercises', exercises)
 		})
 		
