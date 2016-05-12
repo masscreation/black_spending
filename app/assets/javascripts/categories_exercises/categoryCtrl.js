@@ -54,19 +54,21 @@ angular.module('trainingProgram')
 	
 	// Slick carousel
 	$scope.slickConfig = {
-    	arrows: false, 
+    	arrows: true, 
+    	enabled: true, 
     	swipe: false, 
     	dots: false, 
-    	autoplay: true,
+    	autoplay: false,
     	draggable: true, 
     	autoplaySpeed: 2000,
+    	focusOnSelect: true, 
     	method: {},
     	event: {
         	beforeChange: function (event, slick, currentSlide, nextSlide) {
-
+        		
         	},
         	afterChange: function (event, slick, currentSlide, nextSlide) {
-
+        		$('input.slick-active').focus()
         	}
     	}
 	};

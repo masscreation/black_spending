@@ -50,20 +50,21 @@ angular.module('trainingProgram')
 	
 	// Slick carousel
 	$scope.slickConfig = {
+		enabled: true, 
     	arrows: true, 
     	dots: true, 
     	autoplay: false,
     	draggable: true, 
     	autoplaySpeed: 2000,
     	method: {},
-    	// event: {
-     //    	beforeChange: function (event, slick, currentSlide, nextSlide) {
-
-     //    	},
-     //    	afterChange: function (event, slick, currentSlide, nextSlide) {
-
-     //    	}
-    	// }
+    	event: {
+        	beforeChange: function (event, slick, currentSlide, nextSlide) {
+        		
+        	},
+        	afterChange: function (event, slick, currentSlide, nextSlide) {
+        		console.log('event: ', event, 'slick: ', slick, 'currentSlide: ', currentSlide, 'nextSlide: ', nextSlide )
+        	}
+    	}
 	};
 	$scope.toggleSlick = function() {
       $scope.slickConfig.enabled = !$scope.slickConfig.enabled;

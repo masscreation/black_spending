@@ -16,7 +16,7 @@
 	<div ng-repeat="exercise in category.exercises | orderBy:'name'">
 			
 			<!-- Button trigger modal -->
-		<a href="#" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> <div class="category-list list-item">{{exercise.name}}</div> </a>
+		<a href="" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> <div class="category-list list-item">{{exercise.name}}</div> </a>
 
 		<!-- Exercise Modal Directive --> 
 		<div class="modal fade" data-backdrop="static" id="{{exercise.id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -54,15 +54,15 @@
 
 	<!-- Exercise form --> 
 	<div class="hideme" ng-hide="!hideme" >
-				<p><b>Name: </b>{{exercise.name}}</p>
-				<p><b>Description: </b>{{exercise.description}}</p>
-				<p><b>Instructions: </b>{{exercise.instructions}}</p>
-				<b>Video:</b><youtube-video video-id="exercise.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video>
+		<p><b>Name: </b>{{exercise.name}}</p>
+		<p><b>Description: </b>{{exercise.description}}</p>
+		<p><b>Instructions: </b>{{exercise.instructions}}</p>
+		<b>Video:</b><youtube-video video-id="exercise.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video>
 			
 		
 		<div><!-- Exercise Form --> 
 			<form ng-show="category.ancestry">
-				<slick infinite="false" swipe="false" slides-to-show=1, slides-to-scroll=1>
+				<slick settings="slickConfig" infinite="false" swipe="false" slides-to-show=1, slides-to-scroll=1>
 
 					<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
 				
@@ -81,13 +81,6 @@
 
 <script type="text/javascript">
 	$( document ).ready(function() {
-
-
-		$('input').slick()
-		// On after slide change
-		$('input').on('afterChange', function(event, slick, currentSlide, nextSlide){
-		  event.focus()
-		});
      
 
 	});
