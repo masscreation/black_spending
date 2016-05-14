@@ -65,10 +65,12 @@ angular.module('trainingProgram')
 	};
 
 	$scope.toggleSlick = function() {
-      $scope.slickConfig.enabled = !$scope.slickConfig.enabled
+      $scope.slickConfig.enabled = !$scope.slickConfig.enabled; 
+      console.log('toggleSlick')
     }; 
 
     $scope.toggleSlick(); 
+    $scope.toggleSlick()
 	
 }]); 
 

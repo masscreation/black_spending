@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :workouts, only: [:create, :index, :show, :destroy] 
 
     resources :categories, only: [:create, :index, :show] do 
-      resources :exercises, only: [:create, :index, :show]
+      resources :exercises, only: [:create, :update, :index, :show]
     end
      
     resources :enrollments
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
     resources :levels, only: [:index, :show]
    
-    resources :exercises, only: [:create, :index, :show]
+    resources :exercises, only: [:create, :update, :index, :show]
 
     resources :training_sessions, only: [:create, :index, :show]
 

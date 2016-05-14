@@ -33,11 +33,11 @@
 		      		</tr>
 		      		<tr>
 		      			<td><h4>Description:</h4>
-					<a href="#" editable-text="exercise.description">{{ exercise.description || "empty" }}</a></td>
+					<a href="#" editable-text="exercise.description" onbeforesave="updateExerciseDescription($data)">{{ exercise.description || "empty" }}</a></td>
 		      		</tr>
 					<tr>
 						<td><h4>Instructions:</h4>
-					<a href="#" editable-text="exercise.instructions">{{ exercise.instructions || "empty" }}</a></td>
+					<a href="#" editable-text="exercise.instructions" onbeforesave="updateExerciseInstructions($data)">{{ exercise.instructions || "empty" }}</a></td>
 					</tr>
 				</table>
 		      </div>

@@ -38,11 +38,21 @@ angular.module('trainingProgram')
 		//Grab all exercises in this category
 		$scope.category.getList('exercises').then(function (exercises) {
 			exercises.forEach(function (exercise) {
+
 				if (category.id === exercise.category_id) {
 					// Place exercises with IDs matching category in category's exercises array
 					$scope.category.exercises.push(exercise);
 					console.log('Exercises in this category: ', $scope.category.exercises)
-				}; 
+				};
+
+				$scope.updateExerciseDescription = function(data) {
+					console.log('description:', data); 
+					return $http.put('api/exercises/' + exercise.id, { description: data })
+    			}; 
+    			$scope.updateExerciseInstructions = function(data) {
+    				console.log('instructions: ', data); 
+    				return $http.put('api/exercises/' + exercise.id, { instructions: data })
+    			} 
 			})
 		})
 	}); 
