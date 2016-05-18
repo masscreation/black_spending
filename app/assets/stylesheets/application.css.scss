@@ -21,6 +21,38 @@
 @import "bootstrap-sprockets"; 
 @import "bootstrap"; 
 
+ul.ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu {
+  background-color: rgba(0,0,0,0.85);
+  opacity: 0.85; 
+  color: #F7BE00; 
+  padding: 4px
+}
+
+.ui-select-choices-row {
+    background-color: #111; 
+    border-radius: 4px; 
+    border-bottom: 1px #FFE200; 
+    margin-bottom: 2px; 
+    padding: 3px
+}
+.ui-select-choices-row:hover {
+    background-color: #FFE200; 
+    color: #000;
+    border: 1px solid #F7BE00; 
+    box-shadow: 3px 3px 3px rgba(247,190,0,.5); 
+    a {
+        color: #000
+    }
+
+}
+
+a.ui-select-choices-row-inner {
+    color: #F7BE00
+}
+a.ui-select-choices-row-inner:hover {
+    background-color: #FFE200
+}
+
 form .centerform {
     width: 300px;
     margin: 0 auto;
@@ -56,7 +88,7 @@ body {
 }
 
 a:visited {
-    color: #000;
+    
 }
 
 .navbar-default .navbar-brand {
@@ -245,6 +277,9 @@ a.category-list {
 
 .has-exercises {
     color: green
+}
+.no-exercises {
+    color: red
 }
 
 

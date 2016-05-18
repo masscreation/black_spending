@@ -35,6 +35,8 @@
 
 //= require angular-xeditable
 
+//= require angular-ui-select
+
 //= require bootstrap-sprockets
 //= require_tree ../templates
 //= require_tree .

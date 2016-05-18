@@ -8,7 +8,16 @@
 	<div ng-repeat="exercise in workout_exercises | orderBy:'name'">
 		{{exercise.name}}
 	</div>
-	
+	<ui-select multiple ng-model="ctrl.multipleDemo.selectedPeople" theme="bootstrap" ng-disabled="ctrl.disabled" sortable="true" close-on-select="false" style="width: 800px;">
+    	<ui-select-match placeholder="Select exercise...">{{$item.description}}&gt;</ui-select-match>
+    	<ui-select-choices class="list-item" repeat="exercise in exercises | propsFilter: {name: $select.search, age: $select.search}">
+      		<div ng-bind-html="exercise.name | highlight: $select.search"></div>
+	      	<small>
+	        	<span ng-bind-html="''+exercise.description | highlight: $select.search"></span>
+	      	</small>
+    	</ui-select-choices>
+  </ui-select>
+  <p>Selected: {{exercises.selected}}</p>
 
 </div>	
 

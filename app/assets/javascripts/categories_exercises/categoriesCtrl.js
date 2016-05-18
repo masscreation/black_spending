@@ -69,7 +69,6 @@ angular.module('trainingProgram')
       console.log('toggleSlick')
     }; 
 
-    $scope.toggleSlick(); 
     $scope.toggleSlick()
 	
 }]); 

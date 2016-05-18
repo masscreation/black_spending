@@ -8,7 +8,9 @@ angular.module('trainingProgram', [
     'youtube-embed', 
     'xeditable',
     'ngTagsInput',
-    'slickCarousel'])
+    'slickCarousel', 
+    'ui.select', 
+    'ngSanitize'])
 	.config([
         '$stateProvider', 
         '$httpProvider',

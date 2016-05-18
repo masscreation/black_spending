@@ -87,7 +87,6 @@ angular.module('trainingProgram')
       $scope.slickConfig.enabled = !$scope.slickConfig.enabled
   	}; 
     
-    $scope.toggleSlick(); 
 
 	// Create exercise for this selected category
 	$scope.createExercise = function(exercise) {

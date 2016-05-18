@@ -31,7 +31,10 @@ Rails.application.routes.draw do
       resources :enrollments
       resources :routine_tags 
     end
-    resources :workouts, only: [:create, :index, :show, :destroy] 
+
+    resources :workouts, only: [:create, :index, :show, :destroy] do 
+      resources :workout_exercises, only: [:create, :index, :update, :destroy] 
+    end 
 
     resources :categories, only: [:create, :index, :show] do 
       resources :exercises, only: [:create, :update, :index, :show]

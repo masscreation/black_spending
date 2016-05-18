@@ -11,17 +11,25 @@ angular.module('trainingProgram')
 	console.log("workouts controller"); 
 
 	var baseWorkouts = Restangular.all('api/workouts'); 
-	console.log('workouts: ', baseWorkouts); 
-	
+
+	var allExercises = Restangular.all('api/exercises'); 
+	allExercises.getList().then(function (exercises) {
+		$scope.exercises = exercises; 
+		console.log('Exercises: ',  $scope.exercises)
+	})
 	
 	baseWorkouts.getList().then(function (workouts) {
 		$scope.workouts = workouts; 
-		workouts.forEach(function (workout) {
+		$scope.workouts.forEach(function (workout) {
 			// if (workout.trainer_id === Auth.currentUser().id) {
 				// $scope.workouts.push(workout) 
 			// };
+			workout.exercises = []; 
 			workout.getList('workout_exercises').then(function (exercises) {
-				workout.exercises = exercises 
+				exercises.forEach(function (exercise) {
+					workout.exercises.push(exercise);
+				})
+				console.log(workout.name, 'has ', workout.exercises)
 			})
 		})
 	}); 
@@ -33,10 +41,10 @@ angular.module('trainingProgram')
 	// Slick carousel
 	$scope.slickConfig = {
     	enabled: true,
-    	arrows: false, 
+    	arrows: true, 
     	swipe: false, 
     	dots: false, 
-    	autoplay: true,
+    	autoplay: false,
     	draggable: true, 
     	autoplaySpeed: 2000,
     	method: {},
@@ -50,9 +58,11 @@ angular.module('trainingProgram')
     	}
 	};
 	$scope.toggleSlick = function() {
-      $scope.slickConfig.enabled 
+      $scope.slickConfig.enabled = !$scope.slickConfig.enabled
       console.log('toggleSlick ran')
-    }
+    }; 
+
+    $scope.toggleSlick(); 
 
 	//Create new workouts
 	$scope.createWorkout = function (workout) {
@@ -80,6 +90,7 @@ angular.module('trainingProgram')
 }])
 .controller('workoutCtrl', ['$scope', '$http', '$stateParams', 'Restangular', function ($scope, $http, $stateParams, Restangular) {
 
+
 	Restangular.one('api/workouts', $stateParams.id).get()
 	.then(function (workout) {
 		$scope.workout = workout; 
@@ -89,9 +100,40 @@ angular.module('trainingProgram')
 		$scope.workout.getList('workout_exercises').then(function (exercises) {
 			
 			$scope.workout.workout_exercises.push(exercises)
-			console.log('workout exercises', exercises)
+			console.log(workout.name + ' workout exercises: ' + exercises)
 		})
 		
 	}); 
 
-}]); 
+}])
+.filter('propsFilter', function() {
+  return function(items, props) {
+    var out = [];
+
+    if (angular.isArray(items)) {
+      var keys = Object.keys(props);
+        
+      items.forEach(function(item) {
+        var itemMatches = false;
+
+        for (var i = 0; i < keys.length; i++) {
+          var prop = keys[i];
+          var text = props[prop].toLowerCase();
+          if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+            itemMatches = true;
+            break;
+          }
+        }
+
+        if (itemMatches) {
+          out.push(item);
+        }
+      });
+    } else {
+      // Let the output be the input untouched
+      out = items;
+    }
+
+    return out;
+  };
+});
