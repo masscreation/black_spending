@@ -11,12 +11,6 @@ angular.module('trainingProgram')
 	console.log("workouts controller"); 
 
 	var baseWorkouts = Restangular.all('api/workouts'); 
-
-	var allExercises = Restangular.all('api/exercises'); 
-	allExercises.getList().then(function (exercises) {
-		$scope.exercises = exercises; 
-		console.log('Exercises: ',  $scope.exercises)
-	})
 	
 	baseWorkouts.getList().then(function (workouts) {
 		$scope.workouts = workouts; 
@@ -102,8 +96,85 @@ angular.module('trainingProgram')
 			$scope.workout.workout_exercises.push(exercises)
 			console.log(workout.name + ' workout exercises: ' + exercises)
 		})
+
+		// Add exercises to $scope.workout
+		$scope.addExercises = function(exercises) {
+			
+		}	
 		
 	}); 
+
+	var allExercises = Restangular.all('api/exercises')
+
+	allExercises.getList().then(function (exercises) {
+		$scope.exercises = exercises;
+		$scope.exercises.forEach(function(exercise) {
+			exercise.category = {};
+			Restangular.all('api/categories').getList().then(function (categories) {
+				categories.forEach(function (category) {
+					if (exercise.category_id === category.id) {
+						exercise.category = category
+					}
+				})
+				console.log('exercise category: ', exercise, exercise.category.name)
+			})
+
+		})
+	}); 
+
+	$scope.disabled = undefined;
+  	$scope.searchEnabled = undefined;
+
+
+  $scope.enable = function() {
+    $scope.disabled = false;
+  };
+
+  $scope.disable = function() {
+    $scope.disabled = true;
+  };
+
+  $scope.enableSearch = function() {
+    $scope.searchEnabled = true;
+  };
+
+  $scope.disableSearch = function() {
+    $scope.searchEnabled = false;
+  };
+
+	$scope.selectedExercises = []; 
+	// Clear exercise selection
+ 	$scope.clear = function() {
+    	$scope.selectedExercises = undefined
+  	};
+
+
+
+	// Slick carousel
+	// $scope.slickSelectConfig = {
+ //    	enabled: true,
+ //    	arrows: true, 
+ //    	swipe: true, 
+ //    	dots: false, 
+ //    	autoplay: false,
+ //    	draggable: true, 
+ //    	autoplaySpeed: 2000,
+ //    	method: {},
+ //    	event: {
+ //        	beforeChange: function (event, slick, currentSlide, nextSlide) {
+
+ //        	},
+ //        	afterChange: function (event, slick, currentSlide, nextSlide) {
+
+ //        	}
+ //    	}
+	// };
+	// $scope.toggleSlick = function() {
+ //      $scope.slickSelectConfig.enabled = !$scope.slickSelectConfig.enabled
+ //      console.log('toggleSlick ran')
+ //    }; 
+
+ //    $scope.toggleSlick(); 
 
 }])
 .filter('propsFilter', function() {

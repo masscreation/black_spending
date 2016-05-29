@@ -28,14 +28,14 @@
         {{ child.name }}
     </script>
     <script>
-		$( document ).ready(function() {
-			
-			$(".category-list").on("click", function() {
-				console.log('category clicked'); 
-				$('.ng-scope').addClass('animated slideInRight')
+    	$(function () {
+    		$( "div.category-list.list-item" ).on('hover', function() {
+				$( this ).addClass("animated pulse")
 			})
+    	})
+    
+		
 
-		})
 	</script>
 
 	

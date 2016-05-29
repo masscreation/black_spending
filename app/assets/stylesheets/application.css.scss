@@ -21,6 +21,10 @@
 @import "bootstrap-sprockets"; 
 @import "bootstrap"; 
 
+input.ui-select-search {
+    width: 100%
+}
+
 ul.ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu {
   background-color: rgba(0,0,0,0.85);
   opacity: 0.85; 
@@ -49,13 +53,20 @@ ul.ui-select-choices.ui-select-choices-content.ui-select-dropdown.dropdown-menu 
 a.ui-select-choices-row-inner {
     color: #F7BE00
 }
-a.ui-select-choices-row-inner:hover {
-    background-color: #FFE200
+.ui-select-choices-row-inner:hover {
+    background-color: #FFE200; 
+    color: #000
 }
+
 
 form .centerform {
     width: 300px;
     margin: 0 auto;
+}
+
+div.col-xs-6.col-sm-8.col-md-8.col-lg-8.ng-scope.ng-enter {
+    -webkit-animation: slideInRight 1.0s; 
+    animation: slideInRight 1.0s
 }
 
 .program-focus {
@@ -268,18 +279,18 @@ a.category-list {
     padding: 5px 5px 5px 10px
 }
 .workout-list:hover {
-        opacity: 1; 
-        color: #F7BE00;
-        background-color: #000;
-        border-left: #FFE200 2px; 
-        box-shadow: 5px 5px 5px #333
+    opacity: 1; 
+    color: #F7BE00;
+    background-color: #000;
+    border-left: #FFE200 2px; 
+    box-shadow: 5px 5px 5px #333
 }
 
 .has-exercises {
     color: green
 }
 .no-exercises {
-    color: red
+    color: #FFF
 }
 
 
@@ -457,7 +468,7 @@ input {
 }
 
 .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
-  transition: all linear 0.5s;
+  transition: all linear 2.0s;
 }
 
 .animate-show.ng-hide {
@@ -467,9 +478,9 @@ input {
 }
 
 .hideme {
-    -webkit-transition:all linear 0.5s;
-    transition:all linear 0.5s;
-    -webkit-animation-duration: 0.5s
+    -webkit-transition:all linear 2.0s;
+    transition:all linear 2.0s;
+    -webkit-animation-duration: 2.0s
 }
 
 .embolden {

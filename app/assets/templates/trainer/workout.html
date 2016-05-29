@@ -3,22 +3,42 @@
 	<h4>{{workout.name}}</h4>
 	
 	<p>{{workout.description}}</p>
+	  	<button ng-show="disabled" class="btn btn-default btn-xs" ng-click="enable()">Add exercises to {{workout.name}}</button>
+  		<button class="btn btn-default btn-xs" ng-show="!disabled" ng-click="disable()">Disable select</button>
+  		<button class="btn btn-default btn-xs" ng-show="!disabled" ng-click="clear()">clear selection</button>
 
-	<!-- Drag exercises here --> 
+	<!-- Workout exercises shown here --> 
 	<div ng-repeat="exercise in workout_exercises | orderBy:'name'">
-		{{exercise.name}}
+		<div class="category-list list-item">
+			{{ exercise.name }}
+		</div>
+		
 	</div>
-	<ui-select multiple ng-model="ctrl.multipleDemo.selectedPeople" theme="bootstrap" ng-disabled="ctrl.disabled" sortable="true" close-on-select="false" style="width: 800px;">
-    	<ui-select-match placeholder="Select exercise...">{{$item.description}}&gt;</ui-select-match>
-    	<ui-select-choices class="list-item" repeat="exercise in exercises | propsFilter: {name: $select.search, age: $select.search}">
-      		<div ng-bind-html="exercise.name | highlight: $select.search"></div>
-	      	<small>
-	        	<span ng-bind-html="''+exercise.description | highlight: $select.search"></span>
-	      	</small>
+	<ui-select multiple ng-model="selectedExercises" theme="bootstrap" ng-disabled="disabled" sortable="true" close-on-select="false" style="width: 100%;">
+		<ui-select-match placeholder="Click here to select exercise...">{{$item.name}}
+		</ui-select-match>
+    	<ui-select-choices repeat="exercise.name as exercise in exercises | propsFilter: {name: $select.search, category: $select.search }">
+      		<span class="ui-select-choices-row-inner" ng-bind-html="exercise.name | highlight: $select.search"></span>
     	</ui-select-choices>
-  </ui-select>
-  <p>Selected: {{exercises.selected}}</p>
+	</ui-select>
+  		<!-- <button type="button" ng-show="!disabled" class="btn btn-primary btn-md" ng-attr-title="submit exercises to {{workout.name}}" ng-click="addExercises(workout_exercises)">Add exercises to {{workout.name}} workout</button> -->
+	<div ng-show="!disabled">
+		<h5>Selected:</h5>
+		<div>
+			{{ selectedExercises }}
+		</div>
+	</div>
+		
+</div>
+<script>
+	$(function () {
+		$( "div.category-list.list-item" ).on('hover', function() {
+			$( this ).addClass("animated pulse")
+		})
+	})
+    
+		
 
-</div>	
+</script>	
 
 	
