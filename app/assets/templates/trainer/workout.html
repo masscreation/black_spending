@@ -15,7 +15,7 @@
 		
 	</div>
 	<ui-select multiple ng-model="selectedExercises" theme="bootstrap" ng-disabled="disabled" sortable="true" close-on-select="false" style="width: 100%;">
-		<ui-select-match placeholder="Click here to select exercise...">{{$item.name}}
+		<ui-select-match placeholder="Click here to add exercise...">{{$item.name}}
 		</ui-select-match>
     	<ui-select-choices repeat="exercise.name as exercise in exercises | propsFilter: {name: $select.search, category: $select.search }">
       		<span class="ui-select-choices-row-inner" ng-bind-html="exercise.name | highlight: $select.search"></span>
@@ -25,7 +25,7 @@
 	<div ng-show="!disabled">
 		<h5>Selected:</h5>
 		<div>
-			{{ selectedExercises }}
+			{{ selectedExercises[0] }}
 		</div>
 	</div>
 		

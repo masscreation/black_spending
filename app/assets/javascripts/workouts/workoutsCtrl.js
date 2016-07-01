@@ -95,11 +95,18 @@ angular.module('trainingProgram')
 			
 			$scope.workout.workout_exercises.push(exercises)
 			console.log(workout.name + ' workout exercises: ' + exercises)
-		})
+		}); 
 
-		// Add exercises to $scope.workout
+		// Add workout exercises to $scope.workout
 		$scope.addExercises = function(exercises) {
-			
+			var workout_exercises = Restangular.service('workout_exercises', $scope.workout); 
+			exercises.forEach(function(exercise) {
+				var workout_exercise = {}; 
+				workout_exercise.exercise_id = exercise.id; 
+				workout_exercise.workout_id = $scope.workout.id; 
+				workout_exercises.post(workout_exercise); 
+				console.log('added workout exercise, ', exercise)
+			})
 		}	
 		
 	}); 
@@ -120,29 +127,38 @@ angular.module('trainingProgram')
 			})
 
 		})
-	}); 
+	});
+
+	// $select.selected = $scope.workout.workout_exercises; 
 
 	$scope.disabled = undefined;
+
   	$scope.searchEnabled = undefined;
 
 
-  $scope.enable = function() {
-    $scope.disabled = false;
-  };
+  	$scope.enable = function() {
+    	$scope.disabled = false;
+  	};
 
-  $scope.disable = function() {
-    $scope.disabled = true;
-  };
+  	$scope.disable = function() {
+    	$scope.disabled = true;
+    	// on disable
+    	if ($scope.selectedExercises) {
+    		$scope.addExercises($scope.selectedExercises)
+    	}
+  	};
 
-  $scope.enableSearch = function() {
-    $scope.searchEnabled = true;
-  };
+  	$scope.enableSearch = function() {
+    	$scope.searchEnabled = true;
+  	};
 
-  $scope.disableSearch = function() {
-    $scope.searchEnabled = false;
-  };
 
-	$scope.selectedExercises = []; 
+	$scope.disableSearch = function() {
+		$scope.searchEnabled = false;
+	};
+
+	$scope.selectedExercises = [];
+
 	// Clear exercise selection
  	$scope.clear = function() {
     	$scope.selectedExercises = undefined
