@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Bootstrap
-gem "bootstrap"
+gem 'bootstrap' '~> 0.0.1'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
@@ -38,7 +38,7 @@ gem 'angular_rails_csrf'
 # Devise
 gem 'devise'
 source "http://rails-assets.org" do
-  gem "rails-assets-angular-devise"
+  gem 'rails-assets-angular-devise'
 end
 
 gem 'cancancan'
