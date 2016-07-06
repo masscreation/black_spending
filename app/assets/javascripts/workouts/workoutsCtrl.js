@@ -161,7 +161,7 @@ angular.module('trainingProgram')
 
 	// Clear exercise selection
  	$scope.clear = function() {
-    	$scope.selectedExercises = undefined
+    	choices.remove()
   	};
 
 
