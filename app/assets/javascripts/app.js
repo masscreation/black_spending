@@ -26,11 +26,7 @@ angular.module('trainingProgram', [
             // AuthProvider.registerMethod('POST');
             // AuthProvider.loginMethod('GET');
             // AuthProvider.logoutMethod('DELETE')
-
-            // AuthProvider.resourceName('athlete');
-            // AuthProvider.registerPath('/api/athletes');
-            // AuthProvider.loginPath('/api/athletes');
-            // AuthProvider.logoutPath('/api/users/sign_out'); 
+ 
             console.log('resource name:', AuthProvider.resourceName()); 
 
             
