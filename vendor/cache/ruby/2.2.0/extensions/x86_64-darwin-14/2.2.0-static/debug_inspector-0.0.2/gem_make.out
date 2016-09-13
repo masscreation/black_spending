@@ -1,0 +1,12 @@
+/Users/MassCreation/.rvm/rubies/ruby-2.2.1/bin/ruby -r ./siteconf20160711-11829-vxatf4.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.bundle
+ld: warning: directory not found for option '-L/Users/haven/.sm/pkg/active/lib'
+
+make "DESTDIR=" install
+/usr/local/opt/coreutils/libexec/gnubin/install -m 0755 debug_inspector.bundle ./.gem.20160711-11829-teyjmh

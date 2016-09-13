@@ -18,7 +18,7 @@ angular.module('trainingProgram')
 		// If category has ancestry, create an array of ancestors for breadcrumb
 		// display
 
-		if (category.ancestry !== null ) {
+		if ( category.ancestry !== null ) {
 			var ancestryArray = category.ancestry.split("/"); 
 			ancestryArray.forEach(function (id) {
 				$scope.parents = [];

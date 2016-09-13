@@ -45,9 +45,12 @@
 </div>
 <script>
 	$(function() {
+
+		var state 
 		
 		$('a#trainer').on('click', function() {
 			console.log('trainer clicked'); 
+			$('.athlete').addClass('animated slideInRight') 
 			$('.trainer').addClass('animated slideInRight')
 		})
 

@@ -88,11 +88,6 @@ angular.module('trainingProgram')
 				console.log(routine_tag)
 			});
 
-			
-
-
-
-			 
 			// Push routine to the scope
 			$scope.routines.push(routine);
 			// Post routine to routines

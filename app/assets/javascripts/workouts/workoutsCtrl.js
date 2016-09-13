@@ -161,36 +161,37 @@ angular.module('trainingProgram')
 
 	// Clear exercise selection
  	$scope.clear = function() {
-    	choices.remove()
+    	$select.selected.remove()
   	};
 
 
 
 	// Slick carousel
-	// $scope.slickSelectConfig = {
- //    	enabled: true,
- //    	arrows: true, 
- //    	swipe: true, 
- //    	dots: false, 
- //    	autoplay: false,
- //    	draggable: true, 
- //    	autoplaySpeed: 2000,
- //    	method: {},
- //    	event: {
- //        	beforeChange: function (event, slick, currentSlide, nextSlide) {
+	$scope.slickSelectConfig = {
+    	enabled: true,
+    	arrows: true, 
+    	swipe: true, 
+    	dots: false, 
+    	autoplay: false,
+    	draggable: true, 
+    	autoplaySpeed: 2000,
+    	method: {},
+    	event: {
+        	beforeChange: function (event, slick, currentSlide, nextSlide) {
 
- //        	},
- //        	afterChange: function (event, slick, currentSlide, nextSlide) {
+        	},
+        	afterChange: function (event, slick, currentSlide, nextSlide) {
 
- //        	}
- //    	}
-	// };
-	// $scope.toggleSlick = function() {
- //      $scope.slickSelectConfig.enabled = !$scope.slickSelectConfig.enabled
- //      console.log('toggleSlick ran')
- //    }; 
+        	}
+    	}
+	};
 
- //    $scope.toggleSlick(); 
+	$scope.toggleSlick = function() {
+      $scope.slickSelectConfig.enabled = !$scope.slickSelectConfig.enabled
+      console.log('toggleSlick ran')
+    }; 
+
+    $scope.toggleSlick(); 
 
 }])
 .filter('propsFilter', function() {

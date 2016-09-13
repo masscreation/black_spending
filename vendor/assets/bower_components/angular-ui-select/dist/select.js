@@ -255,6 +255,7 @@ uis.directive('uiSelectChoices',
       
       return function link(scope, element, attrs, $select) {
 
+        console.log('selected: ', 'element: ', element, ' $select: ', $select); 
        
         $select.parseRepeatAttr(attrs.repeat, groupByExp, groupFilterExp); //Result ready at $select.parserResult
 
@@ -265,6 +266,7 @@ uis.directive('uiSelectChoices',
 
         scope.$on('$destroy', function() {
           choices.remove();
+          console.log('destroyed')
         });
 
         scope.$watch('$select.search', function(newValue) {

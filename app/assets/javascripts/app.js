@@ -163,7 +163,7 @@ angular.module('trainingProgram', [
                 controller: 'authCtrl',
                 onEnter: ['$state', 'Auth', function ($state, Auth) {
                     Auth.currentUser().then(function (user) {
-                        if (user.type === "Athlete") {
+                        if (user.role === "Athlete") {
                             $state.go('athlete-profile')
                         } else {
                             $state.go('trainer-profile')

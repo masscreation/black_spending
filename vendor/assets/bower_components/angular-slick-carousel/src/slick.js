@@ -6,7 +6,7 @@ angular
   .constant('slickCarouselConfig', {
     method: {},
     event: {}
-  })
+  }) 
   .directive('slick', [
     '$timeout', 'slickCarouselConfig', function ($timeout, slickCarouselConfig) {
       var slickMethodList, slickEventList;
