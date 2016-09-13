@@ -1,0 +1,16 @@
+<br>
+<br>
+<h1 style="text-align: center;">Dashboard</h1>
+<div>
+	<div ng-repeat="talent in jobs.talentList" class="talent">
+		<a ui-sref="dashboard.talent.id({id: talent.id})"><h4 class="talent-info">{{ talent.firstname }} {{talent.lastname}}</h4></a>
+		{{ talent.title }} | {{ talent.location }}  
+		<span ng-repeat="client in talent.clients" class="client-list">
+			{{client}}
+		</span>
+		<button ui-sref="dashboard.talent.id({id: talent.id})" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-list-alt"></span> <br> <spant class="talent-click">See Details</span></button>
+		
+		<button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-comment"></span><br><span class="talent-click">Schedule Interview</span></button>
+	</div>
+</div>
+<div ui-view></div>

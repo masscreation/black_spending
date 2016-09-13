@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h2 style="text-align: center;">Post a Job</h2>
+</div>
+<div>
+    <div class="form">
+      <form>
+        <div ng-show="isSet(1)">
+          <label for="company_name">Company Name</label>
+          <input type="text" class="form-control" placeholder="Widget Co." ng-model="job.company_name">
+            <br>
+          <label for="company_description">Company Description</label>
+          <input type="text" class="form-control" placeholder="Company Descripton" ng-model="job.company_description">
+            <br>
+          <label for="job title">Job Title</label>
+            <input type="text" class="form-control" placeholder="Job Title" ng-model="job.title">
+            <br>
+          <label for="Job Description">Jobs Description</label>
+            <input type="text" class="form-control" placeholder="Company Name" ng-model="job.description">
+            <br>
+          <label for="job deliverables">Deliverables</label>
+            <input type="text" class="form-control" placeholder="Increase some metric by x%" ng-model="">
+            <br>
+          <label for="job budget">Budget
+            <input type="number" class="form-control" placeholder="Budget low end" ng-model="job.budget_low">
+          </label>
+          <label for="">
+            <input type="number" class="form-control" placeholder="Budget high end" ng-model="job.budget_high">
+          </label>
+          <label for="">Payment Terms</label>
+              <input type="text" class="form-control" placeholder="" ng-model="job.payment_terms">
+            <br>
+            <button style="text-align: right;" type="button" ng-click="setTab(2)" class="btn btn-lg btn-default">Next</button>
+        </div>
+        <div ng-show="isSet(2)">
+          <label for="Job Qualifications">Qualifications
+            <input type="text" class="form-control" placeholder="qualification" ng-model="job.qualification[0]">
+              <label for="Qualification Exeperience">At Least
+                <input type="number" ng-model="job.qualification[0].experience">
+              </label>
+              <label for=""></label>
+          </label>
+        </div>
+  		
+    </form> 
+  </div>
+</div>
+	    

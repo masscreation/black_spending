@@ -9,32 +9,38 @@
 		</div>
 
 		<ul style="text-align: center;" class="nav nav-pills">
-	        <li ng-class="{active:tab.isSet(1)}"><a id="athlete" href ng-click="setTab(1)">Athlete</a></li>
-	        <li  ng-class="{active:tab.isSet(2)}"><a id="trainer" href ng-click="setTab(2)">Trainer</a></li>
+	        <li ng-class="{active:tab.isSet(1)}"><a id="athlete" href ng-click="setTab(1)">FreeLancer</a></li>
+	        <li  ng-class="{active:tab.isSet(2)}"><a id="trainer" href ng-click="setTab(2)">Company</a></li>
 	    </ul>
 
 		<div class="athlete" ng-show="isSet(1)">
 			<form style="margin: 0 auto;" >
-				<label><h4>Athlete</h4></label>
+				<label><h4>Freelancer</h4></label>
+				<div class="input-group">
+		    		<input type="hidden" class="form-control"  ng-model="user.company" value="true">
+		  		</div>
 		  		<div class="input-group">
-		    		<input type="email" class="form-control" placeholder="Email" ng-model="athlete.email">
+		    		<input type="email" class="form-control" placeholder="Email" ng-model="user.email">
 		  		</div>
 			  	<div class="input-group">
-			    	<input type="password" class="form-control" placeholder="Password" ng-model="athlete.password">
+			    	<input type="password" class="form-control" placeholder="Password" ng-model="user.password">
 			  	</div>
-		  		<button type="button" ng-click="loginAthlete(athlete)" class="btn btn-primary">Dominate!</button>
+		  		<button type="button" ng-click="login(user)" class="btn btn-primary">Freelancer Login</button>
 			</form>	
 		</div>
 		<div class="trainer" ng-show="isSet(2)">
 			<form style="margin: 0 auto;" ng-submit="loginTrainer(trainer)">
-				<label><h4>Trainer</h4></label>
+				<label><h4>Company</h4></label>
+				<div class="input-group">
+		    		<input type="hidden" class="form-control"  ng-model="user.company?" value="false">
+		  		</div>
 		  		<div class="input-group">
-		    		<input type="email" class="form-control" placeholder="Email" ng-model="trainer.email">
+		    		<input type="email" class="form-control" placeholder="Email" ng-model="company.email">
 		  		</div>
 			  	<div class="input-group">
-			    	<input type="password" class="form-control" placeholder="Password" ng-model="trainer.password">
+			    	<input type="password" class="form-control" placeholder="Password" ng-model="company.password">
 			  	</div>
-		  		<button type="button" ng-click="loginTrainer(trainer)" class="btn btn-primary">Create Beasts!</button>
+		  		<button type="button" ng-click="login(user)" class="btn btn-primary">Company Login</button>
 			</form>	
 		</div>
 		<div>

@@ -1,12 +1,12 @@
 
 {
-  "name": "training_program",
+  "name": "skilltapp",
   "version": "1.0.0",
-  "homepage": "https://github.com/masscreation/training_program",
+  "homepage": "https://github.com/Skilltapp/2016Prototype",
   "authors": [
     "MassCreation <dennisb.bishop@gmail.com>"
   ],
-  "description": "Training program creation app",
+  "description": "Skilltap 2016 prototype",
   "main": "app/assets/javascripts/app.js",
   "keywords": [
     "bower-rails",
