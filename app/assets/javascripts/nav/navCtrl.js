@@ -8,11 +8,14 @@ function ($scope, $state, Auth, Restangular) {
 
 
 
-	Auth.currentUser().then(function (user) {
-		$scope.user = user
-	}); 
+	// Auth.currentUser().then(function (user) {
+	// 	$scope.user = user
+ //    // Restangular.one('/users', $scope.user.id).getList('roles').then(function (roles) {
+ //    //   console.log('user roles: ', roles)
+ //    // })
+	// }); 
 
-  Restangular.one('/users')
+
 
 	$scope.signedIn = Auth.isAuthenticated; 
 	console.log("Signed in", $scope.signedIn()); 

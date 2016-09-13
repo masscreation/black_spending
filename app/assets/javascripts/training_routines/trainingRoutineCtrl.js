@@ -9,7 +9,7 @@ angular.module('trainingProgram')
 	'tags', 
 	'$q',
 	function ($scope, $http, $stateParams, Restangular, Auth, exercises, tags, $q) { 
-	
+
 	// Authenticate current trainer
 	Auth.currentUser().then(function (user) {
 		console.log('user is:', user);
@@ -20,15 +20,18 @@ angular.module('trainingProgram')
 
 		// Tag routines to a $scope for displaying in the view 
 		allRoutines.getList().then(function (routines) {
+			$scope.routines = routines 
+			console.log('routines: ', routines); 
 			$scope.trainerRoutines = [];
 
 			routines.forEach(function (routine) {
-				if (routine.trainer_id === user.id) {
+				if (routine.user_id === user.id) {
 					$scope.trainerRoutines.push(routines); 
 					console.log("trainer's routines:", $scope.trainerRoutines) 
 				}
 			})
 		})
+
 		
 		// user.getList('training_routines').then(function (routines) {
 	
@@ -38,6 +41,29 @@ angular.module('trainingProgram')
 		};  
 
 		var allRoutines = Restangular.all('api/training_routines');
+		// Slick carousel
+		$scope.slickConfig = {
+	    	
+	    	arrows: false, 
+	    	swipe: false, 
+	    	dots: false, 
+	    	autoplay: true,
+	    	draggable: true, 
+	    	autoplaySpeed: 2000,
+	    	method: {},
+	    	event: {
+	        	beforeChange: function (event, slick, currentSlide, nextSlide) {
+
+	        	},
+	        	afterChange: function (event, slick, currentSlide, nextSlide) {
+
+	        	}
+	    	}
+		};
+		$scope.toggleSlick = function() {
+	      $scope.slickConfig.enabled 
+	      console.log('toggleSlick ran')
+	    }
 
 		$scope.loadTags = function(query) {
 			return $http.get('api/tags?query=' + query)
@@ -46,19 +72,26 @@ angular.module('trainingProgram')
 		console.log('loadTags: ', $scope.loadTags());
 
 		$scope.createRoutine = function(routine) {
-			
 			// Associate training routine with current trainer
-			$scope.routine.trainer_id = $scope.trainer.id;
-			console.log($scope.trainer.id); 
 
-			var focusArray = [];  
-			routine.tags.forEach(function(tag) {
-				focusArray.push(tag.name);
-				routine.focus = focusArray.join(', ');
-				return routine.focus 
-				console.log(routine.focus) 
-			})
+			$scope.routine.trainer_id = user.id;
+			// Convert routine.tags (objects) names into strings and 
+			// and assign to routine.focus
+			console.log("routine focus split", routine.focus.split());
 
+			// Assign routine tags to a variable 
+			var allRoutineTags = Restangular.all('api/RoutineTags');
+			// Post to routine tags
+			routine.focus.forEach(function(tag) {
+				var routine_tag = {};
+				routine_tag.tag_id = tag.id; 
+				routine_tag.training_routine_id = routine.id; 
+				allRoutineTags.post(routine_tag); 
+				console.log(routine_tag)
+			});
+
+			// Push routine to the scope
+			$scope.routines.push(routine);
 			// Post routine to routines
 			allRoutines.post(routine);
 			// Clear training routine form inputs

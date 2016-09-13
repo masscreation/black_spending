@@ -11,15 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311113543) do
+ActiveRecord::Schema.define(version: 20160413222548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "admins", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "anatomical_adapations", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,27 +26,13 @@ ActiveRecord::Schema.define(version: 20160311113543) do
     t.boolean  "complete"
     t.integer  "volume"
     t.integer  "training_session_id"
-    t.integer  "athlete_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "training_routine_id"
   end
 
-  add_index "athlete_training_sessions", ["athlete_id"], name: "index_athlete_training_sessions_on_athlete_id", using: :btree
   add_index "athlete_training_sessions", ["training_routine_id"], name: "index_athlete_training_sessions_on_training_routine_id", using: :btree
   add_index "athlete_training_sessions", ["training_session_id"], name: "index_athlete_training_sessions_on_training_session_id", using: :btree
-
-  create_table "athletes", force: :cascade do |t|
-    t.integer  "rank_id"
-    t.integer  "height"
-    t.integer  "weight"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "birthdate"
-    t.integer  "level_id"
-  end
-
-  add_index "athletes", ["level_id"], name: "index_athletes_on_level_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -64,18 +45,15 @@ ActiveRecord::Schema.define(version: 20160311113543) do
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
 
   create_table "enrollments", force: :cascade do |t|
-    t.integer  "athlete_id"
     t.integer  "training_routine_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
 
-  add_index "enrollments", ["athlete_id"], name: "index_enrollments_on_athlete_id", using: :btree
   add_index "enrollments", ["training_routine_id"], name: "index_enrollments_on_training_routine_id", using: :btree
 
   create_table "exercise_sets", force: :cascade do |t|
     t.boolean  "completed"
-    t.integer  "athlete_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "tempo"
@@ -129,6 +107,17 @@ ActiveRecord::Schema.define(version: 20160311113543) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
   create_table "routine_tags", force: :cascade do |t|
     t.integer  "training_routine_id"
     t.integer  "tag_id"
@@ -142,16 +131,10 @@ ActiveRecord::Schema.define(version: 20160311113543) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "trainers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "training_routines", force: :cascade do |t|
     t.string   "name"
     t.string   "focus"
     t.integer  "duration_weeks"
-    t.integer  "trainer_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "description"
@@ -161,8 +144,6 @@ ActiveRecord::Schema.define(version: 20160311113543) do
     t.string   "video_url"
     t.integer  "sessions_per_week"
   end
-
-  add_index "training_routines", ["trainer_id"], name: "index_training_routines_on_trainer_id", using: :btree
 
   create_table "training_sessions", force: :cascade do |t|
     t.datetime "created_at",          null: false
@@ -189,21 +170,30 @@ ActiveRecord::Schema.define(version: 20160311113543) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
-    t.string   "type"
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
   create_table "workout_exercises", force: :cascade do |t|
     t.integer  "workout_id"
     t.integer  "exercise_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "training_session_id"
   end
 
   add_index "workout_exercises", ["exercise_id"], name: "index_workout_exercises_on_exercise_id", using: :btree
+  add_index "workout_exercises", ["training_session_id"], name: "index_workout_exercises_on_training_session_id", using: :btree
   add_index "workout_exercises", ["workout_id"], name: "index_workout_exercises_on_workout_id", using: :btree
 
   create_table "workouts", force: :cascade do |t|
@@ -211,22 +201,15 @@ ActiveRecord::Schema.define(version: 20160311113543) do
     t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "trainer_id"
   end
 
-  add_index "workouts", ["trainer_id"], name: "index_workouts_on_trainer_id", using: :btree
-
-  add_foreign_key "athlete_training_sessions", "athletes"
   add_foreign_key "athlete_training_sessions", "training_routines"
   add_foreign_key "athlete_training_sessions", "training_sessions"
-  add_foreign_key "athletes", "levels"
-  add_foreign_key "enrollments", "athletes"
   add_foreign_key "enrollments", "training_routines"
   add_foreign_key "exercise_sets", "athlete_training_sessions"
   add_foreign_key "exercise_sets", "workout_exercises"
-  add_foreign_key "training_routines", "trainers"
   add_foreign_key "training_sessions", "training_routines"
   add_foreign_key "workout_exercises", "exercises"
+  add_foreign_key "workout_exercises", "training_sessions"
   add_foreign_key "workout_exercises", "workouts"
-  add_foreign_key "workouts", "trainers"
 end

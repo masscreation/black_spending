@@ -1,61 +1,54 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { 
+    sessions: "api/sessions", 
+    registrations: "api/registrations", 
+  }
+
   root 'application#angular'
 
   namespace :api, defaults: {format: 'json'} do 
-
-  # devise_for :users, skip: [:registrations]
-  # devise_for :athletes, skip: :sessions, defaults: {format: 'json'} 
-  # devise_for :trainers, skip: :sessions, defaults: {format: 'json'}
-  # devise_for :admins, skip: [:sessions, :registrations]
-
-    devise_scope :athletes do
-      post 'athletes/password', to: 'password#create'
-    end
-    devise_scope :trainers do
-      post 'trainers/password', to: 'password#create'
-    end
 
     resource :admin do 
       resources :trainers, only: [:update, :show]
     end
 
+    resources :users do 
+      resources :user_roles
+    end
+
+    resources :roles do 
+      resources :user_roles
+    end
+
     resources :tags, only: [:create, :index, :show] do
       resources :routine_tags, only: [:create, :index, :show]
     end
-
-    # Trainer-related resources -------->
-    resources :trainers do
-      resources :training_routines
-      resources :workouts
-    end
-    resources :training_routines
+  
 
     resources :training_routines do 
       resources :training_sessions
       resources :enrollments
       resources :routine_tags 
     end
-    resources :workouts, only: [:create, :index, :show] do 
-       resources :workout_exercises, only: [:create, :index, :show]
-    end
 
-    resources :exercises, only: [:index, :show]
+    resources :workouts, only: [:create, :index, :show, :destroy] do 
+      resources :workout_exercises, only: [:create, :index, :update, :destroy] 
+    end 
 
     resources :categories, only: [:create, :index, :show] do 
-      resources :exercises, only: [:create, :index, :show]
+      resources :exercises, only: [:create, :update, :index, :show]
     end
-    
-    resources :athletes, only: [:create, :update, :show] do 
-      resources :enrollments
-      resources :athlete_training_sessions
-      resources :exercise_sets 
-    end 
+     
+    resources :enrollments
+    resources :athlete_training_sessions
+    resources :exercise_sets 
 
     resources :levels, only: [:index, :show]
    
-    resources :exercises, only: [:create, :index, :show]
+    resources :exercises, only: [:create, :update, :index, :show]
+
+    resources :training_sessions, only: [:create, :index, :show]
 
     resources :training_sessions, only: [:create, :index, :show] do 
       resources :workout_exercises, only: [:create, :index, :show]

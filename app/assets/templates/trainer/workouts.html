@@ -1,42 +1,43 @@
-<div class="col-md-12">
-	<div class="col-md-4">
-		<div>
-			<br>
-			<h2>Workouts</h2>
-			<li ui-sref-active="selected" ng-repeat="workout in workouts">
-				<a ui-sref="workouts.id({id: workout.id })">{{workout.name}}</a>
-			</li>
-		</div>
-	
-		<!-- Routine Form --> 
-		<div>
-			<table>
-				<tr>
-					<th>Name: </th>
-					<td>{{workout.name}}</td>
-				</tr>
-				<tr>
-					<th>Description: </th>
-					<td>{{workout.description}}</td>
-				</tr>
-			</table>
-
-			<button class="btn btn-primary" ng-click="hideme = !hideme" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
-
-			<!-- Workout Form --> 
-			<div class="hideme" ng-hide="!hideme">
-				<form>
-					<input name="workout-name" ng-model='workout.name' type="text" placeholder="name">
-					<br>
-					<input name="workout-description" ng-model="workout.description" type="textarea" placeholder="description">
-					<br>
-					<button type="button" class="btn btn-primary btn-md" ng-click="createWorkout(workout)" >Build a new workout</button>
-				</form>
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+	<!-- Workouts --> 
+	<div class="categories">
+		<h3>Workouts</h3>
+		<hr>
+		<div ng-repeat="workout in workouts | orderBy:'name'">
+			<a ng-attr-title="{{ workout.name }}" ui-sref-active="selected" ui-sref="workouts.id({ id: workout.id })">
+				<div style="display: inline-block;" ng-class=" (workout.exercises.length > 0) && hover? 'has-exercises' : 'no-exercises'" class="workout-list list-item">{{ workout.name || "no data" }}</div>
+			</a>
+			<div style="display: inline-block;" ng-attr-title="Delete {{workout.name}}?">
+				<a href="" class="category-list" ng-click="destroyme = !destroyme"><span class="glyphicon glyphicon-minus" ng-hide="destroyme" ></span><span title="Cancel" class="glyphicon glyphicon-remove" ng-show="destroyme" ></span></a>
+			</div>
+			<div style="display: inline-block;">
+				<a class="category-list" ng-show="destroyme" ng-click="deleteWorkout(workout)" title="Delete Workout"><span class="glyphicon glyphicon-ok" ></span></a>
 			</div>
 		</div>
+		<div ng-show="hideme" style="list-style-type:none" ng-if="workout.name">
+			<a class="workout-list">{{ workout.name }}</a>
+		</div>
 	</div>
-	<div class="col-sm-8">
-		<ui-view></ui-view>
-	</div>
+
+	<!-- New Workout --> 
+	<div>
+		<button class="btn btn-primary" ng-click="( hideme = !hideme ) && ( toggleSlick() )" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme"></span><span class="glyphicon glyphicon-minus" ng-show="hideme"></span> New Workout</button>
+
+		<!-- Workout Form --> 
+		<div class="hideme" ng-hide="!hideme">
+			<h4>Description: <p>{{ workout.description }}</p></h4>
+			<form>
+				<slick settings="slickConfig" infinite="false" swipe="false" slides-to-show=1, slides-to-scroll=1>
+
+					<input name="workout-name" ng-model='workout.name' type="text" placeholder="name">
 	
+					<input name="workout-description" ng-model="workout.description" type="textarea" placeholder="description">
+				</slick>
+				<button type="button" class="btn btn-primary btn-md" ng-click="createWorkout( workout )">Build a new workout</button>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="col-xs-10 col-sm-6 col-md-8">
+	<ui-view></ui-view>
 </div>

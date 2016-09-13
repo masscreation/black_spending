@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'rails_12factor', group: :production
+
 gem 'ancestry'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -26,7 +28,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Bootstrap
-gem "bootstrap"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
@@ -36,10 +37,13 @@ gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
 
 # Devise
-gem 'devise'
-source "https://rails-assets.org" do
-  gem "rails-assets-angular-devise"
+gem 'devise', '~> 3.4.1'
+source "http://rails-assets.org" do
+  gem 'rails-assets-angular-devise'
 end
+
+gem 'cancancan'
+gem 'rolify'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -21,6 +21,7 @@
 //= require ng-tags-input
 
 //= require angular-ui-router
+
 //= require angular-ui-calendar
 //= require angular-rails-templates
 //= require angular-sanitize
@@ -29,8 +30,12 @@
 //= require restangular
 
 //= require angular-youtube-mb
+//= require slick-carousel
+//= require angular-slick-carousel
 
 //= require angular-xeditable
+
+//= require angular-ui-select
 
 //= require bootstrap-sprockets
 //= require_tree ../templates

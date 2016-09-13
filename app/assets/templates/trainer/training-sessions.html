@@ -1,15 +1,43 @@
-<div>
-	<form ng-submit="createTrainingSession(training_session)">
-		<!-- Input for the session's number in routine --> 
-		<input type="text" ng-model="training_session.order_in_routine" placeholder="Session number">
+<div class="col-xs-12 col-sm-8 col-md-8">
 
-		<!-- Input for the session's description --> 
-		<input type="text" ng-model="training_session.description">
-        
-		<button type="button" class="btn btn-primary btn-md" ng-click="createTrainingSession(session)">Build A New Training Session</button> 
-	</form>
-	
-	<!-- Calendar view for training sessions --> 
-	<div ui-calendar="uiConfig.calendar" ng-model="eventSources">
+	<!-- Training sessions --> 
+	<ul style="text-align: center;" class="nav nav-pills">
+        <li ng-class="{active:tab.isSet(1)}"><a id="athlete" href ng-click="setTab(1)">Calendar view</a></li>
+        <li  ng-class="{active:tab.isSet(2)}"><a id="trainer" href ng-click="setTab(2)">List view</a></li>
+    </ul>
+		<!-- Calendar view	 -->
+		<div class="row training-week" ng-repeat="rows in weeklySessions" ng-show="isSet(1)">
+			<div  ui-sref-active="selected" id="session" class="col-xs-2 col-sm-2 col-md-2 " ng-repeat="session in rows" >
+				<a class="btn btn-xs btn-default training-session" ui-sref="routines.id.training-sessions.session_id({session_id: session.id})" > Session <br> {{ session.order_in_routine }}</a>
+			</div>
+		</div>
+		<!-- List view -->
+		<div ng-show="isSet(2)">
+			<div ng-repeat="session in training_sessions">
+				<a ui-sref-active="selected" ui-sref="routines.id.training-sessions.session_id({session_id: session.id})" > <div class="category-list list-item">Session {{session.order_in_routine}}</div></a>
+			</div>
+		</div>
+
+	<!-- New Training Session -->
+	<button class="btn btn-primary" ng-click="hideme = !hideme" title="Create A New Workout"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
+
+	<!-- Training Session Form --> 
+	<div class="hideme" ng-hide="!hideme">
+		<h4>Session Order: {{training_sessions.length + 1}}</h4>
+		<h4>Description: {{training_session.description}}</h4>
+		<form>
+			<input name="session-type" ng-model="training_session.session_type" type="textarea" placeholder="session_type">
+			<br>
+			<input name="session-description" ng-model="training_session.description" type="textarea" placeholder="description">
+			<br>
+			<button type="button" class="btn btn-primary btn-md" ng-click="createTrainingSession(training_session)" >Add a Training Session</button>
+		</form>
+	</div>
+
+	<div class="col-xs-10 col-sm-8 col-md-8">
+		<ui-view><ui-view>
+	</div>
 </div>
+<!-- Workouts --> 
+<div ui-view='workouts'></div>
 

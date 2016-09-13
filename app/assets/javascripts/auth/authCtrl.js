@@ -17,7 +17,7 @@ function($scope, $state, $http, Restangular, Auth){
     console.log('Registering athlete:', athlete); 
       Auth.register($scope.athlete).then(function(user) {
         user.type = "Athlete"; 
-      allAthletes.post(athlete); 
+
       // Go to Login
       $state.go('login')
 
@@ -41,6 +41,7 @@ function($scope, $state, $http, Restangular, Auth){
   $scope.registerTrainer = function(trainer) {
     Auth.register(trainer).then(function(trainer){ 
       trainer.type = "Trainer"; 
+
       // POST created trainer to trainers
       allTrainers.post(trainer);
       // Send registered trainer to 'login'

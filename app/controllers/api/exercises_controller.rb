@@ -11,6 +11,10 @@ class Api::ExercisesController < ApplicationController
     respond_with :api, exercise
   end
 
+  def update
+    respond_with :api, exercise.update(exercise_params)
+  end
+
   # POST /exercises.json
   def create
     respond_with :api, Exercise.create(exercise_params)
@@ -33,6 +37,6 @@ class Api::ExercisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_params
-      params.require(:exercise).permit(:name, :description, :instructions, :category_id, :video_url)
+      params.require(:exercise).permit(:id, :name, :description, :instructions, :category_id, :video_url, :updated_at, :created_at)
     end
 end

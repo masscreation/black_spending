@@ -1,3 +1,4 @@
+
 {
   "name": "training_program",
   "version": "1.0.0",
@@ -24,6 +25,7 @@
     "angular-ui-router": "~0.2.15",
     "angular": "~1.4.0",
     "angular-route": "~1.4.0",
+    "ui-bootstrap": "1.2.5",
     "angular-ui-calendar": "latest",
     "angular-devise": "~1.1.0",
     "restangular": "~1.5.1",

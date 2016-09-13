@@ -1,0 +1,16 @@
+/Users/MassCreation/.rvm/rubies/ruby-2.2.1/bin/ruby -r ./siteconf20160711-11829-12vkelf.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+ld: warning: directory not found for option '-L/Users/haven/.sm/pkg/active/lib'
+
+make "DESTDIR=" install
+/usr/local/opt/coreutils/libexec/gnubin/install -m 0755 byebug.bundle ./.gem.20160711-11829-1nm8le7/byebug

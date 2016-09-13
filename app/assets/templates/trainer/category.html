@@ -1,9 +1,8 @@
- 	<br> 
-	<hr>
+
 	<div><!-- Current Category --> 
 		<!-- Display category's parent categories --> 
-		<li ng-repeat="parent in parents" style="display: inline">{{parent.name}} > </li> 
-		<h3>{{category.name}}</h3>
+		<li ng-repeat="parent in parents" class="parent">{{parent.name}} > </li> 
+		<h4>{{category.name}}</h4>
 		<p>
 			{{category.description}}
 		</p>
@@ -14,19 +13,13 @@
 		<p><b>This is a primary category. Select a sub-category to create exercises.</b></p>
 	</div> 
 	  
-		<div ng-hide="!category.ancestry">
-			<!-- <td><h4>Description &nbsp;</h4></td>
-			<td><h4>Instructions &nbsp;</h4></td> -->
-		</div>
-	
 	<div ng-repeat="exercise in category.exercises | orderBy:'name'">
 			
 			<!-- Button trigger modal -->
-		<a href="#" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> <button class="btn btn-primary">{{exercise.name}}</button> </a>
+		<a href="" data-toggle="modal" data-target="#{{exercise.id}}-Modal"> <div class="category-list list-item">{{exercise.name}}</div> </a>
 
-	
 		<!-- Exercise Modal Directive --> 
-		<div class="modal fade" id="{{exercise.id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade" data-backdrop="static" id="{{exercise.id}}-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -36,20 +29,20 @@
 		      <div class="modal-body">
 		      	<table>
 		      		<tr>
-		      			<td><youtube-video video-id="exercise.video_url" player-width="'480px'" player-height="'270px'" player-vars="playerVars" ></youtube-video></td>
+		      			<td><youtube-video video-id="exercise.video_url" player-width="'100%'" player-height="'270px'" player="player" player-vars="playerVars" ></youtube-video></td>
 		      		</tr>
 		      		<tr>
 		      			<td><h4>Description:</h4>
-					<a href="#" editable-text="exercise.description">{{ exercise.description || "empty" }}</a></td>
+					<a href="#" editable-text="exercise.description" onbeforesave="updateExerciseDescription($data)">{{ exercise.description || "empty" }}</a></td>
 		      		</tr>
 					<tr>
 						<td><h4>Instructions:</h4>
-					<a href="#" editable-text="exercise.instructions">{{ exercise.instructions || "empty" }}</a></td>
+					<a href="#" editable-text="exercise.instructions" onbeforesave="updateExerciseInstructions($data)">{{ exercise.instructions || "empty" }}</a></td>
 					</tr>
 				</table>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" ng-click="player.stopVideo()" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
 		  </div>
@@ -57,37 +50,30 @@
 	</div>
 	<br>
 	<!-- Show exercise form --> 	
-	<button ng-hide="!category.ancestry" class="btn btn-primary" ng-click="hideme = !hideme" title="Add an exercise"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
+	<button ng-hide="!category.ancestry" class="btn btn-sm btn-primary" ng-click="(hideme = !hideme) && toggleSlick()" title="Add an exercise"><span class="glyphicon glyphicon-plus" ng-hide="hideme" ></span><span class="glyphicon glyphicon-minus" ng-show="hideme" ></span></button>
 
 	<!-- Exercise form --> 
 	<div class="hideme" ng-hide="!hideme" >
-		<table>
-			<tr>
-				<th><h5>Name</h5></th>
-				<th><h5>Description</h5></th>
-				<th><h5>Instructions</h5></th>
-				<th><h5>Video</h5></th>
-			</tr>
-			<tr>
-				<td><h4>{{exercise.name}}</h4></td>
-				<td>{{exercise.description}}</td>
-				<td>{{exercise.instructions}}</td>
-				<td><youtube-video video-id="exercise.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video></td>
-			</tr>
-		</table>
+		<p><b>Name: </b>{{exercise.name}}</p>
+		<p><b>Description: </b>{{exercise.description}}</p>
+		<p><b>Instructions: </b>{{exercise.instructions}}</p>
+		<b>Video:</b><youtube-video video-id="exercise.video_url" player-width="'240px'" player-height="'135px'" player-vars="playerVars" ></youtube-video>
+			
 		
-
 		<div><!-- Exercise Form --> 
 			<form ng-show="category.ancestry">
-				<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
+				<slick settings="slickConfig" infinite="false" swipe="false" slides-to-show=1, slides-to-scroll=1>
 
-				<input name="exercise-description" ng-model="exercise.description" type="textarea" placeholder="description">
+					<input name="exercise-name" ng-model='exercise.name' type="text" placeholder="name">
+				
+					<input name="exercise-description" ng-model="exercise.description" type="textarea" placeholder="description">
+			
+					<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
+					
+					<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="youtube video id">
+				</slick>
 
-				<input name="exercise-instructions" ng-model="exercise.instructions" id="exercise-instructions" type="textarea" placeholder="instructions">
-
-				<input name="exercise-video" ng-model="exercise.video_url" type="textarea" id="exercise-video" placeholder="youtube video id">
-
-				<button type="button" class="btn btn-primary btn-md" ng-click="createExercise(exercise)" >Add {{category.name}} Exercise</button>
+				<button type="button" class="btn btn-primary btn-sm" ng-click="createExercise(exercise)" >Add {{category.name}} Exercise</button>
 			</form>
 		</div>
 	</div>			
@@ -95,13 +81,10 @@
 
 <script type="text/javascript">
 	$( document ).ready(function() {
-		video = $('div#player.full-frame'); 
-		console.log(video); 
- 		
- 		$('#26-Modal').on('modal.fade', function (e) {
- 			$('div#player.full-frame').pauseVideo()
- 		})
-		
+     $(".category-list").on("hover", function() {
+				console.log('category clicked'); 
+				$('.category-list').addClass('animated swing')
+			})
 
 	});
 </script>	

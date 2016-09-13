@@ -1,4 +1,4 @@
-class Api::TrainingSessionsController < ApplicationController
+ class Api::TrainingSessionsController < ApplicationController
   before_filter :authenticate_user!, only: [:create, :index, :show]
 
   def index
