@@ -37,7 +37,7 @@ gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
 
 # Devise
-gem 'devise'
+gem 'devise', '~> 3.4.1'
 source "http://rails-assets.org" do
   gem 'rails-assets-angular-devise'
 end
