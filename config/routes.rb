@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do 
 
     resource :admin do 
-      resources :trainers, only: [:update, :show]
+      resources :users, only: [:update, :show, :delete]
     end
 
     resources :users do 
@@ -20,40 +20,6 @@ Rails.application.routes.draw do
     resources :roles do 
       resources :user_roles
     end
-
-    resources :tags, only: [:create, :index, :show] do
-      resources :routine_tags, only: [:create, :index, :show]
-    end
-  
-
-    resources :training_routines do 
-      resources :training_sessions
-      resources :enrollments
-      resources :routine_tags 
-    end
-
-    resources :workouts, only: [:create, :index, :show, :destroy] do 
-      resources :workout_exercises, only: [:create, :index, :update, :destroy] 
-    end 
-
-    resources :categories, only: [:create, :index, :show] do 
-      resources :exercises, only: [:create, :update, :index, :show]
-    end
-     
-    resources :enrollments
-    resources :athlete_training_sessions
-    resources :exercise_sets 
-
-    resources :levels, only: [:index, :show]
-   
-    resources :exercises, only: [:create, :update, :index, :show]
-
-    resources :training_sessions, only: [:create, :index, :show]
-
-    resources :training_sessions, only: [:create, :index, :show] do 
-      resources :workout_exercises, only: [:create, :index, :show]
-    end
-
     
   end
   # The priority is based upon order of creation: first created -> highest priority.

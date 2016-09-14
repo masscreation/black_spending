@@ -1,28 +1,27 @@
 <html>
 	<head>
-	  <title>TrainingProgram</title>
+	  <title>Skilltapp</title>
 	  <%= stylesheet_link_tag    'application', media: 'all' %>
 	  <%= javascript_include_tag 'application' %>
 	  <%= csrf_meta_tags %>
 	 	<script src="https://www.youtube.com/iframe_api"></script>
 	 	<link rel="stylesheet" href="assets/animate.scss">
 	 	<link rel="stylesheet" href="assets/main.scss">
-	 	<link rel="stylesheet" href="assets/slick-carousel/slick/slick-theme.css">
 	 	<!-- <link href="assets/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet"> -->
 	</head>
-	<body ng-app="trainingProgram">
+	<body ng-app="skilltapp">
 		<!-- <div class="background"> -->
 			<div class="container">
 				<!-- Nav row --> 
 				<div class="row">
-					<div ng-include="'assets/_nav.html'" ></div>
+					<div ng-include="'assets/_nav.html'" ng-controller="NavCtrl as nav"></div>
 					<hr>
 				</div>
 				<!-- end of Nav row -->
 				<!-- Content row -->
 				<div class="row">
 				    
-				    <div ui-view class="well">
+				    <div ui-view>
 				    <!-- Templates load here --> 
 				    </div>
 				   

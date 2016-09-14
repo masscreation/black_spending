@@ -15,8 +15,10 @@
 //= require jquery-ui
 
 //= require angular
+
 //= require angular-devise
 //= require angular-devise/lib/devise
+//= require angular-resource
 
 //= require ng-tags-input
 
@@ -26,16 +28,15 @@
 //= require angular-rails-templates
 //= require angular-sanitize
 
+//= require angular-animate
+//= require angular-cookies
+
+//= require angular-touch 
+
 //= require lodash
 //= require restangular
 
 //= require angular-youtube-mb
-//= require slick-carousel
-//= require angular-slick-carousel
-
-//= require angular-xeditable
-
-//= require angular-ui-select
 
 //= require bootstrap-sprockets
 //= require_tree ../templates

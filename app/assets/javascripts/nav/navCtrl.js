@@ -1,31 +1,37 @@
-angular.module('trainingProgram')
-.controller('navCtrl', [
-'$scope',
-'$state',
-'Auth', 
-'Restangular',  
-function ($scope, $state, Auth, Restangular) {
+(function() {
+  'use strict'; 
 
-	$scope.signedIn = Auth.isAuthenticated; 
-	console.log("Signed in", $scope.signedIn()); 
+  angular.module('skilltapp')
+  .controller('NavCtrl', NavCtrl ); 
+
+  NavCtrl.$inject = [ '$scope', '$state', 'Auth' ]; 
+
+  function NavCtrl( $scope, $state, Auth ) {
+    var vm = this; 
+
+    vm.signedIn = Auth.isAuthenticated; 
+    console.log("Signed in", vm.signedIn()); 
 
 
-  $scope.logout = function () {
-    Auth.logout().then(function(data){
-      $state.go('login');
+    vm.logout = function () {
+      Auth.logout().then(function(data){
+        $state.go('login');
+      });
+    }
+
+    $scope.$on('devise:new-registration', function (e, user){
+      vm.user = user;
     });
-  }
 
-  $scope.$on('devise:new-registration', function (e, user){
-    $scope.user = user;
-  });
+    $scope.$on('devise:login', function (e, user) {
+      vm.user = user;
+    });
 
-  $scope.$on('devise:login', function (e, user) {
-    $scope.user = user;
-  });
+    $scope.$on('devise:logout', function (e, user){
+      vm.user = {};
+    });
 
-  $scope.$on('devise:logout', function (e, user){
-    $scope.user = {};
-  });
+}
 
-}]);
+})(); 
+

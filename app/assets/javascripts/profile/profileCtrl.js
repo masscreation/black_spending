@@ -1,19 +1,21 @@
-angular.module('trainingProgram')
-.controller('userProfileCtrl', 
-	['$scope', 
-	 'Auth', 
-	 'Restangular', 
-	 function ($scope, Auth, Restangular) {
+(function() {
+	'use strict';
 
-	console.log('User ProfileCtrl'); 
+	angular.module('skilltapp')
+	.controller( 'UserProfileCtrl', UserProfileCtrl) ;  
+	
+	UserProfileCtrl.$inject = [ 'Auth', 'users' ]; 
 
-		
+	function UserProfileCtrl( Auth, users ) {
 
-	Auth.currentUser().then(function (user){
-  		console.log('user is logged in')
-	});
+		console.log('User ProfileCtrl'); 
+
+	} 
+
+})(); 
 
 
-}])
+
+
 
 

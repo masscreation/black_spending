@@ -1,0 +1,44 @@
+<div class="signup-form">
+	<div class="page-header">
+	    <h2 style="text-align: center;">Easy Sign Up</h2>
+	</div>
+	<div>
+	  <h1 style="text-align: center;"><a class="btn btn-lg btn-default linkedin" ng-click=""><span class="social social-linked-in" aria-hidden="true"></span>LinkedIn Sign Up</a></h1>
+	  <h2 style="text-align: center;">- or -</h2>
+	    <div class="form">
+	      <form>
+	          <input type="text" class="form-control" placeholder="First Name" ng-model="">
+	        <br>
+	          <input type="text" class="form-control" placeholder="Last Name" ng-model="">
+	        <br>
+	          <input type="email" class="form-control" placeholder="Email" ng-model="">
+	        <br>
+	          <input type="text" class="form-control" placeholder="Company Name" ng-model="">
+	        <br>
+	          <input type="password" class="form-control" placeholder="Password" ng-model="">
+	        <br>
+	          <input type="password" class="form-control" placeholder="Confirm Password" ng-model="">
+	        <br>
+	    	<label>
+				<input type="radio" ng-model="user.recruiting_own?" ng-value="false">
+				I am recruiting for my own company
+			</label>
+				<br>
+			<label>
+			    <input type="radio" ng-model="user.recruiting_clients?" ng-value="true">
+			    I am recruiting for one or more clients
+			 </label>
+	        <br>
+	          <input type="text" class="form-control" placeholder="How did you hear about us?" ng-model="user.referrals">
+	        <br>
+	        <button  style="text-align: center;" type="button" ng-click="registerUser(user)" class="btn btn-lg btn-default">Submit!</button>
+	    </form> 
+	  </div>
+	</div>
+	    
+	<div>
+	  <p style="text-align: center;">
+	  	Already have an account? <a ui-sref="register">Sign in!</a>
+	  </p>
+	</div>
+</div>

@@ -1,2 +1,27 @@
-<div ui-view></div>
+<br>
+<br>
+<h1 style="text-align: center;">Dashboard</h1>
+
+<!-- <ul style="text-align: center;" class="nav nav-pills">
+	        <li ng-class="{ active: tab.isSet( 1 ) }"><a id="athlete" href ng-click="setTab( 1 )">FreeLancer</a></li>
+	        <li  ng-class="{ active:tab.isSet( 2 ) }"><a id="trainer" href ng-click="setTab( 2 )">Company</a></li>
+	    </ul> -->
+<div ng-show="dashboard.isSet(1)" class="col-md-12">
+	<div ng-repeat="talent in dashboard.talentList" class="talent" >
+		<a ui-sref="dashboard.id( { id: talent.id } )" ng-click="dashboard.setTab( 2 )" ><h4 class="talent-info">{{ talent.firstname }} {{ talent.lastname }}</h4></a>
+		{{ talent.title }} | {{ talent.location }}  
+			<span ng-repeat="client in talent.clients" class="client-list">
+				{{client}}
+			</span>
+		<button ui-sref="dashboard.id({id: talent.id})" class="btn btn-lg btn-default">
+			<span class="glyphicon glyphicon-list-alt"></span> 
+			<br> 
+			<span class="talent-click">See Details</span>
+		</button>
+		
+		<button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-comment"></span><br><span class="talent-click">Schedule Interview</span></button>
+	</div>
+</div>
+
+<div ui-view ng-show="dashboard.isSet(2)" class="col-md-12"></div>
 

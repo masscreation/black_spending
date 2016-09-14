@@ -15,44 +15,46 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch', 
+    'Devise'
   ])
   .config([
     '$stateProvider', 
     '$httpProvider',
     '$urlRouterProvider',
-          function ($stateProvider, $httpProvider, $urlRouterProvider) {
+     'AuthProvider',
+          function ( $stateProvider, $httpProvider, $urlRouterProvider, AuthProvider ) {
     $stateProvider
       .state( '/', {
         url: '/main',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
+        onEnter: [ '$state', 'Auth', function ( $state, Auth ) {
+            if ( Auth.isAuthenticated ) {
+                $state.go( 'dashboard.talent' )   
+            } else {
+                $state.go( 'signup' )
+            } 
+        }
+      ]})
       .state( 'signup', {
         url: '/signup',
-        templateUrl: 'views/signup.html',
+        templateUrl: 'assets/signup.html',
         controller: 'AuthCtrl'
       })
       .state( 'dashboard', {
         url: '/dashboard', 
-        templateUrl: 'views/jobs/dashboard.html', 
+        templateUrl: 'assets/jobs/dashboard.html', 
         controller: 'DashboardCtrl',
-        controllerAs: 'jobs'
+        controllerAs: 'dashboard'
       })
-          .state( 'dashboard.talent', {
-            url: '/talent',
-            templateUrl: 'views/jobs/talent.html'
-          })
-          .state('dashboard.talent.id', {
-            url: '/:id', 
-            templateUrl: 'views/jobs/talented.html',
+          .state( 'dashboard.id', {
+            url: '/:id',
+            templateUrl: 'assets/jobs/talent.html',
             controller: 'TalentCtrl', 
             controllerAs: 'people'
           })
           .state( 'dashboard.create-job', {
             url: '/create-job', 
-            templateUrl: 'views/jobs/create-job.html', 
+            templateUrl: 'assets/jobs/create-job.html', 
           }); 
 
       $urlRouterProvider.otherwise( '/' );
