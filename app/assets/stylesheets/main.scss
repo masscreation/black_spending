@@ -70,10 +70,10 @@ to prevent collapsing during animation*/
 }
 
 .ng-hide-remove      { 
-  animation:0.5s flipInX ease; 
+  // animation:0.5s flipInX ease; 
 }
 .ng-hide-add    { 
-  animation:0.5s flipOutX ease; 
+  // animation:0.5s flipOutX ease; 
 }
 /*----- end animations ----- */
 

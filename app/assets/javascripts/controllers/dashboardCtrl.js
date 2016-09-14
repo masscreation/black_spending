@@ -22,6 +22,8 @@
 
         vm.setTab = function (tabId) {
             vm.tab = tabId;
+            $('div.ng-hide-add').addClass('animated slideOutLeft'); 
+            $('div.ng-hide-remove').addClass('animated slideInLeft'); 
             console.log('now tab is: ', vm.tab)
         };
         vm.isSet = function (tabId) {
@@ -31,6 +33,7 @@
         vm.createJob = function() {
 
         }
+
  
 	}
 
