@@ -31,10 +31,15 @@ angular
             if ( Auth.isAuthenticated ) {
                 $state.go( 'dashboard.talent' )   
             } else {
-                $state.go( 'signup' )
+                $state.go( 'home' )
             } 
         }
       ]})
+      .state( 'home', {
+        url: '/home',
+        templateUrl: 'assets/home.html',
+        controller: 'HomeCtrl'
+      })
       .state( 'signup', {
         url: '/signup',
         templateUrl: 'assets/signup.html',
