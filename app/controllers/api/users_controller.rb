@@ -11,11 +11,6 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     respond_with :api, @user
-    if @user.type = "Trainer"
-      @user.add_role :trainer
-    else
-      @user.add_role :athlete
-    end
   end
 
   def update

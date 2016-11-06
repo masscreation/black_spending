@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the exampleAppApp
  */
-angular.module('skilltapp')
+angular.module('black_spending')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',

@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('skilltapp', [
+  .module('black_spending', [
     'ui.router',
     'ngAnimate',
     'ngCookies',

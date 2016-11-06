@@ -6,7 +6,7 @@
  * # MainCtrl
  * Controller of skilltap
  */
-angular.module('skilltapp')
+angular.module('black_spending')
   .controller('MainCtrl', ['$scope', function ($scope, thingsFactory) {
     this.awesomeThings = [
       'HTML5 Boilerplate',

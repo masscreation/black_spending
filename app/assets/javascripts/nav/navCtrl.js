@@ -1,7 +1,7 @@
 (function() {
   'use strict'; 
 
-  angular.module('skilltapp')
+  angular.module('black_spending')
   .controller('NavCtrl', NavCtrl ); 
 
   NavCtrl.$inject = [ '$scope', '$state', 'Auth' ]; 

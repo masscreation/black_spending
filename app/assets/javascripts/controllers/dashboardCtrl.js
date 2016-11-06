@@ -2,7 +2,7 @@
 'use strict';
 	
 	angular
-	.module( 'skilltapp' ) 
+	.module( 'black_spending' ) 
 	.controller( 'DashboardCtrl', DashboardCtrl ); 
 
 	DashboardCtrl.$inject = [ 'jobs', 'talent' ]; 
@@ -22,8 +22,8 @@
 
         vm.setTab = function (tabId) {
             vm.tab = tabId;
-            $('div.ng-hide-add').addClass('animated slideOutLeft'); 
-            $('div.ng-hide-remove').addClass('animated slideInLeft'); 
+            // $('div.ng-hide-add').addClass('animated slideOutLeft'); 
+            // $('div.ng-hide-remove').addClass('animated slideInLeft'); 
             console.log('now tab is: ', vm.tab)
         };
         vm.isSet = function (tabId) {

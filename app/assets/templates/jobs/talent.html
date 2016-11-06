@@ -1,7 +1,16 @@
-<div>
-	<div class="row talented">
-		<a class="btn btn-md btn-default" ng-click="dashboard.setTab(1)" ui-sref="dashboard">back</a>
-			<div class="row" style="text-align: center">
+<div ng-show="dashboard.isSet(2)">
+	<div>
+		<div class="row talented">
+			<a class="btn btn-md btn-default" ng-click="dashboard.setTab(1)" ui-sref="dashboard">back</a>
+			<p style="text-align: left">
+
+			</p>
+			<p style="text-align: right;">
+				<a class="btn btn-md btn-default" ng-click="dashboard.setTab(1)" ui-sref="dashboard.id({id: ($stateParams.id + 1) })">Next Candidate</a>
+			</p>
+			
+
+				<div class="row" style="text-align: center">
 					<a class="btn btn-lg btn-default interview" ui-sref="dashboard.id.interview({ id: talent.id })">Schedule an interview</a>
 				</div>
 				<div class="row">
@@ -30,56 +39,57 @@
 							</div>
 						</div> 
 					</div>
-					<div class="col-md-4 talent beyond-resume" >
-						<span style="text-align: center; font-weight: bold">BEYOND THE RESUME</span><br>
-						{{ people.person.beyond_resume }}
-					</div>
+						<div class="col-md-4 talent beyond-resume" >
+							<span style="text-align: center; font-weight: bold">BEYOND THE RESUME</span><br>
+							{{ people.person.beyond_resume }}
+						</div>
 				</div>
 		</div>
 	</div>	
-	<br>
-	<a href="" ng-click="(hideme = !hideme)" ng-hide="hideme">See more</a>
-	<a href="" ng-click="(hideme = !hideme)" ng-hide="!hideme" class="!hideme">See Less</a>
-	<div class="row hideme" ng-hide="!hideme">
-		<div class="row talent">
-			<div class="col-md-6 skills">
-				<h5 style="text-align: center;">SKILLS</h5>
-				Expert: <span ng-repeat="skill in people.person.skills.expert">{{ skill }}, </span>
-				<br>
-				Skilled: <span ng-repeat="skill in people.person.skills.skilled">{{ skill }}, </span>
-				<br>
-				Emerging: <span ng-repeat="skill in people.person.skills.emerging">{{ skill }}, </span>
-			</div>
-			<div class="col-md-6">
-				<h5 style="text-align: center;">WORK PRODUCT</h5>
-				{{}}
-			</div>
-		</div>
-
-		<div class="row haves">
-			<div class="col-md-4 must-have">
-				<span style="text-align: left">MUST HAVE</span>
-				<ul ng-repeat="thing in people.person.must_have">
-					<li>{{ thing }}</li>
-				</ul>
-			</div>
-			<div class="col-md-4 wants-have">
-				<span style="text-align: left">WANTS TO HAVE</span>
-				<ul ng-repeat="thing in people.person.wants_to_have">
-					<li>{{ thing }}</li>
-				</ul>
-			</div>
-			<div class="col-md-4 wont-accept">
-				<span style="text-align: left">WILL NOT ACCEPT</span>
-				<ul ng-repeat="thing in people.person.will_not_accept">
-					<li>{{ thing }}</li>
-				</ul>
-			</div>
-			
-		</div>
 		<br>
-		<div class="pro-goal">
-			<span style="font-weight: bold;">PROFESSIONAL GOAL:</span> {{ people.person.professional_goal }}
-		</div>	
+		<a href="" ng-click="(hideme = !hideme)" ng-hide="hideme">See more</a>
+		<a href="" ng-click="(hideme = !hideme)" ng-hide="!hideme" class="!hideme">See Less</a>
+		<div class="row hideme" ng-hide="!hideme">
+			<div class="row talent">
+				<div class="col-md-6 skills">
+					<h5 style="text-align: center;">SKILLS</h5>
+					Expert: <span ng-repeat="skill in people.person.skills.expert">{{ skill }}, </span>
+					<br>
+					Skilled: <span ng-repeat="skill in people.person.skills.skilled">{{ skill }}, </span>
+					<br>
+					Emerging: <span ng-repeat="skill in people.person.skills.emerging">{{ skill }}, </span>
+				</div>
+				<div class="col-md-6">
+					<h5 style="text-align: center;">WORK PRODUCT</h5>
+					{{}}
+				</div>
+			</div>
+
+			<div class="row haves">
+				<div class="col-md-4 must-have">
+					<span style="text-align: left">MUST HAVE</span>
+					<ul ng-repeat="thing in people.person.must_have">
+						<li>{{ thing }}</li>
+					</ul>
+				</div>
+				<div class="col-md-4 wants-have">
+					<span style="text-align: left">WANTS TO HAVE</span>
+					<ul ng-repeat="thing in people.person.wants_to_have">
+						<li>{{ thing }}</li>
+					</ul>
+				</div>
+				<div class="col-md-4 wont-accept">
+					<span style="text-align: left">WILL NOT ACCEPT</span>
+					<ul ng-repeat="thing in people.person.will_not_accept">
+						<li>{{ thing }}</li>
+					</ul>
+				</div>
+				
+			</div>
+			<br>
+			<div class="pro-goal">
+				<span style="font-weight: bold;">PROFESSIONAL GOAL:</span> {{ people.person.professional_goal }}
+			</div>	
+		</div>
 	</div>
-</div>	
+</div>		

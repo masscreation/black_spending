@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-angular.module( 'skilltapp' )
+angular.module( 'black_spending' )
 .controller( 'AuthCtrl', AuthCtrl ); 
  
 	AuthCtrl.$inject = [ 'Auth', '$state' ]; 

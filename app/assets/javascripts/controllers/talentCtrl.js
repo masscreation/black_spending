@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-	.module( 'skilltapp' )
+	.module( 'black_spending' )
   	.controller( 'TalentCtrl', TalentCtrl ); 
  
 	TalentCtrl.$inject = [ 'talent', '$stateParams' ]; 

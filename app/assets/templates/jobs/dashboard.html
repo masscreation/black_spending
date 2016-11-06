@@ -2,6 +2,15 @@
 <br>
 <h1 style="text-align: center;">Dashboard</h1>
 
+	<p ng-hide="dashboard.isSet(3)" style="text-align: right;"> 
+		<a ui-sref="dashboard.create-job" ng-click="dashboard.setTab(3)">POST A NEW JOB</a>
+	</p>
+	<p ng-hide="dashboard.isSet(1)" style="text-align: left;">
+		<a ui-sref="dashboard" ng-click="dashboard.setTab(1)">GO TO CANDIDATE LIST</a>
+	</p>
+
+
+
 <!-- <ul style="text-align: center;" class="nav nav-pills">
 	        <li ng-class="{ active: tab.isSet( 1 ) }"><a id="athlete" href ng-click="setTab( 1 )">FreeLancer</a></li>
 	        <li  ng-class="{ active:tab.isSet( 2 ) }"><a id="trainer" href ng-click="setTab( 2 )">Company</a></li>
@@ -23,5 +32,5 @@
 	</div>
 </div>
 
-<div ui-view ng-show="dashboard.isSet(2)" class="col-md-12"></div>
+<div ui-view class="col-md-12"></div>
 

@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-	.module( 'skilltapp' )
+	.module( 'black_spending' )
 	.factory( 'jobs', jobs ); 
 
 	function jobs() {
